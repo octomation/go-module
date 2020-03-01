@@ -27,7 +27,7 @@ The library uses [SemVer](https://semver.org) for versioning, and it is not
 You can use [go modules](https://github.com/golang/go/wiki/Modules) to manage its version.
 
 ```bash
-$ go get -u github.com/:owner/:repository@:version
+$ go get github.com/:owner/:repository@:version
 ```
 
 ## 🤲 Outcomes
