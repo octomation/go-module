@@ -39,11 +39,6 @@ go-env:
 	@echo "PATHS:       $(strip $(PATHS))"
 	@echo "TIMEOUT:     $(TIMEOUT)"
 
-.PHONY: deps
-deps:
-	@go mod download
-	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-
 .PHONY: deps-check
 deps-check:
 	@go mod verify
@@ -60,6 +55,11 @@ deps-clean:
 deps-shake:
 	@go mod tidy
 
+.PHONY: module-deps
+module-deps:
+	@go mod download
+	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+
 .PHONY: update
 update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 update:
@@ -67,11 +67,23 @@ update:
 		packages="`egg deps list`"; \
 	else \
 		packages="`go list -f $(selector) -m all`"; \
-	fi; go get -mod= -u $$packages
+	fi; go get -d -mod= -u $$packages
 
 .PHONY: update-all
 update-all:
-	@go get -mod= -u ./...
+	@go get -d -mod= -u ./...
+
+.PHONY: format
+format:
+	@goimports -local $(LOCAL) -ungroup -w $(PATHS)
+
+.PHONY: go-generate
+go-generate:
+	@go generate $(PACKAGES)
+
+.PHONY: lint
+lint:
+	@golangci-lint run ./...
 
 .PHONY: test
 test:
@@ -89,20 +101,18 @@ test-with-coverage:
 test-with-coverage-profile:
 	@go test -cover -covermode count -coverprofile c.out -timeout $(TIMEOUT) $(PACKAGES)
 
-.PHONY: format
-format:
-	@goimports -local $(LOCAL) -ungroup -w $(PATHS)
-
-.PHONY: generate
-generate:
-	@go generate $(PACKAGES)
-
 
 .PHONY: clean
 clean: deps-clean test-clean
 
+.PHONY: deps
+deps: module-deps
+
 .PHONY: env
 env: go-env
+
+.PHONY: generate
+generate: go-generate format
 
 .PHONY: refresh
 refresh: deps-shake update deps generate format test
