@@ -54,6 +54,7 @@ deps-clean:
 .PHONY: deps-shake
 deps-shake:
 	@go mod tidy
+	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: module-deps
 module-deps:
@@ -67,11 +68,22 @@ update:
 		packages="`egg deps list`"; \
 	else \
 		packages="`go list -f $(selector) -m all`"; \
-	fi; go get -d -u $$packages
+	fi; \
+	if [[ "`go version`" == *1.1[1-3]* ]]; then \
+		go get -d -mod= -u $$packages; \
+	else \
+		go get -d -u $$packages; \
+	fi; \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: update-all
 update-all:
-	@go get -d -u ./...
+	@if [[ $(go version) == *1.1[1-3]* ]]; then \
+		go get -d -mod= -u ./...; \
+	else \
+		go get -d -u ./...; \
+	fi \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 
 .PHONY: format
 format:
