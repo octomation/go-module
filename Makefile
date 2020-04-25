@@ -4,14 +4,15 @@
 
 SHELL = /bin/bash -euo pipefail
 
+GO_VERSIONS = 1.11 1.12 1.13 1.14
 GO111MODULE = on
 GOFLAGS     = -mod=vendor
 GOPRIVATE   = go.octolab.net
 GOPROXY     = direct
 LOCAL       = $(MODULE)
-MODULE      = `go list -m`
-PACKAGES    = `go list ./... 2> /dev/null`
-PATHS       = $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/\{0,1\}||g")
+MODULE      = `GO111MODULE=on go list -m $(GOFLAGS)`
+PACKAGES    = `GO111MODULE=on go list $(GOFLAGS) ./...`
+PATHS       = $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
 TIMEOUT     = 1s
 
 ifeq (, $(PACKAGES))
@@ -29,6 +30,7 @@ export GOPROXY     := $(GOPROXY)
 
 .PHONY: go-env
 go-env:
+	@echo "GO_VERSIONS: $(GO_VERSIONS)"
 	@echo "GO111MODULE: `go env GO111MODULE`"
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
 	@echo "GOPRIVATE:   $(strip `go env GOPRIVATE`)"
@@ -131,8 +133,8 @@ go$(1):
 		golang:$(1) bash
 endef
 
-render_go_tpl = $(eval $(call go_tpl,$(version)))
-$(foreach version,1.11 1.12 1.13 1.14,$(render_go_tpl))
+render_go_tpl = $(eval $(call go_tpl, $(version)))
+$(foreach version, $(GO_VERSIONS), $(render_go_tpl))
 
 
 .PHONY: clean
