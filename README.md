@@ -10,7 +10,7 @@
 
 ...
 
-Full description of the idea is available [here][design.page].
+A full description of the idea is available [here][design.page].
 
 ## 🏆 Motivation
 
@@ -38,8 +38,8 @@ $ go get github.com/:owner/:repository@:version
 
 made with ❤️ for everyone
 
-[build.page]:       https://travis-ci.org/:owner/:repository
-[build.icon]:       https://travis-ci.org/:owner/:repository.svg?branch=:branch
+[build.page]:       https://travis-ci.com/:owner/:repository
+[build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=:branch
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
 [docs.page]:        https://pkg.go.dev/github.com/:owner/:repository/:version
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
