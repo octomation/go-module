@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-make generate
+set -euo pipefail
 
+make generate
 git diff --quiet --exit-code
-exit $?
