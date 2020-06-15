@@ -12,7 +12,7 @@ linters:
     - deadcode
     - typecheck
 
-#    - bodyclose
+    - bodyclose
 #    - golint
 #    - rowserrcheck
 #    - stylecheck
@@ -35,7 +35,7 @@ linters:
 #    - nakedret
 #    - prealloc
 #    - scopelint
-#    - gocritic
+    - gocritic
 #    - gochecknoinits
 #    - gochecknoglobals
 #    - godox
