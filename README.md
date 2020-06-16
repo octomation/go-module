@@ -42,7 +42,7 @@ made with ❤️ for everyone
 [build.page]:       https://travis-ci.com/:owner/:repository
 [build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=:branch
 [coverage.page]:    https://codeclimate.com/github/:owner/:repository/test_coverage
-[coverage.icon]:    https://api.codeclimate.com/v1/badges/:id/test_coverage
+[coverage.icon]:    https://api.codeclimate.com/v1/badges/c570179a9335c747e77c/test_coverage
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
 [docs.page]:        https://pkg.go.dev/github.com/:owner/:repository/:version
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
