@@ -104,11 +104,8 @@ go-generate:
 
 .PHONY: lint
 lint:
-	@if command -v golangci-lint > /dev/null; then \
-		`which time` -- golangci-lint run ./...; \
-	else \
-		go vet $(PACKAGES); \
-	fi
+	@golangci-lint run ./...
+	@looppointer ./...
 
 .PHONY: test
 test:
