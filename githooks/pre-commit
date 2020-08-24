@@ -4,7 +4,7 @@ set -euo pipefail
 
 git stash save --keep-index
 function restore() {
-    git stash pop || true
+  git stash pop || true
 }
 trap restore EXIT
 
