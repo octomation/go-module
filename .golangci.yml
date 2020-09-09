@@ -1,4 +1,4 @@
-linters:
+linters:            # https://golangci-lint.run/usage/linters/
   fast: true
   enable:
     - deadcode      # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
