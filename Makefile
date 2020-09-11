@@ -32,7 +32,6 @@ export GOFLAGS     := $(GOFLAGS)
 export GOPRIVATE   := $(GOPRIVATE)
 export GOPROXY     := $(GOPROXY)
 
-.PHONY: go-env
 go-env:
 	@echo "GO111MODULE: `go env GO111MODULE`"
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
@@ -43,30 +42,30 @@ go-env:
 	@echo "PACKAGES:    $(PACKAGES)"
 	@echo "PATHS:       $(strip $(PATHS))"
 	@echo "TIMEOUT:     $(TIMEOUT)"
+.PHONY: go-env
 
-.PHONY: deps-check
 deps-check:
 	@go mod verify
 	@if command -v egg > /dev/null; then \
 		egg deps check license; \
 		egg deps check version; \
 	fi
+.PHONY: deps-check
 
-.PHONY: deps-clean
 deps-clean:
 	@go clean -modcache
+.PHONY: deps-clean
 
-.PHONY: deps-fetch
 deps-fetch:
 	@go mod download
 	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: deps-fetch
 
-.PHONY: deps-tidy
 deps-tidy:
 	@go mod tidy
 	@if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: deps-tidy
 
-.PHONY: deps-update
 deps-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 deps-update:
 	@if command -v egg > /dev/null; then \
@@ -80,8 +79,8 @@ deps-update:
 		go get -d -u $$packages; \
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: deps-update
 
-.PHONY: deps-update-all
 deps-update-all:
 	@if [[ "`go version`" == *1.1[1-3]* ]]; then \
 		go get -d -mod= -u ./...; \
@@ -89,58 +88,59 @@ deps-update-all:
 		go get -d -u ./...; \
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: deps-update-all
 
-.PHONY: go-fmt
 go-fmt:
 	@if command -v goimports > /dev/null; then \
 		goimports -local $(LOCAL) -ungroup -w $(PATHS); \
 	else \
 		gofmt -s -w $(PATHS); \
 	fi
+.PHONY: go-fmt
 
-.PHONY: go-generate
 go-generate:
 	@go generate $(PACKAGES)
+.PHONY: go-generate
 
-.PHONY: lint
 lint:
 	@golangci-lint run ./...
 	@looppointer ./...
+.PHONY: lint
 
-.PHONY: test
 test:
 	@go test -race -timeout $(TIMEOUT) $(PACKAGES)
+.PHONY: test
 
-.PHONY: test-clean
 test-clean:
 	@go clean -testcache
+.PHONY: test-clean
 
-.PHONY: test-with-coverage
 test-with-coverage:
 	@go test -cover -timeout $(TIMEOUT) $(PACKAGES) | column -t | sort -r
+.PHONY: test-with-coverage
 
-.PHONY: test-with-coverage-profile
 test-with-coverage-profile:
 	@go test -cover -covermode count -coverprofile c.out -timeout $(TIMEOUT) $(PACKAGES)
+.PHONY: test-with-coverage-profile
 
-.PHONY: test-with-coverage-report
 test-with-coverage-report: test-with-coverage-profile
 	@go tool cover -html c.out
+.PHONY: test-with-coverage-report
 
 ifdef GIT_HOOKS
 
-.PHONY: hooks
 hooks: unhook
 	@for hook in $(GIT_HOOKS); do cp githooks/$$hook .git/hooks/; done
+.PHONY: hooks
 
-.PHONY: unhook
 unhook:
 	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
+.PHONY: unhook
 
 define hook_tpl
-.PHONY: $(1)
 $(1):
 	@githooks/$(1)
+.PHONY: $(1)
 endef
 
 render_hook_tpl = $(eval $(call hook_tpl,$(hook)))
@@ -151,13 +151,13 @@ endif
 ifdef GO_VERSIONS
 
 define go_tpl
-.PHONY: go$(1)
 go$(1):
 	@docker run \
 		--rm -it \
 		-v $(PWD):/src \
 		-w /src \
 		golang:$(1) bash
+.PHONY: go$(1)
 endef
 
 render_go_tpl = $(eval $(call go_tpl,$(version)))
@@ -166,26 +166,27 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 endif
 
 
-.PHONY: init
 init: deps test lint hooks
+	@git config core.autocrlf input
+.PHONY: init
 
-.PHONY: clean
 clean: deps-clean test-clean
+.PHONY: clean
 
-.PHONY: deps
 deps: deps-fetch
+.PHONY: deps
 
-.PHONY: env
 env: go-env
+.PHONY: env
 
-.PHONY: format
 format: go-fmt
+.PHONY: format
 
-.PHONY: generate
 generate: go-generate format
+.PHONY: generate
 
-.PHONY: refresh
 refresh: deps-tidy update deps generate format test
+.PHONY: refresh
 
-.PHONY: update
 update: deps-update
+.PHONY: update
