@@ -22,6 +22,8 @@ linters:            # https://golangci-lint.run/usage/linters/
 #    - depguard           # https://github.com/OpenPeeDeeP/depguard
 #    - dogsled            # https://github.com/alexkohler/dogsled
 #    - dupl               # https://github.com/mibk/dupl
+#    - errorlint          # https://github.com/polyfloyd/go-errorlint
+#    - exhaustivestruct   # https://github.com/mbilski/exhaustivestruct
 #    - funlen             # https://github.com/ultraware/funlen
 #    - gci                # https://github.com/daixiang0/gci
 #    - gochecknoglobals   # https://github.com/leighmcculloch/gochecknoglobals
@@ -55,9 +57,11 @@ linters:            # https://golangci-lint.run/usage/linters/
 #    - sqlclosecheck      # https://github.com/ryanrolds/sqlclosecheck
 #    - stylecheck         # https://github.com/dominikh/go-tools/tree/master/stylecheck
 #    - testpackage        # https://github.com/maratori/testpackage
+#    - tparallel          # https://github.com/moricho/tparallel
 #    - unconvert          # https://github.com/mdempsky/unconvert
 #    - unparam            # https://github.com/mvdan/unparam
 #    - whitespace         # https://github.com/ultraware/whitespace
+#    - wrapcheck          # https://github.com/tomarrell/wrapcheck
 #    - wsl                # https://github.com/bombsimon/wsl
 
 #    - https://github.com/kyoh86/looppointer
