@@ -4,8 +4,8 @@ go 1.11
 
 require (
 	github.com/golang/mock v1.4.4
-	github.com/golangci/golangci-lint v1.32.2
-	github.com/kyoh86/looppointer v0.1.6
+	github.com/golangci/golangci-lint v1.33.1
+	github.com/kyoh86/looppointer v0.1.7
 	golang.org/x/tools v0.5.0
 )
 
