@@ -1,12 +1,19 @@
-linters:            # https://golangci-lint.run/usage/linters/
+linters:
   fast: true
+  fetch: >
+    curl -s https://golangci-lint.run/usage/linters/ \
+    | pup ':parent-of(#enabled-by-default-linters)' \
+    | pup 'ul li a json{}' \
+    | jq '.[] | (.text + " " + .href)' \
+    | sed 's/"//g' \
+    | column -t
   enable:
     - deadcode      # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
     - errcheck      # https://github.com/kisielk/errcheck
     - gosimple      # https://github.com/dominikh/go-tools/tree/master/simple
     - govet         # https://golang.org/cmd/vet/
     - ineffassign   # https://github.com/gordonklaus/ineffassign
-    - staticcheck   # https://github.com/dominikh/go-tools/tree/master/cmd/staticcheck
+    - staticcheck   # https://staticcheck.io/
     - structcheck   # https://github.com/opennota/check
     - typecheck     # -
     - unused        # https://github.com/dominikh/go-tools/tree/master/unused
@@ -48,9 +55,10 @@ linters:            # https://golangci-lint.run/usage/linters/
 #    - maligned           # https://github.com/mdempsky/maligned
 #    - misspell           # https://github.com/client9/misspell
 #    - nakedret           # https://github.com/alexkohler/nakedret
-#    - nlreturn           # https://github.com/ssgreg/nlreturn
 #    - nestif             # https://github.com/nakabonne/nestif
-#    - nolintlint         # https://github.com/golangci/golangci-lint/tree/master/pkg/golinters/nolintlint
+#    - nlreturn           # https://github.com/ssgreg/nlreturn
+#    - nolintlint         # https://github.com/golangci/golangci-lint/blob/master/pkg/golinters/nolintlint/README.md
+#    - paralleltest       # https://github.com/kunwardeep/paralleltest
 #    - prealloc           # https://github.com/alexkohler/prealloc
 #    - rowserrcheck       # https://github.com/jingyugao/rowserrcheck
 #    - scopelint          # https://github.com/kyoh86/scopelint
