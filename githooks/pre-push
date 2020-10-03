@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-make generate test
+make deps-tidy generate
 git diff --quiet --exit-code
