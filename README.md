@@ -7,6 +7,7 @@
 [![Quality][quality.icon]][quality.page]
 [![Template][template.icon]][template.page]
 [![Coverage][coverage.icon]][coverage.page]
+[![Mirror][mirror.icon]][mirror.page]
 
 ## 💡 Idea
 
@@ -52,3 +53,5 @@ made with ❤️ for everyone
 [quality.icon]:     https://goreportcard.com/badge/go.octolab.org
 [template.page]:    https://github.com/octomation/go-module
 [template.icon]:    https://img.shields.io/badge/template-go--module-blue
+[mirror.page]:      https://bitbucket.org/:owner/:repository
+[mirror.icon]:      https://img.shields.io/badge/template-mirror-blue
