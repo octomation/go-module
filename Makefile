@@ -117,6 +117,13 @@ lint:
 	@looppointer ./...
 .PHONY: lint
 
+GODOC_HOST ?= localhost:6060
+
+docs:
+	@(sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
+	@godoc -http=$(GODOC_HOST)
+.PHONY: docs
+
 test:
 	@go test -race -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test
