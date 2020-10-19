@@ -132,6 +132,10 @@ test-clean:
 	@go clean -testcache
 .PHONY: test-clean
 
+test-quick:
+	@go test -timeout $(TIMEOUT) $(PACKAGES)
+.PHONY: test-quick
+
 test-with-coverage:
 	@go test \
 		-cover \
@@ -152,9 +156,13 @@ test-integration:
 		-covermode atomic \
 		-coverprofile integration.out \
 		-race \
-		-tags=integration \
+		-tags integration \
 		./... | column -t | sort -r
 .PHONY: test-integration
+
+test-integration-quick:
+	@go test -tags integration ./...
+.PHONY: test-integration-quick
 
 test-integration-report: test-integration
 	@go tool cover -html integration.out
