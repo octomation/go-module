@@ -55,6 +55,8 @@ go-env:
 	@echo "TIMEOUT:     $(TIMEOUT)"
 .PHONY: go-env
 
+export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
+
 deps-check:
 	@go mod verify
 	@if command -v egg > /dev/null; then \
@@ -169,6 +171,23 @@ test-integration-report: test-integration
 	@go tool cover -html integration.out
 .PHONY: test-integration-report
 
+TOOLFLAGS ?= -mod=
+
+tools-env:
+	@echo "GOBIN:       `go env GOBIN`"
+	@echo "TOOLFLAGS:   $(TOOLFLAGS)"
+.PHONY: tools-env
+
+toolset:
+	@( \
+		GOFLAGS=$(TOOLFLAGS); \
+		cd tools; \
+		go mod tidy; \
+		if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi; \
+		go generate -tags tools tools.go; \
+	)
+.PHONY: toolset
+
 ifdef GIT_HOOKS
 
 hooks: unhook
@@ -208,6 +227,9 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 endif
 
 
+export PATH := `go env GOBIN`:$(PATH)
+
+
 init: deps test lint hooks
 	@git config core.autocrlf input
 .PHONY: init
@@ -215,10 +237,12 @@ init: deps test lint hooks
 clean: deps-clean test-clean
 .PHONY: clean
 
-deps: deps-fetch
+deps: deps-fetch toolset
 .PHONY: deps
 
-env: go-env
+env: go-env tools-env
+env:
+	@echo "PATH:        $$PATH"
 .PHONY: env
 
 format: go-fmt
@@ -227,7 +251,7 @@ format: go-fmt
 generate: go-generate format
 .PHONY: generate
 
-refresh: deps-tidy update deps generate format test
+refresh: deps-tidy update deps generate test
 .PHONY: refresh
 
 update: deps-update
