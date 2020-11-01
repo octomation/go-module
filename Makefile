@@ -12,11 +12,10 @@ SHELL ?= /bin/bash -euo pipefail
 
 todo:
 	@grep \
-		--exclude-dir=vendor \
-		--exclude-dir=node_modules \
 		--exclude=Makefile \
-		--text \
+		--exclude-dir={bin,components,node_modules,vendor} \
 		--color \
+		--text \
 		-nRo -E ' TODO:.*|SkipNow' . || true
 .PHONY: todo
 
