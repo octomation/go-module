@@ -19,6 +19,12 @@ todo:
 		-nRo -E ' TODO:.*|SkipNow' . || true
 .PHONY: todo
 
+rmdir:
+	@for dir in `git ls-files --others --exclude-standard --directory`; do \
+		find $${dir%%/} -depth -type d -empty | xargs rmdir; \
+	done
+.PHONY: rmdir
+
 GO111MODULE ?= on
 GOFLAGS     ?= -mod=
 GOPRIVATE   ?= go.octolab.net
@@ -208,6 +214,12 @@ $(foreach hook,$(GIT_HOOKS),$(render_hook_tpl))
 
 endif
 
+git-check:
+	@git diff --exit-code >/dev/null
+	@git diff --cached --exit-code >/dev/null
+	@! git ls-files --others --exclude-standard | grep -q ^
+.PHONY: git-check
+
 ifdef GO_VERSIONS
 
 define go_tpl
@@ -255,3 +267,6 @@ refresh: deps-tidy update deps generate test
 
 update: deps-update
 .PHONY: update
+
+verify: deps-check generate git-check lint test
+.PHONY: verify
