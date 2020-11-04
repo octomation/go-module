@@ -238,7 +238,7 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 endif
 
 
-export PATH := `go env GOBIN`:$(PATH)
+export PATH := $(GOBIN):$(PATH)
 
 
 init: deps test lint hooks
@@ -253,7 +253,7 @@ deps: deps-fetch toolset
 
 env: go-env tools-env
 env:
-	@echo "PATH:        $$PATH"
+	@echo "PATH:        $(PATH)"
 .PHONY: env
 
 format: go-fmt
