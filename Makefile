@@ -140,7 +140,9 @@ test-clean:
 	@go clean -testcache
 .PHONY: test-clean
 
+test-quick: GOTAGS = integration,tools
 test-quick:
+	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | grep -v 'no tests to run'
 	@go test -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test-quick
 
