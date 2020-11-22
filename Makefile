@@ -4,6 +4,7 @@
 GIT_HOOKS     = post-merge pre-commit pre-push
 GO_VERSIONS   = 1.11 1.12 1.13 1.14 1.15
 GO111MODULE   = on
+SHELL         = /bin/bash -euo pipefail
 
 AT    := @
 OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
@@ -148,7 +149,7 @@ test-clean:
 
 test-quick: GOTAGS = integration,tools
 test-quick:
-	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | grep -v 'no tests to run'
+	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | { grep -v 'no tests to run' || true; }
 	@go test -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test-quick
 
