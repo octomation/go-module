@@ -164,7 +164,7 @@ test-with-coverage:
 		-coverprofile c.out \
 		-race \
 		-timeout $(TIMEOUT) \
-		$(PACKAGES) | column -t | sort -r
+		$(PACKAGES)
 .PHONY: test-with-coverage
 
 test-with-coverage-report: test-with-coverage
@@ -179,7 +179,7 @@ test-integration:
 		-coverprofile integration.out \
 		-race \
 		-tags $(GOTAGS) \
-		./... | column -t | sort -r
+		./...
 .PHONY: test-integration
 
 test-integration-quick: GOTAGS = integration
