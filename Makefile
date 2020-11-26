@@ -94,26 +94,17 @@ deps-tidy:
 deps-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 deps-update:
 	$(AT) if command -v egg > /dev/null; then \
-		packages="`egg deps list`"; \
+		packages="`egg deps list | tr ' ' '\n' | sed -e 's/$$/@latest/'`"; \
 	else \
-		packages="`go list -f $(selector) -m -mod=readonly all`"; \
+		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
 	fi; \
 	if [[ "`go version`" == *1.1[1-3]* ]]; then \
-		go get -d -mod= -u $$packages; \
+		go get -d -mod= $$packages; \
 	else \
-		go get -d -u $$packages; \
+		go get -d $$packages; \
 	fi; \
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 .PHONY: deps-update
-
-deps-update-all:
-	$(AT) if [[ "`go version`" == *1.1[1-3]* ]]; then \
-		go get -d -mod= -u ./...; \
-	else \
-		go get -d -u ./...; \
-	fi; \
-	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-.PHONY: deps-update-all
 
 go-fmt:
 	@if command -v goimports > /dev/null; then \
