@@ -98,6 +98,7 @@ deps-update:
 	else \
 		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
 	fi; \
+	if [[ "$$packages" = "@latest" ]]; then exit; fi; \
 	if [[ "`go version`" == *1.1[1-3]* ]]; then \
 		go get -d -mod= $$packages; \
 	else \
