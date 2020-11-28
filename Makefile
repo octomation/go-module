@@ -107,6 +107,13 @@ deps-update:
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 .PHONY: deps-update
 
+GODOC_HOST ?= localhost:6060
+
+go-docs:
+	@(sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
+	@godoc -http=$(GODOC_HOST)
+.PHONY: go-docs
+
 go-fmt:
 	@if command -v goimports > /dev/null; then \
 		goimports -local $(LOCAL) -ungroup -w $(PATHS); \
@@ -123,13 +130,6 @@ lint:
 	@golangci-lint run ./...
 	@looppointer ./...
 .PHONY: lint
-
-GODOC_HOST ?= localhost:6060
-
-docs:
-	@(sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
-	@godoc -http=$(GODOC_HOST)
-.PHONY: docs
 
 test:
 	@go test -race -timeout $(TIMEOUT) $(PACKAGES)
