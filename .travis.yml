@@ -25,6 +25,7 @@ jobs:
     - go: master
 
 before_script:
+  - make env
   - |
     if [[ $TRAVIS_GO_VERSION == 1.15* ]]; then
       curl -sL $CODECLIMATE > /home/travis/gopath/bin/cc-test-reporter
