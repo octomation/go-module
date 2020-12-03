@@ -32,15 +32,17 @@ rmdir:
 	done
 .PHONY: rmdir
 
-GO111MODULE ?= on
-GOFLAGS     ?= -mod=
-GOPRIVATE   ?= go.octolab.net
-GOPROXY     ?= direct
-LOCAL       ?= $(MODULE)
-MODULE      ?= `GO111MODULE=on go list -m $(GOFLAGS)`
-PACKAGES    ?= `GO111MODULE=on go list $(GOFLAGS) ./...`
-PATHS       ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
-TIMEOUT     ?= 1s
+export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
+export PATH  := $(GOBIN):$(PATH)
+
+GOFLAGS   ?= -mod=
+GOPRIVATE ?= go.octolab.net
+GOPROXY   ?= direct
+LOCAL     ?= $(MODULE)
+MODULE    ?= `go list -m $(GOFLAGS)`
+PACKAGES  ?= `go list $(GOFLAGS) ./...`
+PATHS     ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
+TIMEOUT   ?= 1s
 
 ifeq (, $(PACKAGES))
 	PACKAGES = $(MODULE)
@@ -50,13 +52,11 @@ ifeq (, $(PATHS))
 	PATHS = .
 endif
 
-export GO111MODULE := $(GO111MODULE)
-export GOFLAGS     := $(GOFLAGS)
-export GOPRIVATE   := $(GOPRIVATE)
-export GOPROXY     := $(GOPROXY)
+export GOFLAGS   := $(GOFLAGS)
+export GOPRIVATE := $(GOPRIVATE)
+export GOPROXY   := $(GOPROXY)
 
 go-env:
-	@echo "GO111MODULE: `go env GO111MODULE`"
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
 	@echo "GOPRIVATE:   $(strip `go env GOPRIVATE`)"
 	@echo "GOPROXY:     $(strip `go env GOPROXY`)"
@@ -66,8 +66,6 @@ go-env:
 	@echo "PATHS:       $(strip $(PATHS))"
 	@echo "TIMEOUT:     $(TIMEOUT)"
 .PHONY: go-env
-
-export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
 
 deps-check:
 	@go mod verify
@@ -131,8 +129,13 @@ lint:
 	@looppointer ./...
 .PHONY: lint
 
+GOTEST ?= `command -v gotest`
+ifeq (, $(GOTEST))
+	GOTEST = go test
+endif
+
 test:
-	@go test -race -timeout $(TIMEOUT) $(PACKAGES)
+	@$(GOTEST) -race -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test
 
 test-clean:
@@ -142,15 +145,15 @@ test-clean:
 test-quick: GOTAGS = integration,tools
 test-quick:
 	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | { grep -v 'no tests to run' || true; }
-	@go test -timeout $(TIMEOUT) $(PACKAGES)
+	@$(GOTEST) -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test-quick
 
 test-verbose:
-	@go test -race -timeout $(TIMEOUT) -v $(PACKAGES)
+	@$(GOTEST) -race -timeout $(TIMEOUT) -v $(PACKAGES)
 .PHONY: test-verbose
 
 test-with-coverage:
-	@go test \
+	@$(GOTEST) \
 		-cover \
 		-covermode atomic \
 		-coverprofile c.out \
@@ -163,9 +166,14 @@ test-with-coverage-report: test-with-coverage
 	@go tool cover -html c.out
 .PHONY: test-with-coverage-report
 
+GOTEST ?= `command -v gotest`
+ifeq (, $(GOTEST))
+	GOTEST = go test
+endif
+
 test-integration: GOTAGS = integration
 test-integration:
-	@go test \
+	@$(GOTEST) \
 		-cover \
 		-covermode atomic \
 		-coverprofile integration.out \
@@ -176,7 +184,7 @@ test-integration:
 
 test-integration-quick: GOTAGS = integration
 test-integration-quick:
-	@go test -tags $(GOTAGS) ./...
+	@$(GOTEST) -tags $(GOTAGS) ./...
 .PHONY: test-integration-quick
 
 test-integration-report: test-integration
@@ -244,9 +252,6 @@ render_go_tpl = $(eval $(call go_tpl,$(version)))
 $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 
 endif
-
-
-export PATH := $(GOBIN):$(PATH)
 
 
 init: deps test lint hooks
