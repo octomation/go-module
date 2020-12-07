@@ -7,8 +7,9 @@ GO111MODULE   = on
 SHELL         = /bin/bash -euo pipefail
 
 AT    := @
-OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 ARCH  := $(shell uname -m | tr '[:upper:]' '[:lower:]')
+OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
+DATE  := $(shell date +%Y-%m-%dT%T%Z)
 
 SHELL ?= /bin/bash -euo pipefail
 
@@ -32,17 +33,55 @@ rmdir:
 	done
 .PHONY: rmdir
 
+COMMIT  := $(shell git rev-parse --verify HEAD)
+RELEASE := $(shell git describe --tags 2>/dev/null | rev | cut -d - -f3- | rev)
+
+ifdef GIT_HOOKS
+
+hooks: unhook
+	$(AT) for hook in $(GIT_HOOKS); do cp githooks/$$hook .git/hooks/; done
+.PHONY: hooks
+
+unhook:
+	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
+.PHONY: unhook
+
+define hook_tpl
+$(1):
+	@githooks/$(1)
+.PHONY: $(1)
+endef
+
+render_hook_tpl = $(eval $(call hook_tpl,$(hook)))
+$(foreach hook,$(GIT_HOOKS),$(render_hook_tpl))
+
+endif
+
+git-check:
+	$(AT) git diff --exit-code >/dev/null
+	$(AT) git diff --cached --exit-code >/dev/null
+	$(AT) ! git ls-files --others --exclude-standard | grep -q ^
+.PHONY: git-check
+
 export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
 export PATH  := $(GOBIN):$(PATH)
 
 GOFLAGS   ?= -mod=
 GOPRIVATE ?= go.octolab.net
 GOPROXY   ?= direct
+GOTEST    ?= $(GOBIN)/gotest
 LOCAL     ?= $(MODULE)
 MODULE    ?= `go list -m $(GOFLAGS)`
 PACKAGES  ?= `go list $(GOFLAGS) ./...`
 PATHS     ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
 TIMEOUT   ?= 1s
+
+ifeq (, $(wildcard $(GOTEST)))
+	GOTEST = $(shell command -v gotest)
+endif
+ifeq (, $(GOTEST))
+	GOTEST = go test
+endif
 
 ifeq (, $(PACKAGES))
 	PACKAGES = $(MODULE)
@@ -58,6 +97,7 @@ export GOPROXY   := $(GOPROXY)
 
 go-env:
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
+	@echo "GOTEST:      $(GOTEST)"
 	@echo "GOPRIVATE:   $(strip `go env GOPRIVATE`)"
 	@echo "GOPROXY:     $(strip `go env GOPROXY`)"
 	@echo "LOCAL:       $(LOCAL)"
@@ -129,11 +169,6 @@ lint:
 	@looppointer ./...
 .PHONY: lint
 
-GOTEST ?= `command -v gotest`
-ifeq (, $(GOTEST))
-	GOTEST = go test
-endif
-
 test:
 	@$(GOTEST) -race -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test
@@ -165,11 +200,6 @@ test-with-coverage:
 test-with-coverage-report: test-with-coverage
 	@go tool cover -html c.out
 .PHONY: test-with-coverage-report
-
-GOTEST ?= `command -v gotest`
-ifeq (, $(GOTEST))
-	GOTEST = go test
-endif
 
 test-integration: GOTAGS = integration
 test-integration:
@@ -208,33 +238,6 @@ toolset:
 		go generate -tags $(GOTAGS) tools.go; \
 	)
 .PHONY: toolset
-
-ifdef GIT_HOOKS
-
-hooks: unhook
-	$(AT) for hook in $(GIT_HOOKS); do cp githooks/$$hook .git/hooks/; done
-.PHONY: hooks
-
-unhook:
-	@ls .git/hooks | grep -v .sample | sed 's|.*|.git/hooks/&|' | xargs rm -f || true
-.PHONY: unhook
-
-define hook_tpl
-$(1):
-	@githooks/$(1)
-.PHONY: $(1)
-endef
-
-render_hook_tpl = $(eval $(call hook_tpl,$(hook)))
-$(foreach hook,$(GIT_HOOKS),$(render_hook_tpl))
-
-endif
-
-git-check:
-	$(AT) git diff --exit-code >/dev/null
-	$(AT) git diff --cached --exit-code >/dev/null
-	$(AT) ! git ls-files --others --exclude-standard | grep -q ^
-.PHONY: git-check
 
 ifdef GO_VERSIONS
 
