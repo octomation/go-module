@@ -164,6 +164,10 @@ go-generate:
 	@go generate $(PACKAGES)
 .PHONY: go-generate
 
+go-pkg:
+	@open https://pkg.go.dev/$(MODULE)@$(RELEASE)
+.PHONY: go-pkg
+
 lint:
 	@golangci-lint run ./...
 	@looppointer ./...
