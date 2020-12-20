@@ -39,6 +39,7 @@ $ go get github.com/:owner/:repository@:version
 
 <p align="right">made with ❤️ for everyone</p>
 
+[awesome.icon]:     https://awesome.re/mentioned-badge.svg
 [build.page]:       https://travis-ci.com/:owner/:repository
 [build.icon]:       https://travis-ci.com/:owner/:repository.svg?branch=:branch
 [coverage.page]:    https://codeclimate.com/github/:owner/:repository/test_coverage
