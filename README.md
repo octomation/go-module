@@ -47,10 +47,12 @@ $ go get github.com/:owner/:repository@:version
 [design.page]:      https://www.notion.so/33715348cc114ea79dd350a25d16e0b0?r=0b753cbf767346f5a6fd51194829a2f3
 [docs.page]:        https://pkg.go.dev/:module/:version
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
+[mirror.page]:      https://bitbucket.org/kamilsk/go-module
+[mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
 [promo.page]:       https://github.com/:owner/:repository
 [quality.page]:     https://goreportcard.com/report/:module
 [quality.icon]:     https://goreportcard.com/badge/go.octolab.org
 [template.page]:    https://github.com/octomation/go-module
 [template.icon]:    https://img.shields.io/badge/template-go--module-blue
-[mirror.page]:      https://bitbucket.org/kamilsk/go-module
-[mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
+
+[_]:                https://img.shields.io/sourcegraph/rrc/github.com/:owner/:repository
