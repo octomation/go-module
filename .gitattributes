@@ -1,0 +1,17 @@
+.gitattributes  export-ignore
+.gitignore      export-ignore
+.gitkeep        export-ignore
+.golangci.yml   export-ignore
+
+/.github/       export-ignore
+/bin/           export-ignore
+/tools/         export-ignore
+
+Makefile        export-ignore
+Taskfile        export-ignore
+*.md            export-ignore
+
+*_test.go       export-ignore
+testdata/       export-ignore
+
+go.sum linguist-generated

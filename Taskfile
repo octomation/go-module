@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function test_example() {
+  return 0
+}
+
+function tests() {
+  for test in $(compgen -A function | grep 'test_'); do
+    local result=()
+    if $test >/dev/null 2>&1; then
+      result+=(ok)
+    else
+      result+=(fail)
+    fi
+    result+=("${test}")
+    result+=(todo:timer)
+    echo "${result[@]}" | column -t
+  done
+}
+
+function help() {
+  echo "$0 <task> <args>"
+  echo "Tasks:"
+  compgen -A function | grep -v '^__' | sort | cat -n
+}
+
+__default() { help; }
+
+"${@:-__default}"

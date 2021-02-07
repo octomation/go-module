@@ -1,0 +1,5 @@
+# code coverage and quality reports
+/*.out
+
+# third-party dependencies
+/vendor/

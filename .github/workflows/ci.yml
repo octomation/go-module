@@ -1,0 +1,88 @@
+name: checking
+
+on:
+  pull_request:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/ci.yml'
+      - '**.go'
+      - '!tools/*.go'
+  push:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/ci.yml'
+      - '**.go'
+      - '!tools/*.go'
+    tags: [ '!*' ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go:
+          - 1.x
+          - 1.11.x
+          - 1.12.x
+          - 1.13.x
+          - 1.14.x
+          - 1.15.x
+          - 1.16.x
+          - 1.17.x
+          - 1.18.x
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-go@v3
+        with: { go-version: '${{ matrix.go }}' }
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/Library/Caches/go-build
+            %LocalAppData%\go-build
+          key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - run: make env deps-fetch test-with-coverage
+      - uses: actions/upload-artifact@v3
+        if: ${{ matrix.go == '1.18.x' }}
+        with:
+          name: code-coverage-report
+          path: c.out
+
+  coverage:
+    needs: [ test ]
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: { fetch-depth: 0 }
+      - uses: actions/download-artifact@v3
+        with:
+          name: code-coverage-report
+      - run: |
+          echo "MODULE=$(grep module go.mod | awk '{print $2}')" >> $GITHUB_ENV
+      - uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageLocations: c.out:gocov
+          debug: true
+          prefix: ${{ env.MODULE }}
+
+  notify:
+    needs: [ test ]
+    if: ${{ failure() || success() }}
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ needs.test.result }}
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
