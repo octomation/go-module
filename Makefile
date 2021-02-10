@@ -67,10 +67,9 @@ export GOBIN := $(PWD)/bin/$(OS)/$(ARCH)
 export PATH  := $(GOBIN):$(PATH)
 
 GOFLAGS     ?= -mod=
-GOPIPE      ?= $(GOBIN)/panicparse
 GOPRIVATE   ?= go.octolab.net
 GOPROXY     ?= direct
-GOTEST      ?= $(GOBIN)/gotest
+GOTEST      ?= $(GOBIN)/testit
 GOTRACEBACK ?= all
 LOCAL       ?= $(MODULE)
 MODULE      ?= `go list -m $(GOFLAGS)`
@@ -79,17 +78,12 @@ PATHS       ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$
 TIMEOUT     ?= 1s
 
 ifeq (, $(wildcard $(GOTEST)))
-	GOTEST = $(shell command -v gotest)
+	GOTEST = $(shell command -v testit)
 endif
 ifeq (, $(GOTEST))
 	GOTEST = go test
-endif
-
-ifeq (, $(wildcard $(GOPIPE)))
-	GOPIPE = $(shell command -v panicparse)
-endif
-ifneq (, $(GOPIPE))
-	GOPIPE := 2>&1|$(GOPIPE)
+else
+	GOTEST := $(GOTEST) --colored
 endif
 
 ifeq (, $(PACKAGES))
@@ -108,7 +102,6 @@ export GOTRACEBACK := $(GOTRACEBACK)
 go-env:
 	@echo "GO111MODULE: $(strip `go env GO111MODULE`)"
 	@echo "GOFLAGS:     $(strip `go env GOFLAGS`)"
-	@echo "GOPIPE:      $(GOPIPE)"
 	@echo "GOPRIVATE:   $(strip `go env GOPRIVATE`)"
 	@echo "GOPROXY:     $(strip `go env GOPROXY`)"
 	@echo "GOTEST:      $(GOTEST)"
@@ -150,12 +143,11 @@ deps-update:
 		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
 	fi; \
 	if [[ "$$packages" = "@latest" ]]; then exit; fi; \
-	if [[ "`go version`" == *1.1[1-3]* ]]; then \
-		go get -d -mod= $$packages; \
-	else \
-		go get -d $$packages; \
-	fi; \
-	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+	for package in $$packages; do \
+		go mod edit -require $$package; \
+		go mod download; \
+	done
+	$(AT) $(MAKE) deps-tidy
 .PHONY: deps-update
 
 GODOC_HOST ?= localhost:6060
@@ -187,7 +179,7 @@ lint:
 .PHONY: lint
 
 test:
-	@$(GOTEST) -race -timeout $(TIMEOUT) $(PACKAGES) $(GOPIPE)
+	@$(GOTEST) -race -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test
 
 test-clean:
@@ -197,11 +189,11 @@ test-clean:
 test-quick: GOTAGS = integration,tools
 test-quick:
 	@go test -run ^Fake$$ -tags $(GOTAGS) ./... | { grep -v 'no tests to run' || true; }
-	@$(GOTEST) -timeout $(TIMEOUT) $(PACKAGES) $(GOPIPE)
+	@$(GOTEST) -timeout $(TIMEOUT) $(PACKAGES)
 .PHONY: test-quick
 
 test-verbose:
-	@$(GOTEST) -race -timeout $(TIMEOUT) -v $(PACKAGES) $(GOPIPE)
+	@$(GOTEST) -race -timeout $(TIMEOUT) -v $(PACKAGES)
 .PHONY: test-verbose
 
 test-with-coverage:
@@ -211,7 +203,7 @@ test-with-coverage:
 		-coverprofile c.out \
 		-race \
 		-timeout $(TIMEOUT) \
-		$(PACKAGES) $(GOPIPE)
+		$(PACKAGES)
 .PHONY: test-with-coverage
 
 test-with-coverage-report: test-with-coverage
@@ -226,12 +218,12 @@ test-integration:
 		-coverprofile integration.out \
 		-race \
 		-tags $(GOTAGS) \
-		./... $(GOPIPE)
+		./...
 .PHONY: test-integration
 
 test-integration-quick: GOTAGS = integration
 test-integration-quick:
-	@$(GOTEST) -tags $(GOTAGS) ./... $(GOPIPE)
+	@$(GOTEST) -tags $(GOTAGS) ./...
 .PHONY: test-integration-quick
 
 test-integration-report: test-integration
@@ -245,16 +237,44 @@ tools-env:
 	@echo "TOOLFLAGS:   $(TOOLFLAGS)"
 .PHONY: tools-env
 
-toolset: GOTAGS = tools
-toolset:
-	$(AT) ( \
-		GOFLAGS=$(TOOLFLAGS); \
-		cd tools; \
-		go mod tidy; \
-		if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi; \
-		go generate -tags $(GOTAGS) tools.go; \
-	)
-.PHONY: toolset
+tools-fetch: GOFLAGS = $(TOOLFLAGS)
+tools-fetch:
+	$(AT) cd tools; \
+	go mod download; \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: tools-fetch
+
+tools-tidy: GOFLAGS = $(TOOLFLAGS)
+tools-tidy:
+	$(AT) cd tools; \
+	go mod tidy; \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: tools-tidy
+
+tools-install: GOFLAGS = $(TOOLFLAGS)
+tools-install: GOTAGS = tools
+tools-install: tools-fetch
+	$(AT) cd tools; \
+	go generate -tags $(GOTAGS) tools.go
+.PHONY: tools-install
+
+tools-update: GOFLAGS = $(TOOLFLAGS)
+tools-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
+tools-update:
+	$(AT) cd tools; \
+	if command -v egg > /dev/null; then \
+		packages="`egg deps list | tr ' ' '\n' | sed -e 's/$$/@latest/'`"; \
+	else \
+		packages="`go list -f $(selector) -m -mod=readonly all | sed -e 's/$$/@latest/'`"; \
+	fi; \
+	if [[ "$$packages" = "@latest" ]]; then exit; fi; \
+	for package in $$packages; do \
+		go mod edit -require $$package; \
+		go mod download; \
+	done
+	$(AT) if [ -z "$(AT)" ]; then MAKE="$(MAKE) verbose"; else MAKE="$(MAKE)"; fi; \
+	$$MAKE tools-tidy tools-install
+.PHONY: tools-update
 
 ifdef GO_VERSIONS
 
@@ -281,7 +301,7 @@ init: deps test lint hooks
 clean: deps-clean test-clean
 .PHONY: clean
 
-deps: deps-fetch toolset
+deps: deps-fetch tools-install
 .PHONY: deps
 
 env: go-env tools-env
@@ -298,7 +318,7 @@ generate: go-generate format
 refresh: deps-tidy update deps generate test
 .PHONY: refresh
 
-update: deps-update
+update: deps-update tools-update
 .PHONY: update
 
 verify: deps-check generate test lint git-check
