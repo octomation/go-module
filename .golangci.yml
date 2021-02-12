@@ -1,29 +1,24 @@
 linters:
   fast: true
-  fetch: >
-    curl -s https://golangci-lint.run/usage/linters/ \
-    | pup ':parent-of(#enabled-by-default-linters)' \
-    | pup 'table td a json{}' \
-    | jq -r '.[] | (.text + " " + .href)' \
-    | column -t
   enable:
-    - deadcode      # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
-    - errcheck      # https://github.com/kisielk/errcheck
-    - gosimple      # https://github.com/dominikh/go-tools/tree/master/simple
-    - govet         # https://golang.org/cmd/vet/
-    - ineffassign   # https://github.com/gordonklaus/ineffassign
-    - staticcheck   # https://staticcheck.io/
-    - structcheck   # https://github.com/opennota/check
-    - typecheck     # -
-    - unused        # https://github.com/dominikh/go-tools/tree/master/unused
-    - varcheck      # https://github.com/opennota/check
+    - deadcode            # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
+    - errcheck            # https://github.com/kisielk/errcheck
+    - gosimple            # https://github.com/dominikh/go-tools/tree/master/simple
+    - govet               # https://golang.org/cmd/vet/
+    - ineffassign         # https://github.com/gordonklaus/ineffassign
+    - staticcheck         # https://staticcheck.io/
+    - structcheck         # https://github.com/opennota/check
+    - typecheck           # -
+    - unused              # https://github.com/dominikh/go-tools/tree/master/unused
+    - varcheck            # https://github.com/opennota/check
 
-    - bodyclose     # https://github.com/timakin/bodyclose
-    - exhaustive    # https://github.com/nishanths/exhaustive
-    - exportloopref # https://github.com/kyoh86/exportloopref
-    - gocritic      # https://github.com/go-critic/go-critic
-    - looppointer   # https://github.com/kyoh86/looppointer
-    - noctx         # https://github.com/sonatard/noctx
+    - bodyclose           # https://github.com/timakin/bodyclose
+    - exhaustive          # https://github.com/nishanths/exhaustive
+    - exportloopref       # https://github.com/kyoh86/exportloopref
+    - gocritic            # https://github.com/go-critic/go-critic
+    - noctx               # https://github.com/sonatard/noctx
+
+#    - looppointer        # https://github.com/kyoh86/looppointer
 
 #    - asciicheck         # https://github.com/tdakkota/asciicheck
 #    - bidichk            # https://github.com/breml/bidichk

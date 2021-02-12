@@ -2,6 +2,14 @@
 
 set -euo pipefail
 
+function linters() {
+  curl -s https://golangci-lint.run/usage/linters/ |
+    pup ':parent-of(#enabled-by-default)' |
+    pup 'table td a:first-child json{}' |
+    jq -r '.[] | (.text + " " + .href)' |
+    column -t
+}
+
 function test_example() {
   return 0
 }

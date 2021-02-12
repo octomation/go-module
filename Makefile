@@ -190,7 +190,7 @@ go-pkg:
 
 lint:
 	$(AT) if command -v golangci-lint >/dev/null; then \
-		golangci-lint run ./...; \
+		golangci-lint run --enable looppointer ./...; \
 	else \
 		echo have no golangci-lint binary; \
 	fi
