@@ -16,6 +16,17 @@ on:
     tags: [ '!*' ]
 
 jobs:
+  lint:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-go@v3
+        with: { go-version: '1.17' }
+      - uses: golangci/golangci-lint-action@v3
+        with: { only-new-issues: true }
+
   test:
     strategy:
       matrix:
@@ -49,20 +60,17 @@ jobs:
       - run: make env deps-fetch test-with-coverage
       - uses: actions/upload-artifact@v3
         if: ${{ matrix.go == '1.18.x' }}
-        with:
-          name: code-coverage-report
-          path: c.out
+        with: { name: code-coverage-report, path: c.out }
 
   coverage:
-    needs: [ test ]
+    needs: [ lint, test ]
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v2
         with: { fetch-depth: 0 }
       - uses: actions/download-artifact@v3
-        with:
-          name: code-coverage-report
+        with: { name: code-coverage-report }
       - run: |
           echo "MODULE=$(grep module go.mod | awk '{print $2}')" >> $GITHUB_ENV
       - uses: paambaati/codeclimate-action@v2.7.5
@@ -74,7 +82,7 @@ jobs:
           prefix: ${{ env.MODULE }}
 
   notify:
-    needs: [ test ]
+    needs: [ lint, test ]
     if: ${{ failure() || success() }}
     runs-on: ubuntu-18.04
 
