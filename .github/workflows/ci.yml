@@ -5,12 +5,14 @@ on:
     branches: [ '*' ]
     paths:
       - '.github/workflows/ci.yml'
+      - '.golangci.yml'
       - '**.go'
       - '!tools/*.go'
   push:
     branches: [ '*' ]
     paths:
       - '.github/workflows/ci.yml'
+      - '.golangci.yml'
       - '**.go'
       - '!tools/*.go'
     tags: [ '!*' ]
