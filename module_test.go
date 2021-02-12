@@ -1,9 +1,9 @@
-package go_module_test
+package module_test
 
 import (
 	"testing"
 
-	. "go-module"
+	. "go.octolab.org/template/module"
 )
 
 func TestNewModule(t *testing.T) {

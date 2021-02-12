@@ -1,3 +1,3 @@
-module go-module
+module go.octolab.org/template/module
 
 go 1.11
