@@ -91,7 +91,7 @@ jobs:
     steps:
       - uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_COLOR: ${{ job.status }}
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           SLACK_ICON: https://github.com/github.png?size=64
           SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
