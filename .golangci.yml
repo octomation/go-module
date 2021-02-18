@@ -26,9 +26,11 @@ linters:
     - noctx         # https://github.com/sonatard/noctx
 
 #    - asciicheck         # https://github.com/tdakkota/asciicheck
+#    - cyclop             # https://github.com/bkielbasa/cyclop
 #    - depguard           # https://github.com/OpenPeeDeeP/depguard
 #    - dogsled            # https://github.com/alexkohler/dogsled
 #    - dupl               # https://github.com/mibk/dupl
+#    - durationcheck      # https://github.com/charithe/durationcheck
 #    - errorlint          # https://github.com/polyfloyd/go-errorlint
 #    - exhaustivestruct   # https://github.com/mbilski/exhaustivestruct
 #    - forbidigo          # https://github.com/ashanbrown/forbidigo
@@ -64,6 +66,7 @@ linters:
 #    - paralleltest       # https://github.com/kunwardeep/paralleltest
 #    - prealloc           # https://github.com/alexkohler/prealloc
 #    - predeclared        # https://github.com/nishanths/predeclared
+#    - revive             # https://github.com/mgechev/revive
 #    - rowserrcheck       # https://github.com/jingyugao/rowserrcheck
 #    - scopelint          # https://github.com/kyoh86/scopelint
 #    - sqlclosecheck      # https://github.com/ryanrolds/sqlclosecheck

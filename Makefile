@@ -2,7 +2,7 @@
 
 .DEFAULT_GOAL = test-with-coverage
 GIT_HOOKS     = post-merge pre-commit pre-push
-GO_VERSIONS   = 1.11 1.12 1.13 1.14 1.15
+GO_VERSIONS   = 1.11 1.12 1.13 1.14 1.15 1.16
 GO111MODULE   = on
 
 AT    := @
@@ -292,7 +292,7 @@ endif
 export PATH := $(GOBIN):$(PATH)
 
 init: deps test lint hooks
-	@git config core.autocrlf input
+	$(AT) git config core.autocrlf input
 .PHONY: init
 
 clean: deps-clean test-clean
@@ -300,6 +300,9 @@ clean: deps-clean test-clean
 
 deps: deps-fetch tools-install
 .PHONY: deps
+
+docs: go-docs
+.PHONY: docs
 
 env: go-env tools-env
 env:
