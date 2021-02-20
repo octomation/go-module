@@ -73,6 +73,7 @@ jobs:
         with: { fetch-depth: 0 }
       - uses: actions/download-artifact@v3
         with: { name: code-coverage-report }
+
       - run: |
           echo "MODULE=$(grep module go.mod | awk '{print $2}')" >> $GITHUB_ENV
       - uses: paambaati/codeclimate-action@v2.7.5
@@ -80,8 +81,11 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageLocations: c.out:gocov
-          debug: true
           prefix: ${{ env.MODULE }}
+      - run: git clean -df
+
+      - uses: codecov/codecov-action@v3
+        with: { files: c.out }
 
   notify:
     needs: [ lint, test ]
