@@ -26,15 +26,10 @@ todo:
 		-nRo -E ' TODO:.*|SkipNow' . || true
 .PHONY: todo
 
-rmdir:
-	$(AT) for dir in `git ls-files --others --exclude-standard --directory`; do \
-		find $${dir%%/} -depth -type d -empty | xargs rmdir; \
-	done
-.PHONY: rmdir
-
 COMMIT  := $(shell git rev-parse --verify HEAD)
 RELEASE := $(shell git describe --tags 2>/dev/null | rev | cut -d - -f3- | rev)
 
+ifneq (, $(wildcard ./githooks/))
 ifdef GIT_HOOKS
 
 hooks: unhook
@@ -55,6 +50,14 @@ render_hook_tpl = $(eval $(call hook_tpl,$(hook)))
 $(foreach hook,$(GIT_HOOKS),$(render_hook_tpl))
 
 endif
+else
+hooks:
+	@echo have no git hooks
+.PHONY: hooks
+
+unhook: ;
+.PHONY: unhook
+endif
 
 git-check:
 	$(AT) git diff --exit-code >/dev/null
@@ -62,11 +65,17 @@ git-check:
 	$(AT) ! git ls-files --others --exclude-standard | grep -q ^
 .PHONY: git-check
 
+git-rmdir:
+	$(AT) for dir in `git ls-files --others --exclude-standard --directory`; do \
+		find $${dir%%/} -depth -type d -empty | xargs rmdir; \
+	done
+.PHONY: git-rmdir
+
 GOBIN       ?= $(PWD)/bin/$(OS)/$(ARCH)
 GOFLAGS     ?= -mod=
 GOPRIVATE   ?= go.octolab.net
 GOPROXY     ?= direct
-GOTEST      ?= $(GOBIN)/testit
+GOTEST      ?= $(shell PATH=$(PATH) command -v testit)
 GOTESTFLAGS ?=
 GOTRACEBACK ?= all
 LOCAL       ?= $(MODULE)
@@ -75,9 +84,6 @@ PACKAGES    ?= `go list $(GOFLAGS) ./...`
 PATHS       ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
 TIMEOUT     ?= 1s
 
-ifeq (, $(wildcard $(GOTEST)))
-	GOTEST = $(shell command -v testit)
-endif
 ifeq (, $(GOTEST))
 	GOTEST = go test
 else
@@ -177,8 +183,17 @@ go-pkg:
 .PHONY: go-pkg
 
 lint:
-	$(AT) golangci-lint run ./...
-	$(AT) looppointer ./...
+	$(AT) if command -v golangci-lint > /dev/null; then \
+		golangci-lint run ./...; \
+	else \
+		echo have no golangci-lint binary; \
+	fi
+
+	$(AT) if command -v looppointer > /dev/null; then \
+		looppointer ./...; \
+	else \
+		echo have no looppointer binary; \
+	fi
 .PHONY: lint
 
 test:
@@ -236,6 +251,7 @@ tools-env:
 	@echo "TOOLFLAGS:   $(TOOLFLAGS)"
 .PHONY: tools-env
 
+ifneq (, $(wildcard ./tools/))
 tools-fetch: GOFLAGS = $(TOOLFLAGS)
 tools-fetch:
 	$(AT) cd tools; \
@@ -270,7 +286,29 @@ tools-update:
 	for package in $$packages; do go get -d $$package; done
 	$(AT) $(MAKE) tools-tidy tools-install
 .PHONY: tools-update
+else
+tools-disabled:
+	@echo have no tools
+.PHONY: tools-disabled
 
+tools-fetch: tools-disabled
+	@echo > /dev/null
+.PHONY: tools-fetch
+
+tools-tidy: tools-disabled
+	@echo > /dev/null
+.PHONY: tools-tidy
+
+tools-install: tools-disabled
+	@echo > /dev/null
+.PHONY: tools-install
+
+tools-update: tools-disabled
+	@echo > /dev/null
+.PHONY: tools-update
+endif
+
+ifneq (, $(shell PATH=$(PATH) command -v docker))
 ifdef GO_VERSIONS
 
 define go_tpl
@@ -287,7 +325,7 @@ render_go_tpl = $(eval $(call go_tpl,$(version)))
 $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 
 endif
-
+endif
 
 export PATH := $(GOBIN):$(PATH)
 
