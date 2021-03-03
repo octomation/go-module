@@ -327,7 +327,6 @@ $(foreach version,$(GO_VERSIONS),$(render_go_tpl))
 endif
 endif
 
-
 export PATH := $(GOBIN):$(PATH)
 
 init: deps check hooks
