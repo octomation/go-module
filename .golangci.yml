@@ -3,7 +3,7 @@ linters:
   fetch: >
     curl -s https://golangci-lint.run/usage/linters/ \
     | pup ':parent-of(#enabled-by-default-linters)' \
-    | pup 'ul li a json{}' \
+    | pup 'table td a json{}' \
     | jq '.[] | (.text + " " + .href)' \
     | sed 's/"//g' \
     | column -t
@@ -51,6 +51,7 @@ linters:
 #    - goimports          # https://godoc.org/golang.org/x/tools/cmd/goimports
 #    - golint             # https://github.com/golang/lint
 #    - gomnd              # https://github.com/tommy-muehle/go-mnd
+#    - gomoddirectives    # https://github.com/ldez/gomoddirectives
 #    - gomodguard         # https://github.com/ryancurrah/gomodguard
 #    - goprintffuncname   # https://github.com/jirfag/go-printf-func-name
 #    - gosec              # https://github.com/securego/gosec
@@ -71,7 +72,7 @@ linters:
 #    - predeclared        # https://github.com/nishanths/predeclared
 #    - revive             # https://github.com/mgechev/revive
 #    - rowserrcheck       # https://github.com/jingyugao/rowserrcheck
-#    - scopelint          # https://github.com/kyoh86/scopelint
+#    - scopelint          # https://github.com/kyoh86/scopelint (deprecated)
 #    - sqlclosecheck      # https://github.com/ryanrolds/sqlclosecheck
 #    - stylecheck         # https://github.com/dominikh/go-tools/tree/master/stylecheck
 #    - testpackage        # https://github.com/maratori/testpackage
