@@ -4,8 +4,7 @@ linters:
     curl -s https://golangci-lint.run/usage/linters/ \
     | pup ':parent-of(#enabled-by-default-linters)' \
     | pup 'table td a json{}' \
-    | jq '.[] | (.text + " " + .href)' \
-    | sed 's/"//g' \
+    | jq -r '.[] | (.text + " " + .href)' \
     | column -t
   enable:
     - deadcode      # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
