@@ -6,7 +6,7 @@ require (
 	github.com/golang/mock v1.5.0
 	github.com/golangci/golangci-lint v1.39.0
 	github.com/kyoh86/looppointer v0.1.7
-	golang.org/x/exp v0.0.0-20210220032938-85be41e4509f
+	golang.org/x/exp v0.0.0-20210405174845-4513512abef3
 	golang.org/x/tools v0.1.0
 )
 
