@@ -64,7 +64,7 @@ jobs:
         if: ${{ matrix.go == '1.18.x' }}
         with: { name: code-coverage-report, path: c.out }
 
-  coverage:
+  report:
     needs: [ lint, test ]
     runs-on: ubuntu-18.04
 
