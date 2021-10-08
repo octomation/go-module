@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/golang/mock v1.6.0
 	github.com/golangci/golangci-lint v1.47.3
-	golang.org/x/exp v0.0.0-20220428152302-39d4317da171
 	golang.org/x/tools v0.1.12
 )
 
