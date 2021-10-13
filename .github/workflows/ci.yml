@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
         with: { fetch-depth: 0 }
       - uses: actions/setup-go@v3
-        with: { go-version: '1.17' }
+        with: { go-version: '1.19' }
       - uses: golangci/golangci-lint-action@v3
         with: { only-new-issues: true }
 
@@ -42,6 +42,7 @@ jobs:
           - 1.16.x
           - 1.17.x
           - 1.18.x
+          - 1.19.x
 
     runs-on: ubuntu-18.04
 
@@ -61,7 +62,7 @@ jobs:
           restore-keys: ${{ runner.os }}-go-
       - run: make env deps-fetch test-with-coverage
       - uses: actions/upload-artifact@v3
-        if: ${{ matrix.go == '1.18.x' }}
+        if: ${{ matrix.go == '1.19.x' }}
         with: { name: code-coverage-report, path: c.out }
 
   report:
