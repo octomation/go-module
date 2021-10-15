@@ -82,7 +82,7 @@ GOTEST      ?= $(shell PATH=$(PATH) command -v testit)
 GOTESTFLAGS ?=
 GOTRACEBACK ?= all
 LOCAL       ?= $(MODULE)
-MODULE      ?= `go list -m $(GOFLAGS)`
+MODULE      ?= `go list $(GOFLAGS)`
 PACKAGES    ?= `go list $(GOFLAGS) ./...`
 PATHS       ?= $(shell echo $(PACKAGES) | sed -e "s|$(MODULE)/||g" | sed -e "s|$(MODULE)|$(PWD)/*.go|g")
 TIMEOUT     ?= 1s
