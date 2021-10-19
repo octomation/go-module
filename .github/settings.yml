@@ -1,0 +1,47 @@
+repository:
+  has_wiki: false
+  has_issues: true
+  has_projects: false
+
+  allow_merge_commit: true
+  allow_squash_merge: true
+  allow_rebase_merge: true
+  delete_branch_on_merge: true
+
+  default_branch: main
+
+  enable_vulnerability_alerts: true
+  enable_automated_security_fixes: true
+
+branches:
+  - name: main
+    protection:
+      required_linear_history: true
+
+labels:
+  - name: 'type: bug'
+    color: '#DA0064'
+    description: |
+      New bug report.
+  - name: 'type: feature'
+    color: '#9510AC'
+    description: |
+      New feature request.
+  - name: 'type: improvement'
+    color: '#0CA789'
+    description: |
+      New improvement proposal.
+
+  # bug labels
+  - name: 'severity: critical'
+    color: '#F24727'
+    description: |
+      A bug has critical severity and needs to be fixed as soon as possible.
+  - name: 'severity: major'
+    color: '#EF8D79'
+    description: |
+      A bug has major severity and needs to be fixed in the nearest iteration.
+  - name: 'severity: minor'
+    color: '#FBC7BD'
+    description: |
+      A bug has minor severity and should be fixed when possible.
