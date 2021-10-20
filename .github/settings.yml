@@ -23,25 +23,31 @@ labels:
     color: '#DA0064'
     description: |
       New bug report.
+    oldname: 'kind: bug'
   - name: 'type: feature'
     color: '#9510AC'
     description: |
       New feature request.
+    oldname: 'kind: feature'
   - name: 'type: improvement'
     color: '#0CA789'
     description: |
       New improvement proposal.
+    oldname: 'kind: improvement'
 
   # bug labels
   - name: 'severity: critical'
     color: '#F24727'
     description: |
       A bug has critical severity and needs to be fixed as soon as possible.
+    oldname: 'level: critical'
   - name: 'severity: major'
     color: '#EF8D79'
     description: |
       A bug has major severity and needs to be fixed in the nearest iteration.
+    oldname: 'level: normal'
   - name: 'severity: minor'
     color: '#FBC7BD'
     description: |
       A bug has minor severity and should be fixed when possible.
+    oldname: 'level: low'
