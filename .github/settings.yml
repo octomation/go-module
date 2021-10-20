@@ -22,17 +22,17 @@ labels:
   - name: 'type: bug'
     color: '#DA0064'
     description: |
-      New bug report.
+      A new bug report.
     oldname: 'kind: bug'
   - name: 'type: feature'
     color: '#9510AC'
     description: |
-      New feature request.
+      A new feature request.
     oldname: 'kind: feature'
   - name: 'type: improvement'
     color: '#0CA789'
     description: |
-      New improvement proposal.
+      A new improvement proposal.
     oldname: 'kind: improvement'
 
   # bug labels
@@ -51,3 +51,21 @@ labels:
     description: |
       A bug has minor severity and should be fixed when possible.
     oldname: 'level: low'
+
+  - name: 'scope: code'
+    color: '#808080'
+    description: |
+      An issue related to source code.
+  - name: 'scope: docs'
+    color: '#ADADAD'
+    description: |
+      An issue related to documentation.
+  - name: 'scope: test'
+    color: '#D9D9D9'
+    description: |
+      An issue related to tests.
+  - name: 'scope: inventory'
+    color: '#EAEAEA'
+    description: |
+      An issue related to auxiliary code, e.g. CI config, Makefiles, etc.
+    oldname: 'scope: eqpt'
