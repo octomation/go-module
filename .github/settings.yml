@@ -69,3 +69,16 @@ labels:
     description: |
       An issue related to auxiliary code, e.g. CI config, Makefiles, etc.
     oldname: 'scope: eqpt'
+
+  - name: 'impact: high'
+    color: '#652CB3'
+    description: |
+      An issue has high impact.
+  - name: 'impact: medium'
+    color: '#A380D1'
+    description: |
+      An issue has medium impact.
+  - name: 'impact: low'
+    color: '#CAB9E1'
+    description: |
+      An issue has low impact.
