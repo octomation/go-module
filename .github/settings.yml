@@ -1,3 +1,5 @@
+# Install the app: https://github.com/apps/settings
+
 repository:
   has_wiki: false
   has_issues: true
@@ -98,3 +100,29 @@ labels:
     description: |
       An issue is easy to implement.
     oldname: 'difficulty: easy'
+
+  # common labels
+  - name: duplicate
+    color: '#F8961E'
+    description: |
+      An issue or pull request already exists.
+  - name: good first issue
+    color: '#90BE6D'
+    description: |
+      Good for newcomers.
+  - name: help wanted
+    color: '#577590'
+    description: |
+      Extra attention is needed.
+  - name: invalid
+    color: '#F94144'
+    description: |
+      This doesn't seem right.
+  - name: question
+    color: '#43AA8B'
+    description: |
+      Further information is requested.
+  - name: wontfix
+    color: '#F9C74F'
+    description: |
+      This will not be worked on.
