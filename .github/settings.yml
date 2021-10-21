@@ -82,3 +82,19 @@ labels:
     color: '#CAB9E1'
     description: |
       An issue has low impact.
+
+  - name: 'effort: hard'
+    color: '#414BB2'
+    description: |
+      An issue is hard to implement or reproduce.
+    oldname: 'difficulty: hard'
+  - name: 'effort: medium'
+    color: '#8D93D1'
+    description: |
+      An issue has a medium complexity.
+    oldname: 'difficulty: medium'
+  - name: 'effort: easy'
+    color: '#C6C9E8'
+    description: |
+      An issue is easy to implement.
+    oldname: 'difficulty: easy'
