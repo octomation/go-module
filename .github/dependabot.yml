@@ -1,8 +1,7 @@
-# Dependabot. The application allows implementing Configuration as a Code approach.
-# It configures a repository for Dependabot to automatically updates the packages.
+# Dependabot. The application allows automating dependencies updates.
+# It provides information to Dependabot about used package ecosystems.
 #
 # Read the docs: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates.
-#
 version: 2
 updates:
   - package-ecosystem: gomod
