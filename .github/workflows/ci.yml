@@ -29,6 +29,9 @@ jobs:
       - uses: golangci/golangci-lint-action@v3
         with: { only-new-issues: true }
 
+      # TODO:extend not full list of checks are implemented
+      - run: make go-fmt git-check
+
   test:
     strategy:
       matrix:
