@@ -13,9 +13,9 @@ on: workflow_dispatch
 #      - 'docs/*'
 
 jobs:
-  build:
+  compile:
     runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v3
-        with: { fetch-depth: 0, ref: ${{ github.event.pull_request.head.ref }} }
+        with: { fetch-depth: 0, ref: '${{ github.event.pull_request.head.ref }}' }
