@@ -152,6 +152,15 @@ labels:
       An issue is easy to implement.
     oldname: 'difficulty: easy'
 
+  - name: 'status: pending'
+    color: '#2D9BF1'
+    description: |
+      Mark an issue as hold.
+  - name: 'status: stale'
+    color: '#3A3A3A'
+    description: |
+      Mark an issue as stale.
+
   # common labels
   - name: duplicate
     color: '#F8961E'
