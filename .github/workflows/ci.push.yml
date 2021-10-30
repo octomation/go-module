@@ -1,13 +1,6 @@
 name: checking
 
 on:
-  pull_request:
-    branches: [ '*' ]
-    paths:
-      - '.github/workflows/ci.yml'
-      - '.golangci.yml'
-      - '**.go'
-      - '!tools/*.go'
   push:
     branches: [ '*' ]
     paths:
@@ -69,7 +62,7 @@ jobs:
         with: { name: code-coverage-report, path: c.out }
 
   report:
-    needs: [ lint, test ]
+    needs: [ test ]
     runs-on: ubuntu-latest
 
     steps:
