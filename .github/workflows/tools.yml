@@ -38,7 +38,7 @@ jobs:
 
   notify:
     needs: [ build ]
-    if: ${{ failure() || success() }}
+    if: github.event_name == 'push' && (failure() || success())
     runs-on: ubuntu-latest
 
     steps:

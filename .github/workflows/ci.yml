@@ -65,11 +65,11 @@ jobs:
           restore-keys: ${{ runner.os }}-go-
       - run: make env deps-fetch test-with-coverage
       - uses: actions/upload-artifact@v3
-        if: ${{ matrix.go == '1.19.x' }}
+        if: matrix.go == '1.19.x'
         with: { name: code-coverage-report, path: c.out }
 
   report:
-    needs: [ lint, test ]
+    needs: [ test ]
     runs-on: ubuntu-latest
 
     steps:
@@ -77,23 +77,12 @@ jobs:
         with: { fetch-depth: 0 }
       - uses: actions/download-artifact@v3
         with: { name: code-coverage-report }
-
-      - run: |
-          echo "MODULE=$(grep module go.mod | awk '{print $2}')" >> $GITHUB_ENV
-      - uses: paambaati/codeclimate-action@v3.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageLocations: c.out:gocov
-          prefix: ${{ env.MODULE }}
-      - run: git clean -df
-
       - uses: codecov/codecov-action@v3
         with: { files: c.out }
 
   notify:
     needs: [ lint, test ]
-    if: ${{ failure() || success() }}
+    if: github.event_name == 'push' && (failure() || success())
     runs-on: ubuntu-latest
 
     steps:
