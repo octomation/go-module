@@ -1,7 +1,7 @@
 # GitHub Settings. The application allows implementing Configuration as a Code approach.
 # It configures a repository by this configuration file.
 #
-# Install the app: https://github.com/apps/settings.
+# Installation: https://github.com/apps/settings.
 #
 # We recommend using it together with organization-level settings. Our recommendations are:
 #
@@ -77,34 +77,28 @@ labels:
     color: '#DA0064'
     description: |
       A new bug report.
-    oldname: 'kind: bug'
   - name: 'type: feature'
     color: '#9510AC'
     description: |
       A new feature request.
-    oldname: 'kind: feature'
   - name: 'type: improvement'
     color: '#0CA789'
     description: |
       A new improvement proposal.
-    oldname: 'kind: improvement'
 
   # bug labels
   - name: 'severity: critical'
     color: '#F24727'
     description: |
       A bug has critical severity and needs to be fixed as soon as possible.
-    oldname: 'level: critical'
   - name: 'severity: major'
     color: '#EF8D79'
     description: |
       A bug has major severity and needs to be fixed in the nearest iteration.
-    oldname: 'level: normal'
   - name: 'severity: minor'
     color: '#FBC7BD'
     description: |
       A bug has minor severity and should be fixed when possible.
-    oldname: 'level: low'
 
   - name: 'scope: code'
     color: '#808080'
@@ -122,7 +116,6 @@ labels:
     color: '#EAEAEA'
     description: |
       An issue related to auxiliary code, e.g. CI config, Makefiles, etc.
-    oldname: 'scope: eqpt'
 
   - name: 'impact: high'
     color: '#652CB3'
@@ -141,17 +134,14 @@ labels:
     color: '#414BB2'
     description: |
       An issue is hard to implement or reproduce.
-    oldname: 'difficulty: hard'
   - name: 'effort: medium'
     color: '#8D93D1'
     description: |
       An issue has a medium complexity.
-    oldname: 'difficulty: medium'
   - name: 'effort: easy'
     color: '#C6C9E8'
     description: |
       An issue is easy to implement.
-    oldname: 'difficulty: easy'
 
   - name: 'status: pending'
     color: '#2D9BF1'

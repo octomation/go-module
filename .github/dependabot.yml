@@ -1,7 +1,7 @@
 # Dependabot. The application allows automating dependencies updates.
 # It provides information to Dependabot about used package ecosystems.
 #
-# Read the docs: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates.
+# Docs: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/about-dependabot-version-updates.
 version: 2
 updates:
   - package-ecosystem: gomod
