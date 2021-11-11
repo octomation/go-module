@@ -2,8 +2,7 @@
 # It's potentially deprecated, see https://github.com/probot/stale/issues/248.
 # Possible alternative is https://github.com/actions/stale.
 #
-# Install the app: https://github.com/apps/stale.
-#
+# Installation: https://github.com/apps/stale.
 daysUntilStale: 60
 daysUntilClose: 7
 

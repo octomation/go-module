@@ -32,7 +32,6 @@
 #
 # - Configure third-party application access policy
 #   - Policy: Access restricted
-#
 repository:
   #
   # General / Features
