@@ -7,28 +7,28 @@ updates:
   - package-ecosystem: gomod
     directory: /
     schedule:
-      interval: weekly
+      interval: daily
     labels:
       - 'type: improvement'
       - 'scope: code'
   - package-ecosystem: npm
     directory: /docs/
     schedule:
-      interval: weekly
+      interval: daily
     labels:
       - 'type: improvement'
       - 'scope: docs'
   - package-ecosystem: gomod
     directory: /tools/
     schedule:
-      interval: weekly
+      interval: daily
     labels:
       - 'type: improvement'
       - 'scope: inventory'
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
+      interval: daily
     labels:
       - 'type: improvement'
       - 'scope: inventory'
