@@ -78,7 +78,7 @@ GOBIN       ?= $(PWD)/bin/$(OS)/$(ARCH)
 GOFLAGS     ?= -mod=
 GOPRIVATE   ?= go.octolab.net
 GOPROXY     ?= direct
-GOTEST      ?= $(shell PATH=$(PATH) command -v testit)
+GOTEST      ?= $(shell PATH="$(PATH)" command -v testit)
 GOTESTFLAGS ?=
 GOTRACEBACK ?= all
 LOCAL       ?= $(MODULE)
@@ -169,7 +169,7 @@ GODOC_HOST ?= localhost:6060
 
 go-docs:
 	$(AT) (sleep 2 && open http://$(GODOC_HOST)/pkg/$(LOCAL)/) &
-	$(AT) godoc -http=$(GODOC_HOST)
+	$(AT) godoc -http="$(GODOC_HOST)"
 .PHONY: go-docs
 
 go-fmt:
@@ -311,7 +311,7 @@ tools-update: tools-disabled
 .PHONY: tools-update
 endif
 
-ifneq (, $(shell PATH=$(PATH) command -v docker))
+ifneq (, $(shell PATH="$(PATH)" command -v docker))
 ifdef GO_VERSIONS
 
 define go_tpl
