@@ -12,6 +12,10 @@ updates:
       - 'type: improvement'
       - 'scope: code'
       - 'scope: deps'
+    commit-message:
+      prefix: 'deps'
+      prefix-development: 'deps(dev)'
+      include: 'scope'
   - package-ecosystem: npm
     directory: /docs/
     schedule:
@@ -20,6 +24,10 @@ updates:
       - 'type: improvement'
       - 'scope: docs'
       - 'scope: deps'
+    commit-message:
+      prefix: 'docs: deps'
+      prefix-development: 'docs: deps(dev)'
+      include: 'scope'
   - package-ecosystem: gomod
     directory: /tools/
     schedule:
@@ -28,6 +36,9 @@ updates:
       - 'type: improvement'
       - 'scope: inventory'
       - 'scope: deps'
+    commit-message:
+      prefix: 'tools: deps'
+      include: 'scope'
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -36,3 +47,6 @@ updates:
       - 'type: improvement'
       - 'scope: inventory'
       - 'scope: deps'
+    commit-message:
+      prefix: 'ci/cd: deps'
+      include: 'scope'
