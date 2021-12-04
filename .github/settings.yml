@@ -103,6 +103,10 @@ labels:
     color: '#808080'
     description: |
       An issue related to source code.
+  - name: 'scope: deps'
+    color: '#949494'
+    description:
+      An issue related to dependencies.
   - name: 'scope: docs'
     color: '#ADADAD'
     description: |
