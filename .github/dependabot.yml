@@ -13,9 +13,9 @@ updates:
       - 'scope: code'
       - 'scope: deps'
     commit-message:
-      prefix: 'deps'
-      prefix-development: 'deps(dev)'
+      prefix: 'feat'
       include: 'scope'
+
   - package-ecosystem: npm
     directory: /docs/
     schedule:
@@ -25,9 +25,9 @@ updates:
       - 'scope: docs'
       - 'scope: deps'
     commit-message:
-      prefix: 'docs: deps'
-      prefix-development: 'docs: deps(dev)'
+      prefix: 'docs'
       include: 'scope'
+
   - package-ecosystem: gomod
     directory: /tools/
     schedule:
@@ -37,8 +37,9 @@ updates:
       - 'scope: inventory'
       - 'scope: deps'
     commit-message:
-      prefix: 'tools: deps'
+      prefix: 'tools'
       include: 'scope'
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -48,5 +49,5 @@ updates:
       - 'scope: inventory'
       - 'scope: deps'
     commit-message:
-      prefix: 'ci/cd: deps'
+      prefix: 'ci/cd'
       include: 'scope'
