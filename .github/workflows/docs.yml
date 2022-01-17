@@ -1,0 +1,21 @@
+name: documenting
+
+# see
+# - https://github.com/actions/checkout/issues/719
+# - https://github.com/golangci/golangci-lint-action/pull/471#issuecomment-1127537719
+on: workflow_dispatch
+
+#on:
+#  pull_request:
+#    branches: [ '*' ]
+#    paths:
+#      - '.github/workflows/docs.yml'
+#      - 'docs/*'
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0, ref: '${{ github.event.pull_request.head.ref }}' }

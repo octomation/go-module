@@ -1,0 +1,103 @@
+name: checking
+
+on:
+  pull_request:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/ci.yml'
+      - '.golangci.yml'
+      - '**.go'
+      - 'go.{mod,sum}'
+      - '!tools/*'
+  push:
+    branches: [ '*' ]
+    paths:
+      - '.github/workflows/ci.yml'
+      - '.golangci.yml'
+      - '**.go'
+      - 'go.{mod,sum}'
+      - '!tools/*'
+    tags: [ '!*' ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-go@v3
+        with: { go-version: '1.19', cache: true }
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/Library/Caches/go-build
+            %LocalAppData%\go-build
+          key: ${{ runner.os }}-go-${{ hashFiles('tools/go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - run: make tools generate lint git-check
+
+  test:
+    strategy:
+      matrix:
+        go:
+          - 1.x
+          - 1.11.x
+          - 1.12.x
+          - 1.13.x
+          - 1.14.x
+          - 1.15.x
+          - 1.16.x
+          - 1.17.x
+          - 1.18.x
+          - 1.19.x
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-go@v3
+        with: { go-version: '${{ matrix.go }}', cache: true }
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/go/pkg/mod
+            ~/.cache/go-build
+            ~/Library/Caches/go-build
+            %LocalAppData%\go-build
+          key: ${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - run: make env deps-fetch test-with-coverage
+      - uses: actions/upload-artifact@v3
+        if: matrix.go == '1.19.x'
+        with: { name: code-coverage-report, path: c.out }
+
+  report:
+    needs: [ test ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - uses: actions/download-artifact@v3
+        with: { name: code-coverage-report }
+      - uses: codecov/codecov-action@v3
+        with: { files: c.out }
+
+  notify:
+    needs: [ lint, test ]
+    if: github.event_name == 'push' && (failure() || success())
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

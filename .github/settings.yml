@@ -1,0 +1,182 @@
+# GitHub Settings. The application allows implementing Configuration as a Code approach.
+# It configures a repository by this configuration file.
+#
+# Installation: https://github.com/apps/settings.
+#
+# We recommend using it together with organization-level settings. Our recommendations are:
+#
+# - Configure defaults: https://github.com/organizations/octomation/settings/repository-defaults
+#   - Repository default branch: main
+#   - Commit signoff: All repositories
+#   - Repository labels: none
+#
+# - Configure team discussions: https://github.com/organizations/octomation/settings/teams
+#   - Enable team discussions for this organization: true
+#
+# - Configure discussions: https://github.com/organizations/octomation/settings/discussions
+#   - Enable discussions for this organization: true
+#   - Host: .github
+#
+# - Configure projects: https://github.com/organizations/octomation/settings/projects
+#   - Enable projects for the organization: true
+#   - Enable projects for all repositories: true
+#   - Allow members to change project visibilities for this organization: true
+#
+# - Configure authentication security
+#   - Require two-factor authentication for everyone in this organization: true
+#
+# - Configure code security and analysis
+#   - Dependency graph, Automatically enable for new private repositories: true
+#   - Dependabot alerts, Automatically enable for new repositories: true
+#   - Dependabot security updates, Automatically enable for new repositories: true
+#
+# - Configure third-party application access policy
+#   - Policy: Access restricted
+repository:
+  #
+  # General / Features
+  #
+  has_wiki: false                       # Wikis
+  has_issues: true                      # Issues
+  has_projects: false                   # Projects
+  # missed: Sponsorships, Discussions, Preserve this repository
+
+  allow_forking: true                   # ?
+
+  #
+  # General / Pull Requests
+  #
+  allow_merge_commit: true              # Allow merge commits
+  allow_squash_merge: true              # Allow squash merging
+  use_squash_pr_title_as_default: true  # Default to PR title for squash merge commits
+  allow_rebase_merge: true              # Allow rebase merging
+  allow_update_branch: false            # Always suggest updating pull request branches
+  allow_auto_merge: false               # Allow auto-merge
+  delete_branch_on_merge: true          # Automatically delete head branches
+
+  #
+  # Code and automation / Branches
+  #
+  default_branch: main                  # Default branch
+
+  enable_vulnerability_alerts: true
+  enable_automated_security_fixes: true
+
+#
+# Code and automation / Branches / Branch protection rules
+#
+branches:
+  - name: main
+    protection:
+      required_linear_history: true
+      # missed: Require signed commits, Allow force pushes / Specify who can force push
+
+labels:
+  - name: 'type: bug'
+    color: '#DA0064'
+    description: |
+      A new bug report.
+  - name: 'type: feature'
+    color: '#9510AC'
+    description: |
+      A new feature request.
+  - name: 'type: improvement'
+    color: '#0CA789'
+    description: |
+      A new improvement proposal.
+
+  # bug labels
+  - name: 'severity: critical'
+    color: '#F24727'
+    description: |
+      A bug has critical severity and needs to be fixed as soon as possible.
+  - name: 'severity: major'
+    color: '#EF8D79'
+    description: |
+      A bug has major severity and needs to be fixed in the nearest iteration.
+  - name: 'severity: minor'
+    color: '#FBC7BD'
+    description: |
+      A bug has minor severity and should be fixed when possible.
+
+  - name: 'scope: code'
+    color: '#808080'
+    description: |
+      An issue related to source code.
+  - name: 'scope: deps'
+    color: '#949494'
+    description:
+      An issue related to dependencies.
+  - name: 'scope: docs'
+    color: '#ADADAD'
+    description: |
+      An issue related to documentation.
+  - name: 'scope: test'
+    color: '#D9D9D9'
+    description: |
+      An issue related to tests.
+  - name: 'scope: inventory'
+    color: '#EAEAEA'
+    description: |
+      An issue related to auxiliary code, e.g. CI config, Makefiles, etc.
+
+  - name: 'impact: high'
+    color: '#652CB3'
+    description: |
+      An issue has high impact.
+  - name: 'impact: medium'
+    color: '#A380D1'
+    description: |
+      An issue has medium impact.
+  - name: 'impact: low'
+    color: '#CAB9E1'
+    description: |
+      An issue has low impact.
+
+  - name: 'effort: hard'
+    color: '#414BB2'
+    description: |
+      An issue is hard to implement or reproduce.
+  - name: 'effort: medium'
+    color: '#8D93D1'
+    description: |
+      An issue has a medium complexity.
+  - name: 'effort: easy'
+    color: '#C6C9E8'
+    description: |
+      An issue is easy to implement.
+
+  - name: 'status: pending'
+    color: '#2D9BF1'
+    description: |
+      Mark an issue as hold.
+  - name: 'status: stale'
+    color: '#3A3A3A'
+    description: |
+      Mark an issue as stale.
+
+  # common labels
+  - name: duplicate
+    color: '#F8961E'
+    description: |
+      An issue or pull request already exists.
+  - name: good first issue
+    color: '#90BE6D'
+    description: |
+      Good for newcomers.
+  - name: help wanted
+    color: '#577590'
+    description: |
+      Extra attention is needed.
+  - name: invalid
+    color: '#F94144'
+    description: |
+      This doesn't seem right.
+  - name: question
+    color: '#43AA8B'
+    description: |
+      Further information is requested.
+  - name: wontfix
+    color: '#F9C74F'
+    description: |
+      This will not be worked on.
