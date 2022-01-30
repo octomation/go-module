@@ -1,0 +1,2 @@
+- [ ] improve caching
+  - https://github.com/actions/setup-go#caching-dependency-files-and-build-outputs
