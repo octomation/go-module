@@ -1,5 +1,7 @@
 package module
 
-func NewModule() string {
-	return "replace me"
+import "golang.org/x/time/rate"
+
+func NewModule() rate.Limit {
+	return rate.Inf
 }

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+[ "${BASH_VERSINFO:-0}" -ge 4 ] || {
+  echo "bash version 4 or higher is required" >&2
+  exit 1
+}
+
 set -euo pipefail
 
 function linters() {
@@ -10,30 +15,35 @@ function linters() {
     column -t
 }
 
-function test_example() {
-  return 0
+declare -A config
+config['dryrun']=false
+
+_() {
+  if ${config['dryrun']}; then
+    echo "${@}"
+    return
+  fi
+  trap 'echo "${@}"' ERR
+  "${@}"
+}
+@debug() { echo "${@}"; }
+@trace() { @debug "${@}" && "${@}"; }
+@error() { echo "${@}" >&2; }
+@fatal() { @error "${@}" && exit 1; }
+@usage() {
+  cat - <<EOF
+Usage: $0 <task> <args>
+Tasks:
+EOF
+  compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
 }
 
-function tests() {
-  for test in $(compgen -A function | grep 'test_'); do
-    local result=()
-    if $test >/dev/null 2>&1; then
-      result+=(ok)
-    else
-      result+=(fail)
-    fi
-    result+=("${test}")
-    result+=(todo:timer)
-    echo "${result[@]}" | column -t
-  done
+function @main() {
+  if [[ "${1:-}" =~ ^--dry-run|-d$ ]]; then
+    config['dryrun']=true
+    shift
+  fi
+  "${@:-@usage}"
 }
 
-function help() {
-  echo "$0 <task> <args>"
-  echo "Tasks:"
-  compgen -A function | grep -v '^__' | sort | cat -n
-}
-
-__default() { help; }
-
-"${@:-__default}"
+@main "${@}"

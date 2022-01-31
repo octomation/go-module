@@ -1,18 +1,18 @@
 linters:
   fast: true
   enable:
-    - deadcode            # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
+#d    - deadcode            # https://github.com/remyoudompheng/go-misc/tree/master/deadcode
     - errcheck            # https://github.com/kisielk/errcheck
     - gosimple            # https://github.com/dominikh/go-tools/tree/master/simple
     - govet               # https://golang.org/cmd/vet/
     - ineffassign         # https://github.com/gordonklaus/ineffassign
     - staticcheck         # https://staticcheck.io/
-    - structcheck         # https://github.com/opennota/check
+#d    - structcheck         # https://github.com/opennota/check
     - typecheck           # -
     - unused              # https://github.com/dominikh/go-tools/tree/master/unused
-    - varcheck            # https://github.com/opennota/check
+#d    - varcheck            # https://github.com/opennota/check
 
-    - bodyclose           # https://github.com/timakin/bodyclose
+#!    - bodyclose           # https://github.com/timakin/bodyclose
     - exhaustive          # https://github.com/nishanths/exhaustive
     - exportloopref       # https://github.com/kyoh86/exportloopref
     - gocritic            # https://github.com/go-critic/go-critic
