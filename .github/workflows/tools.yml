@@ -1,11 +1,14 @@
 name: tooling
 
 on:
+  workflow_dispatch:
+
   pull_request:
     branches: [ '*' ]
     paths:
       - '.github/workflows/tools.yml'
       - 'tools/*'
+
   push:
     branches: [ '*' ]
     paths:
@@ -40,8 +43,7 @@ jobs:
       # TODO:revert
 
       - run: '[ $(ls bin/linux/*/* | wc -l) = $(grep go:gen tools/tools.go | wc -l) ]'
-
-      - run: make pre-push
+      - run: make git-check
 
   notify:
     needs: [ build ]
