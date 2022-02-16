@@ -61,7 +61,6 @@ linters:
 #   - gomodguard          # https://github.com/ryancurrah/gomodguard
 #   - goprintffuncname    # https://github.com/jirfag/go-printf-func-name
 #   - gosec               # https://github.com/securego/gosec
-#   - ifshort             # https://github.com/esimonov/ifshort
 #   - importas            # https://github.com/julz/importas
 #   - interfacebloat      # https://github.com/sashamelentyev/interfacebloat
 #   - ireturn             # https://github.com/butuzov/ireturn
@@ -94,6 +93,7 @@ linters:
 #   - tparallel           # https://github.com/moricho/tparallel
 #   - unconvert           # https://github.com/mdempsky/unconvert
 #   - unparam             # https://github.com/mvdan/unparam
+#   - usestdlibvars       # https://github.com/sashamelentyev/usestdlibvars
 #   - varnamelen          # https://github.com/blizzy78/varnamelen
 #   - wastedassign        # https://github.com/sanposhiho/wastedassign
 #   - whitespace          # https://github.com/ultraware/whitespace
@@ -102,6 +102,7 @@ linters:
 
     # deprecated
 #   - deadcode            #!d https://github.com/remyoudompheng/go-misc/tree/master/deadcode
+#   - ifshort             #!d https://github.com/esimonov/ifshort
 #   - interfacer          #!d https://github.com/mvdan/interfacer
 #   - maligned            #!d https://github.com/mdempsky/maligned
 #   - nosnakecase         #!d https://github.com/sivchari/nosnakecase
