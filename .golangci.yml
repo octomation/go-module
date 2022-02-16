@@ -37,7 +37,6 @@ linters:
 #   - errname             # https://github.com/Antonboom/errname
 #   - errorlint           # https://github.com/polyfloyd/go-errorlint
 #   - execinquery         # https://github.com/lufeee/execinquery
-#   - exhaustivestruct    # https://github.com/mbilski/exhaustivestruct
 #   - exhaustruct         # https://github.com/GaijinEntertainment/go-exhaustruct
 #   - forbidigo           # https://github.com/ashanbrown/forbidigo
 #   - forcetypeassert     # https://github.com/gostaticanalysis/forcetypeassert
@@ -56,7 +55,6 @@ linters:
 #   - gofumpt             # https://github.com/mvdan/gofumpt
 #   - goheader            # https://github.com/denis-tingajkin/go-header
 #   - goimports           # https://godoc.org/golang.org/x/tools/cmd/goimports
-#   - golint              # https://github.com/golang/lint
 #   - gomnd               # https://github.com/tommy-muehle/go-mnd
 #   - gomoddirectives     # https://github.com/ldez/gomoddirectives
 #   - gomodguard          # https://github.com/ryancurrah/gomodguard
@@ -104,6 +102,8 @@ linters:
 
     # deprecated
 #   - deadcode            #!d https://github.com/remyoudompheng/go-misc/tree/master/deadcode
+#   - exhaustivestruct    #!d https://github.com/mbilski/exhaustivestruct
+#   - golint              #!d https://github.com/golang/lint
 #   - ifshort             #!d https://github.com/esimonov/ifshort
 #   - interfacer          #!d https://github.com/mvdan/interfacer
 #   - maligned            #!d https://github.com/mdempsky/maligned
