@@ -42,13 +42,7 @@ jobs:
           key: ${{ runner.os }}-go-${{ hashFiles('tools/go.sum') }}
           restore-keys: ${{ runner.os }}-go-
 
-      # TODO:revert https://github.com/kamilsk/golangci-lint/issues/83
-      - run: git apply dirty.patch
-      - run: make tools lint
-      - run: git reset --hard
-      # TODO:revert
-
-      - run: make generate git-check
+      - run: make tools lint generate git-check
 
   test:
     strategy:
