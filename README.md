@@ -9,16 +9,18 @@
 
 ## 💡 Idea
 
-The repository is a powerful template that enables you
-to create a new Go module from scratch easily.
-Not only does it provide a starting point for your project,
+Define a powerful template that enables us to easily create a new Go module from scratch.
+Not only does it provide a starting point for our project,
 but it also comes equipped with pre-configured pipelines and inventory.
-It saves you time and effort by streamlining the setup process,
-allowing you to focus on the essential aspects of your project.
 
 ## 🏆 Motivation
 
-...
+We want to start new projects quickly using best practices
+with a predefined structure and focusing on core ideas implementation
+rather than wasting time on environment configuration and copying boilerplate code.
+
+The template saves us a lot of time and effort by streamlining the setup process,
+allowing us to focus on the essential aspects of our ideas.
 
 ## 🤼‍♂️ How to
 
@@ -34,7 +36,7 @@ You can use [go modules](https://github.com/golang/go/wiki/Modules) to manage it
 $ go get go.octolab.org@latest
 ```
 
-## 🤲 Outcomes
+## 🤲 Outputs & Outcomes
 
 ...
 
