@@ -2,4 +2,11 @@
 /bin/
 
 # dependencies
+/node_modules/
 /vendor/
+
+# generated files
+/.docz/
+
+# local env
+.env
