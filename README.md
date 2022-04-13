@@ -4,6 +4,7 @@
 
 [![Build][build.icon]][build.page]
 [![Documentation][docs.icon]][docs.page]
+[![Promo][site.icon]][site.page]
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
@@ -32,10 +33,10 @@ allowing us to focus on the essential aspects of our ideas.
 
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository.
-3. Update files 
-  - `README.md`,
-  - `docs/readme.mdx`,
-  - `go.mod`.
+3. Update files
+   - `README.md`,
+   - `go.mod`.
+4. Write your code and tests.
 
 ### Contribute to the template
 
@@ -61,6 +62,8 @@ $ go get go.octolab.org@latest
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [docs.page]:        https://pkg.go.dev/go.octolab.org
 [docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
+[site.page]:        https://go-module.octolab.org
+[site.icon]:        https://img.shields.io/badge/site-go--module.octolab.org-brightgreen
 [mirror.page]:      https://bitbucket.org/kamilsk/go-module
 [mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
 [template.page]:    https://github.com/octomation/go-module

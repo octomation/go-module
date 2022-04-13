@@ -1,5 +1,5 @@
 export default {
-  base: '/go-module/',
+  base: '/',
   title: 'OctoLab',
   description: 'Template for typical module written on Go.',
 
