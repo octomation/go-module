@@ -7,6 +7,16 @@
 
 set -euo pipefail
 
+function docs() {
+  rm -rf ./docs/*
+  git checkout docs/CNAME
+
+  pushd tools
+  trap popd EXIT
+
+  docz build && docz serve
+}
+
 function linters() {
   curl -s https://golangci-lint.run/usage/linters/ |
     pup ':parent-of(#enabled-by-default)' |
