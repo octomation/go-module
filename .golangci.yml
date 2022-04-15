@@ -2,115 +2,17 @@ linters:
   fast: true
   enable:
     # defaults
-    - errcheck                    # https://github.com/kisielk/errcheck
-    - gosimple                    # https://github.com/dominikh/go-tools/tree/master/simple
-    - govet                       # https://golang.org/cmd/vet/
-    - ineffassign                 # https://github.com/gordonklaus/ineffassign
-    - staticcheck                 # https://staticcheck.io/
-    - typecheck                   # pkg/golinters/typecheck.go
-    - unused                      # https://github.com/dominikh/go-tools/tree/master/unused
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
 
     # addition
-    - bodyclose                   # https://github.com/timakin/bodyclose
-    - exhaustive                  # https://github.com/nishanths/exhaustive
-    - exportloopref               # https://github.com/kyoh86/exportloopref
-    - gocritic                    # https://github.com/go-critic/go-critic
-    - noctx                       # https://github.com/sonatard/noctx
-
-    # disabled, https://github.com/octomation/goimports-action/issues/11
-#   - looppointer                 # https://github.com/kyoh86/looppointer
-
-    # on review
-#   - asasalint                   # https://github.com/alingse/asasalint
-#   - asciicheck                  # https://github.com/tdakkota/asciicheck
-#   - bidichk                     # https://github.com/breml/bidichk
-#   - containedctx                # https://github.com/sivchari/containedctx
-#   - contextcheck                # https://github.com/kkHAIKE/contextcheck
-#   - cyclop                      # https://github.com/bkielbasa/cyclop
-#   - decorder                    # https://gitlab.com/bosi/decorder
-#   - depguard                    # https://github.com/OpenPeeDeeP/depguard
-#   - dogsled                     # https://github.com/alexkohler/dogsled
-#   - dupl                        # https://github.com/mibk/dupl
-#   - dupword                     # https://github.com/Abirdcfly/dupword
-#   - durationcheck               # https://github.com/charithe/durationcheck
-#   - errchkjson                  # https://github.com/breml/errchkjson
-#   - errname                     # https://github.com/Antonboom/errname
-#   - errorlint                   # https://github.com/polyfloyd/go-errorlint
-#   - execinquery                 # https://github.com/lufeee/execinquery
-#   - exhaustruct                 # https://github.com/GaijinEntertainment/go-exhaustruct
-#   - forbidigo                   # https://github.com/ashanbrown/forbidigo
-#   - forcetypeassert             # https://github.com/gostaticanalysis/forcetypeassert
-#   - funlen                      # https://github.com/ultraware/funlen
-#   - gci                         # https://github.com/daixiang0/gci
-#   - ginkgolinter                # https://github.com/nunnatsa/ginkgolinter
-#   - grouper                     # https://github.com/leonklingele/grouper
-#   - gocheckcompilerdirectives   # https://github.com/leighmcculloch/gocheckcompilerdirectives
-#   - gochecknoglobals            # https://github.com/leighmcculloch/gochecknoglobals
-#   - gochecknoinits              # https://github.com/leighmcculloch/gochecknoinits
-#   - gocognit                    # https://github.com/uudashr/gocognit
-#   - goconst                     # https://github.com/jgautheron/goconst
-#   - gocyclo                     # https://github.com/fzipp/gocyclo
-#   - godot                       # https://github.com/tetafro/godot
-#   - godox                       # https://github.com/matoous/godox
-#   - goerr113                    # https://github.com/Djarvur/go-err113
-#   - gofmt                       # https://golang.org/cmd/gofmt/
-#   - gofumpt                     # https://github.com/mvdan/gofumpt
-#   - goheader                    # https://github.com/denis-tingajkin/go-header
-#   - goimports                   # https://godoc.org/golang.org/x/tools/cmd/goimports
-#   - gomnd                       # https://github.com/tommy-muehle/go-mnd
-#   - gomoddirectives             # https://github.com/ldez/gomoddirectives
-#   - gomodguard                  # https://github.com/ryancurrah/gomodguard
-#   - goprintffuncname            # https://github.com/jirfag/go-printf-func-name
-#   - gosec                       # https://github.com/securego/gosec
-#   - importas                    # https://github.com/julz/importas
-#   - interfacebloat              # https://github.com/sashamelentyev/interfacebloat
-#   - ireturn                     # https://github.com/butuzov/ireturn
-#   - lll                         # https://github.com/walle/lll
-#   - loggercheck                 # https://github.com/timonwong/loggercheck
-#   - maintidx                    # https://github.com/yagipy/maintidx
-#   - makezero                    # https://github.com/ashanbrown/makezero
-#   - misspell                    # https://github.com/client9/misspell
-#   - musttag                     # https://github.com/junk1tm/musttag
-#   - nakedret                    # https://github.com/alexkohler/nakedret
-#   - nestif                      # https://github.com/nakabonne/nestif
-#   - nilerr                      # https://github.com/gostaticanalysis/nilerr
-#   - nilnil                      # https://github.com/Antonboom/nilnil
-#   - nlreturn                    # https://github.com/ssgreg/nlreturn
-#   - nolintlint                  # pkg/golinters/nolintlint/README.md
-#   - nonamedreturns              # https://github.com/firefart/nonamedreturns
-#   - nosprintfhostport           # https://github.com/stbenjam/no-sprintf-host-port
-#   - paralleltest                # https://github.com/kunwardeep/paralleltest
-#   - prealloc                    # https://github.com/alexkohler/prealloc
-#   - predeclared                 # https://github.com/nishanths/predeclared
-#   - promlinter                  # https://github.com/yeya24/promlinter
-#   - reassign                    # https://github.com/curioswitch/go-reassign
-#   - revive                      # https://github.com/mgechev/revive
-#   - rowserrcheck                # https://github.com/jingyugao/rowserrcheck
-#   - sqlclosecheck               # https://github.com/ryanrolds/sqlclosecheck
-#   - stylecheck                  # https://github.com/dominikh/go-tools/tree/master/stylecheck
-#   - tagliatelle                 # https://github.com/ldez/tagliatelle
-#   - tenv                        # https://github.com/sivchari/tenv
-#   - testableexamples            # https://github.com/maratori/testableexamples
-#   - testpackage                 # https://github.com/maratori/testpackage
-#   - thelper                     # https://github.com/kulti/thelper
-#   - tparallel                   # https://github.com/moricho/tparallel
-#   - unconvert                   # https://github.com/mdempsky/unconvert
-#   - unparam                     # https://github.com/mvdan/unparam
-#   - usestdlibvars               # https://github.com/sashamelentyev/usestdlibvars
-#   - varnamelen                  # https://github.com/blizzy78/varnamelen
-#   - wastedassign                # https://github.com/sanposhiho/wastedassign
-#   - whitespace                  # https://github.com/ultraware/whitespace
-#   - wrapcheck                   # https://github.com/tomarrell/wrapcheck
-#   - wsl                         # https://github.com/bombsimon/wsl
-
-    # deprecated
-#   - deadcode                    #!d https://github.com/remyoudompheng/go-misc/tree/master/deadcode
-#   - exhaustivestruct            #!d https://github.com/mbilski/exhaustivestruct
-#   - golint                      #!d https://github.com/golang/lint
-#   - ifshort                     #!d https://github.com/esimonov/ifshort
-#   - interfacer                  #!d https://github.com/mvdan/interfacer
-#   - maligned                    #!d https://github.com/mdempsky/maligned
-#   - nosnakecase                 #!d https://github.com/sivchari/nosnakecase
-#   - scopelint                   #!d https://github.com/kyoh86/scopelint
-#   - structcheck                 #!d https://github.com/opennota/check
-#   - varcheck                    #!d https://github.com/opennota/check
+    - bodyclose
+    - exhaustive
+    - exportloopref
+    - gocritic
+    - noctx

@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 [ "${BASH_VERSINFO:-0}" -ge 4 ] || {
   echo "bash version 4 or higher is required" >&2
   exit 1
 }
 
-set -euo pipefail
+declare -A config
+config['dryrun']=false
 
 function docs() {
   rm -rf ./docs/*
@@ -17,16 +20,18 @@ function docs() {
   docz build && docz serve
 }
 
-function linters() {
-  curl -s https://golangci-lint.run/usage/linters/ |
-    pup ':parent-of(#enabled-by-default)' |
-    pup 'table td a:first-child json{}' |
-    jq -r '.[] | (.text + " " + .href)' |
-    column -t
-}
+@debug() { echo "${@}"; }
+@trace() { @debug "${@}" && "${@}"; }
+@error() { echo "${@}" >&2; }
+@fatal() { @error "${@}" && exit 1; }
 
-declare -A config
-config['dryrun']=false
+@usage() {
+  cat - <<EOF
+Usage: $0 <task> <args>
+Tasks:
+EOF
+  compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
+}
 
 _() {
   if ${config['dryrun']}; then
@@ -36,16 +41,23 @@ _() {
   trap 'echo "${@}"' ERR
   "${@}"
 }
-@debug() { echo "${@}"; }
-@trace() { @debug "${@}" && "${@}"; }
-@error() { echo "${@}" >&2; }
-@fatal() { @error "${@}" && exit 1; }
-@usage() {
-  cat - <<EOF
-Usage: $0 <task> <args>
-Tasks:
-EOF
-  compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
+
+-() {
+  if ${config['dryrun']}; then
+    echo "${*} || false"
+    return
+  fi
+  trap 'echo "${*} || false"' ERR
+  "${@}" || false
+}
+
++() {
+  if ${config['dryrun']}; then
+    echo "${*} || true"
+    return
+  fi
+  trap 'echo "${*} || true"' ERR
+  "${@}" || true
 }
 
 function @main() {
