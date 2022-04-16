@@ -1,11 +1,12 @@
 module go.octolab.org/template/module/tools
 
-go 1.19
+go 1.20
 
 require (
 	github.com/golang/mock v1.6.0
 	github.com/golangci/golangci-lint v1.51.2
 	golang.org/x/tools v0.7.0
+	golang.org/x/vuln v0.0.0-20230310185417-902f75839c82
 )
 
 replace (
