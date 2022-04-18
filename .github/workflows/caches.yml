@@ -26,7 +26,6 @@ jobs:
 
   notify:
     needs: [ drop ]
-    if: github.event_name == 'push' && (failure() || success())
     runs-on: ubuntu-latest
 
     steps:
