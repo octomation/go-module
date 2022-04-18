@@ -3,6 +3,10 @@ name: invalidating
 on:
   workflow_dispatch:
 
+  # TODO:restore replace 14 by 1 after successful testing
+  schedule:
+    - cron: '0 7 14 * *' # https://crontab.guru/#0_7_1_%2A_%2A, CET==UTC+1
+
 jobs:
   drop:
     runs-on: ubuntu-latest
