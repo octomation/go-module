@@ -3,8 +3,9 @@
 > Template for typical module written on Go.
 
 [![Build][build.icon]][build.page]
-[![Documentation][docs.icon]][docs.page]
+[![Coverage][coverage.icon]][coverage.page]
 [![Promo][site.icon]][site.page]
+[![Documentation][docs.icon]][docs.page]
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
@@ -60,10 +61,12 @@ $ go get go.octolab.org@latest
 
 [build.page]:       https://github.com/octomation/go-module/actions/workflows/ci.yml
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
-[docs.page]:        https://pkg.go.dev/go.octolab.org
-[docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
+[coverage.page]:    https://codecov.io/gh/octomation/go-module
+[coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
 [site.page]:        https://go-module.octolab.org
 [site.icon]:        https://img.shields.io/badge/site-go--module.octolab.org-brightgreen
+[docs.page]:        https://pkg.go.dev/go.octolab.org
+[docs.icon]:        https://img.shields.io/badge/docs-pkg.go.dev-blue
 [mirror.page]:      https://bitbucket.org/kamilsk/go-module
 [mirror.icon]:      https://img.shields.io/badge/mirror-bitbucket-blue
 [template.page]:    https://github.com/octomation/go-module
