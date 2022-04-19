@@ -4,6 +4,7 @@
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
+[![Quality][quality.icon]][quality.page]
 [![Promo][site.icon]][site.page]
 [![Documentation][docs.icon]][docs.page]
 [![Mirror][mirror.icon]][mirror.page]
@@ -63,6 +64,8 @@ $ go get go.octolab.org@latest
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [coverage.page]:    https://codecov.io/gh/octomation/go-module
 [coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
+[quality.page]:     https://sonarcloud.io/summary/new_code?id=octomation_go-module
+[quality.icon]:     https://sonarcloud.io/api/project_badges/measure?project=octomation_go-module&metric=sqale_rating
 [site.page]:        https://go-module.octolab.org
 [site.icon]:        https://img.shields.io/badge/site-go--module.octolab.org-brightgreen
 [docs.page]:        https://pkg.go.dev/go.octolab.org
@@ -78,3 +81,6 @@ $ go get go.octolab.org@latest
 [docs.semver]:      https://semver.org
 [wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:       https://github.com/golang/go/wiki/Modules
+
+[awesome.page]:     https://awesome-go.com
+[awesome.icon]:     https://awesome.re/mentioned-badge.svg
