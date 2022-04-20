@@ -49,45 +49,31 @@ allowing us to focus on the essential aspects of our ideas.
 
 ### Step-by-step
 
-1. Setup [GitHub Actions][docs.actions] for your repository.
+1. Setup [GitHub Actions](.github/workflows/README.md) for your repository.
    <details><summary>Instruction</summary><p role="separator"></p>
    TODO
    </details>
 
-2. ...Dependabot.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-3. ...GitHub Pages.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
+2. [GitHub Pages](.github/workflows/README.md#documentation).
+3. [Dependabot](.github/README.md#dependabot).
 
 4. ...Codecov.
    <details><summary>Instruction</summary><p role="separator"></p>
    TODO
    </details>
 
-5. ...Slack.
+5. ...SonarCloud.
    <details><summary>Instruction</summary><p role="separator"></p>
    TODO
    </details>
 
-6. ...SonarCloud.
+6. ...Slack.
    <details><summary>Instruction</summary><p role="separator"></p>
    TODO
    </details>
 
-7. ...Stale.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-8. ...Settings.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
+7. [Stale](.github/README.md#stale).
+8. [Settings](.github/README.md#settings).
 
 ### Template
 
