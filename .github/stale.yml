@@ -1,8 +1,3 @@
-# Stale. The application allows closing abandoned issues or pull requests after inactivity.
-# It's potentially deprecated, see https://github.com/probot/stale/issues/248.
-# Possible alternative is https://github.com/actions/stale.
-#
-# Installation: https://github.com/apps/stale.
 daysUntilStale: 60
 daysUntilClose: 7
 
