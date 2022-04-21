@@ -35,6 +35,7 @@ jobs:
   notify:
     needs: [ drop ]
     runs-on: ubuntu-latest
+    if: ${{ failure() || success() }}
 
     steps:
       - uses: rtCamp/action-slack-notify@v2
