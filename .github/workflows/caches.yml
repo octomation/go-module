@@ -22,7 +22,7 @@ jobs:
       - name: Cleanup caches
         run: |
           keys=$(gh actions-cache list -R '${{ github.repository }}' | cut -f1)
-          if [ -z "${keys}" ]; then echo 'Nothing to do' && return 0; fi
+          if [ -z "${keys}" ]; then echo 'Nothing to do' && exit 0; fi
 
           echo 'Deleting caches...'
           for key in ${keys}; do
