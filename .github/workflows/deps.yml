@@ -1,0 +1,38 @@
+name: Dependabot at weekends
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 6 * * 6,0'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+
+      - run: |
+          gh gist view --raw e09e1ecd76d5573e0517a7622009f06f | bash
+          envsubst <.github/dependabot/job.yml >/tmp/job.yml
+          dependabot update -f /tmp/job.yml --dry-run
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+
+  notify:
+    needs: [ check ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_TITLE: '🤖 ${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

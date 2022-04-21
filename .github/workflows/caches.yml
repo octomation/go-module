@@ -1,4 +1,4 @@
-name: Cache Invalidation
+name: Cache invalidation
 
 on:
   workflow_dispatch:
@@ -17,6 +17,8 @@ jobs:
 
       - name: Install a GitHub CLI cache extension
         run: gh extension install actions/gh-actions-cache
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup caches
         run: |
           keys=$(gh actions-cache list -R '${{ github.repository }}' | cut -f1)

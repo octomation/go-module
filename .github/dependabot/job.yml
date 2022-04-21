@@ -1,0 +1,8 @@
+job:
+  package-manager: go_modules
+  allowed-updates:
+    - update-type: all
+  source:
+    provider: github
+    repo: $GITHUB_REPOSITORY
+    directory: /
