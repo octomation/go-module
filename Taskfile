@@ -12,7 +12,7 @@ config['dryrun']=false
 
 function docs() {
   rm -rf ./docs/*
-  git checkout docs/CNAME
+  git checkout docs/CNAME docs/redirects
 
   pushd tools
   trap popd EXIT

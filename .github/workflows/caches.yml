@@ -1,30 +1,32 @@
-name: invalidating
+name: Cache Invalidation
 
 on:
   workflow_dispatch:
 
-  # TODO:restore replace 14 by 1 after successful testing
   schedule:
-    - cron: '0 7 14 * *' # https://crontab.guru/#0_7_1_%2A_%2A, CET==UTC+1
+    - cron: '0 7 1 * *'
 
 jobs:
   drop:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with: { fetch-depth: 0 }
 
-      - run: |
-          gh extension install actions/gh-actions-cache
-          keys=$(gh actions-cache list -R ${{ github.repository }} | cut -f1)
+      - name: Install a GitHub CLI cache extension
+        run: gh extension install actions/gh-actions-cache
+      - name: Cleanup caches
+        run: |
+          keys=$(gh actions-cache list -R '${{ github.repository }}' | cut -f1)
+          if [ -z "${keys}" ]; then echo 'Nothing to do' && return 0; fi
 
-          set +e
-          echo "Deleting caches..."
+          echo 'Deleting caches...'
           for key in ${keys}; do
-            gh actions-cache delete ${key} -R ${{ github.repository }} --confirm
+            gh actions-cache delete "${key}" -R '${{ github.repository }}' --confirm || true
           done
-          echo "Done"
+          echo 'Done'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -37,6 +39,6 @@ jobs:
         env:
           SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           SLACK_ICON: https://github.com/github.png?size=64
-          SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_TITLE: '🧹 ${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
