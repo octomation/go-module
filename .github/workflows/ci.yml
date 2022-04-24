@@ -32,7 +32,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v4
-        with: { go-version: '1.20.x', cache: true, cache-dependency-path: tools/go.sum }
+        with: { go-version: '1.20.x', cache-dependency-path: tools/go.sum }
 
       - name: Prepare and run linter
         run: make tools lint
@@ -62,17 +62,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v4
-        with:
-          go-version: '${{ matrix.go }}'
-#          cache: ${{ !contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go) }}
-          cache-dependency-path: go.sum
-
-#      - uses: actions/cache@v3
-#        if: contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go)
-#        with:
-#          path: ~/go/pkg/mod
-#          key: manual-${{ runner.os }}-go-${{ hashFiles('go.sum') }}
-#          restore-keys: ${{ runner.os }}-go-
+        with: { go-version: '${{ matrix.go }}' }
 
       - name: Prepare and run tests
         run: make env deps-fetch test-with-coverage
