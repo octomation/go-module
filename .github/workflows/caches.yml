@@ -35,7 +35,7 @@ jobs:
   notify:
     needs: [ drop ]
     runs-on: ubuntu-latest
-    if: ${{ failure() || success() }}
+    if: failure() || success()
 
     steps:
       - name: Send Slack notification

@@ -1,4 +1,4 @@
-name: checking
+name: Continuous integration
 
 on:
   workflow_dispatch:
@@ -27,12 +27,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/setup-go@v4
+      - name: Set up Go environment
+        uses: actions/setup-go@v4
         with: { go-version: '1.20.x', cache: true, cache-dependency-path: tools/go.sum }
 
-      - run: make tools lint generate git-check
+      - name: Prepare and run linter
+        run: make tools lint
+      - name: Check git state
+        run: make generate git-check
 
   test:
     runs-on: ubuntu-latest
@@ -52,23 +57,27 @@ jobs:
           - 1.20.x
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/setup-go@v4
+      - name: Set up Go environment
+        uses: actions/setup-go@v4
         with:
           go-version: '${{ matrix.go }}'
-          cache: ${{ !contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go) }}
+#          cache: ${{ !contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go) }}
           cache-dependency-path: go.sum
 
-      - uses: actions/cache@v3
-        if: contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go)
-        with:
-          path: ~/go/pkg/mod
-          key: manual-${{ runner.os }}-go-${{ hashFiles('go.sum') }}
-          restore-keys: ${{ runner.os }}-go-
+#      - uses: actions/cache@v3
+#        if: contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go)
+#        with:
+#          path: ~/go/pkg/mod
+#          key: manual-${{ runner.os }}-go-${{ hashFiles('go.sum') }}
+#          restore-keys: ${{ runner.os }}-go-
 
-      - run: make env deps-fetch test-with-coverage
-      - uses: actions/upload-artifact@v3
+      - name: Prepare and run tests
+        run: make env deps-fetch test-with-coverage
+      - name: Store code coverage report
+        uses: actions/upload-artifact@v3
         if: matrix.go == '1.20.x'
         with: { name: code-coverage-report, path: c.out }
 
@@ -77,23 +86,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/download-artifact@v3
+      - name: Fetch code coverage report
+        uses: actions/download-artifact@v3
         with: { name: code-coverage-report }
-      - uses: codecov/codecov-action@v3
+      - name: Send code coverage report to Codecov (codecov.io)
+        uses: codecov/codecov-action@v3
         with: { files: c.out }
 
   notify:
     needs: [ lint, test ]
-    if: github.event_name == 'push' && (failure() || success())
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' && (failure() || success())
 
     steps:
-      - uses: rtCamp/action-slack-notify@v2
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           SLACK_ICON: https://github.com/github.png?size=64
-          SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_TITLE: '⚙️ ${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

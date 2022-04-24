@@ -1,4 +1,5 @@
 version: 2
+
 updates:
   - package-ecosystem: gomod
     directory: /
@@ -13,6 +14,7 @@ updates:
     commit-message:
       prefix: 'feat'
       include: 'scope'
+    open-pull-requests-limit: 30
 
   - package-ecosystem: github-actions
     directory: /
@@ -27,6 +29,7 @@ updates:
     commit-message:
       prefix: 'ci/cd'
       include: 'scope'
+    open-pull-requests-limit: 30
 
   - package-ecosystem: gomod
     directory: /tools/
@@ -41,6 +44,7 @@ updates:
     commit-message:
       prefix: 'tools'
       include: 'scope'
+    open-pull-requests-limit: 30
 
   - package-ecosystem: npm
     directory: /tools/
@@ -55,3 +59,4 @@ updates:
     commit-message:
       prefix: 'docs'
       include: 'scope'
+    open-pull-requests-limit: 30
