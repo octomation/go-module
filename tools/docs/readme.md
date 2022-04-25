@@ -28,9 +28,15 @@
 
 ---
 
+- [Nextra](https://nextra.site),
+  - https://github.com/shuding/nextra,
+  - Example: [Cal.com Docs](https://cal.com/docs).
 - [Next.js](https://nextjs.org),
   - https://github.com/vercel/next.js,
   - https://nextjs.org/docs/advanced-features/using-mdx.
+
+---
+
 - [MDX](https://mdxjs.com),
   - https://github.com/mdx-js/mdx,
   - https://github.com/mdx-js/awesome.
