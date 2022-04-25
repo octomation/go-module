@@ -2,6 +2,8 @@
 >
 > Template for typical module written on Go.
 
+![Go Module][social.image]
+
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
 [![Quality][quality.icon]][quality.page]
@@ -129,3 +131,4 @@ $ go get go.octolab.org@latest
 
 [awesome.page]:     https://awesome-go.com
 [awesome.icon]:     https://awesome.re/mentioned-badge.svg
+[social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
