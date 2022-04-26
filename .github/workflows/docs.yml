@@ -1,15 +1,52 @@
-name: documenting
+name: Documentation delivery
 
 on:
   workflow_dispatch:
 
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/docs.yml'
+      - 'docs/*'
+    tags: [ '!*' ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  compile:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v3
-        # see
-        # - https://github.com/actions/checkout/issues/719
-        # - https://github.com/golangci/golangci-lint-action/pull/471#issuecomment-1127537719
-        with: { fetch-depth: 0, ref: '${{ github.event.pull_request.head.ref }}' }
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Upload content
+        uses: actions/upload-pages-artifact@v1
+        with: { path: './docs/*' }
+
+  notify:
+    needs: [ deploy ]
+    runs-on: ubuntu-latest
+    if: failure() || success()
+
+    steps:
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_TITLE: '📚 ${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
