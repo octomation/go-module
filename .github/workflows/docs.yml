@@ -34,7 +34,7 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Upload content
         uses: actions/upload-pages-artifact@v1
-        with: { path: './docs/*' }
+        with: { path: '.' }
 
   notify:
     needs: [ deploy ]
