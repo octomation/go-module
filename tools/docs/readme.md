@@ -1,44 +1,52 @@
-> # Documentation
->
-> Our research to build docs without pain.
+# Dependabot
 
-## Requirements
+The application allows automating dependencies updates.
+It provides information to Dependabot about used package ecosystems.
 
-- Based on MDX,
-- Zero config,
-- One dependency,
-- Easy to customize,
-- Maintained, secured, and fast.
+Docs: https://docs.github.com/en/code-security/dependabot.
+Guide: https://go-module.octolab.org/redirects/guide/dependabot/.
 
-## Candidates
+# Stale
 
-- [Docusaurus](https://docusaurus.io),
-  - https://github.com/facebook/docusaurus.
-- [Docz](https://www.docz.site),
-  - https://github.com/doczjs/docz.
+The application allows closing abandoned issues or pull requests after inactivity.
+It's potentially deprecated, see https://github.com/probot/stale/issues/248.
+Possible alternative is https://github.com/actions/stale.
 
----
+Installation: https://github.com/apps/stale.
 
-- [Gatsby](https://www.gatsbyjs.org),
-  - https://github.com/gatsbyjs/gatsby.
-- [Hexo](https://hexo.io),
-  - https://github.com/hexojs/hexo.
-- [Hugo](https://gohugo.io),
-  - https://github.com/gohugoio/hugo.
+# Settings
 
----
+The application allows implementing Configuration as a Code approach.
+It configures a repository by this configuration file.
 
-- [Nextra](https://nextra.site),
-  - https://github.com/shuding/nextra,
-  - Example: [Cal.com Docs](https://cal.com/docs).
-- [Next.js](https://nextjs.org),
-  - https://github.com/vercel/next.js,
-  - https://nextjs.org/docs/advanced-features/using-mdx.
+Installation: https://github.com/apps/settings.
 
----
+We recommend using it together with organization-level settings. Our recommendations are:
 
-- [MDX](https://mdxjs.com),
-  - https://github.com/mdx-js/mdx,
-  - https://github.com/mdx-js/awesome.
-- [Markdoc](https://markdoc.dev),
-  - https://github.com/markdoc/markdoc.
+- Configure defaults: https://github.com/organizations/octomation/settings/repository-defaults
+    - Repository default branch: main
+    - Commit signoff: All repositories
+    - Repository labels: none
+
+- Configure team discussions: https://github.com/organizations/octomation/settings/teams
+    - Enable team discussions for this organization: true
+
+- Configure discussions: https://github.com/organizations/octomation/settings/discussions
+    - Enable discussions for this organization: true
+    - Host: .github
+
+- Configure projects: https://github.com/organizations/octomation/settings/projects
+    - Enable projects for the organization: true
+    - Enable projects for all repositories: true
+    - Allow members to change project visibilities for this organization: true
+
+- Configure authentication security
+    - Require two-factor authentication for everyone in this organization: true
+
+- Configure code security and analysis
+    - Dependency graph, Automatically enable for new private repositories: true
+    - Dependabot alerts, Automatically enable for new repositories: true
+    - Dependabot security updates, Automatically enable for new repositories: true
+
+- Configure third-party application access policy
+    - Policy: Access restricted

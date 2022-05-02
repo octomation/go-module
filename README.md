@@ -2,8 +2,6 @@
 >
 > Template for typical module written on Go.
 
-![Go Module][social.image]
-
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
 [![Quality][quality.icon]][quality.page]
@@ -57,7 +55,7 @@ allowing us to focus on the essential aspects of our ideas.
    </details>
 
 2. [GitHub Pages](.github/workflows/README.md#documentation).
-3. [Dependabot](.github/README.md#dependabot).
+3. [Dependabot](tools/docs/readme.md#dependabot).
 
 4. ...Codecov.
    <details><summary>Instruction</summary><p role="separator"></p>
@@ -74,8 +72,8 @@ allowing us to focus on the essential aspects of our ideas.
    TODO
    </details>
 
-7. [Stale](.github/README.md#stale).
-8. [Settings](.github/README.md#settings).
+7. [Stale](tools/docs/readme.md#stale).
+8. [Settings](tools/docs/readme.md#settings).
 
 ### Template
 
@@ -104,6 +102,8 @@ $ go get go.octolab.org@latest
   - https://github.com/kamilsk/retry*
   - https://github.com/kamilsk/semaphore*
   - https://github.com/kamilsk/tracer*
+
+![Go Module][social.image]
 
 <p align="right">made with ❤️ for everyone</p>
 
