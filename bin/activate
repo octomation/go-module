@@ -3,9 +3,12 @@
 set -o pipefail
 
 deactivate() {
-  unset _ARCH
-  unset _BINPATH
   unset _OS
+  unset _ARCH
+  unset _ROOT
+  unset _GOBINPATH
+  unset _NPMBINPATH
+
   if [[ -v _OLD_GO111MODULE ]]; then
     export GO111MODULE="${_OLD_GO111MODULE}"
     if [[ -z "${_OLD_GO111MODULE}" ]]; then
@@ -13,6 +16,7 @@ deactivate() {
     fi
     unset _OLD_GO111MODULE
   fi
+
   if [[ -v _OLD_GOBIN ]]; then
     export GOBIN="${_OLD_GOBIN}"
     if [[ -z "${_OLD_GOBIN}" ]]; then
@@ -20,6 +24,7 @@ deactivate() {
     fi
     unset _OLD_GOBIN
   fi
+
   if [[ -v _OLD_GOFLAGS ]]; then
     export GOFLAGS="${_OLD_GOFLAGS}"
     if [[ -z "${_OLD_GOFLAGS}" ]]; then
@@ -27,6 +32,7 @@ deactivate() {
     fi
     unset _OLD_GOFLAGS
   fi
+
   if [[ -v _OLD_GOPRIVATE ]]; then
     export GOPRIVATE="${_OLD_GOPRIVATE}"
     if [[ -z "${_OLD_GOPRIVATE}" ]]; then
@@ -34,6 +40,7 @@ deactivate() {
     fi
     unset _OLD_GOPRIVATE
   fi
+
   if [[ -v _OLD_GOPROXY ]]; then
     export GOPROXY="${_OLD_GOPROXY}"
     if [[ -z "${_OLD_GOPROXY}" ]]; then
@@ -41,94 +48,51 @@ deactivate() {
     fi
     unset _OLD_GOPROXY
   fi
+
   if [[ -v _OLD_PATH ]]; then
     export PATH="${_OLD_PATH}"
     unset _OLD_PATH
   fi
+
   if [[ -n "${_OLD_PS1:-}" ]]; then
     export PS1="${_OLD_PS1}"
     unset _OLD_PS1
   fi
 
-  if [[ -n "${BASH:-}" || -n "${ZSH_VERSION:-}" ]]; then
-    hash -r
-  fi
-
-  if [[ ! "${1:-}" == "nondestructive" ]]; then
-    unset -f deactivate
-    unset -f deps
-    unset -f get
-    unset -f up
-    unset -f release
-    unset -f _realpath
-  fi
-}
-
-deps() {
-  go mod download
-  if [[ "$(go env GOFLAGS)" =~ -mod=vendor ]]; then go mod vendor; fi
-}
-
-get() {
-  if [[ $(go version) == *1.1[1-3]* ]]; then go get -d -mod= "$@"; else go get -d "$@"; fi
-  deps
-}
-
-up() {
-  get -u "$@"
-}
-
-release() {
-  local latest
-  latest=$(git describe --tags 2>/dev/null)
-  if [[ -z "${latest}" ]]; then
-    (echo >&2 no have any release)
-    exit 1
-  fi
-  if [[ "${latest}" =~ -[0-9]+-g[a-z0-9]+$ ]]; then
-    latest=$(echo "${latest}" | rev | cut -d - -f3- | rev)
-  fi
-  gorelease -base="${latest}" -version="${1:-}"
-}
-
-_realpath() {
-  if [[ -z "${1:-}" ]]; then
-    echo 'Please provide a file/dir name'
-    return
-  fi
-  echo "$(cd "$(dirname "${1}")" && pwd)/${1}"
+  [[ -n "${BASH:-}" || -n "${ZSH_VERSION:-}" ]] && hash -r
+  [[ "${1:-}" != "nondestructive" ]] && unset -f deactivate
 }
 
 deactivate nondestructive
-
-_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
-_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
-_BINPATH=$(_realpath "$(dirname "${BASH_SOURCE[0]:-$0}")")/"${_OS}/${_ARCH}"
 
 _OLD_GO111MODULE="${GO111MODULE:-}"
 _OLD_GOBIN="${GOBIN:-}"
 _OLD_GOFLAGS="${GOFLAGS:-}"
 _OLD_GOPRIVATE="${GOPRIVATE:-}"
 _OLD_GOPROXY="${GOPROXY:-}"
-_OLD_PATH="${PATH:-}"
-_OLD_PS1="${PS1:-}"
-
 export GO111MODULE=on
-export GOBIN="${_BINPATH}"
+export GOBIN="${_GOBINPATH}"
 export GOFLAGS=-mod=
 export GOPRIVATE=go.octolab.net
 export GOPROXY=direct
-export PATH="${_BINPATH}:${PATH}"
+
+_OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+_ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
+_ROOT=$(dirname "$(dirname "$(realpath -L "${BASH_SOURCE[0]:-$0}")")")
+_GOBINPATH="${_ROOT}/bin/${_OS}/${_ARCH}"
+_NPMBINPATH="${_ROOT}/tools/node_modules/.bin"
+_OLD_PATH="${PATH:-}"
+export PATH="${_NPMBINPATH}:${_GOBINPATH}:${PATH}"
+
+_OLD_PS1="${PS1:-}"
 # shellcheck disable=SC2050
 if [[ "x(activated) " != x ]]; then
   PS1="(activated) ${PS1:-}"
-elif [[ "$(basename "${_BINPATH}")" == "__" ]]; then
-  PS1="[$(basename "$(dirname "${_BINPATH}")")] $PS1"
+elif [[ "$(basename "${_GOBINPATH}")" == "__" ]]; then
+  PS1="[$(basename "$(dirname "${_GOBINPATH}")")] $PS1"
 else
-  PS1="($(basename "${_BINPATH}"))$PS1"
+  PS1="($(basename "${_GOBINPATH}"))$PS1"
 fi
 export PS1
 
-if [[ -n "${BASH:-}" || -n "${ZSH_VERSION:-}" ]]; then
-  hash -r
-fi
+[[ -n "${BASH:-}" || -n "${ZSH_VERSION:-}" ]] && hash -r
