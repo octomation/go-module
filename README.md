@@ -103,9 +103,9 @@ $ go get go.octolab.org@latest
   - https://github.com/kamilsk/semaphore*
   - https://github.com/kamilsk/tracer*
 
-![Go Module][social.image]
-
 <p align="right">made with ❤️ for everyone</p>
+
+![Go Module][social.image]
 
 [build.page]:       https://github.com/octomation/go-module/actions/workflows/ci.yml
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg

@@ -1,4 +1,4 @@
-name: tooling
+name: Tools validation
 
 on:
   workflow_dispatch:
@@ -17,29 +17,34 @@ on:
     tags: [ '!*' ]
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout the repository
+        uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/setup-go@v4
-        with: { go-version: '1.20.x', cache: true, cache-dependency-path: tools/go.sum }
+      - name: Set up Go environment
+        uses: actions/setup-go@v4
+        with: { go-version: '1.20.x', cache-dependency-path: tools/go.sum }
 
-      - run: make tools
-      - run: '[ $(ls bin/linux/*/* | wc -l) = $(grep go:gen tools/tools.go | wc -l) ]'
-      - run: make git-check
+      - name: Install and check tools
+        run: make tools && [ $(ls bin/linux/*/* | wc -l) = $(grep go:gen tools/tools.go | wc -l) ]
+
+      - name: Check git state
+        run: make generate git-check
 
   notify:
-    needs: [ build ]
-    if: github.event_name == 'push' && (failure() || success())
+    needs: [ check ]
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' && (failure() || success())
 
     steps:
-      - uses: rtCamp/action-slack-notify@v2
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           SLACK_ICON: https://github.com/github.png?size=64
-          SLACK_TITLE: '${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_TITLE: '🛠️ ${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
