@@ -1,0 +1,49 @@
+name: Delete workflow runs
+
+on:
+  workflow_dispatch:
+    inputs:
+      pattern:
+        description: The name of workflow to clean.
+        type: choice
+        options:
+          - pages-build-deployment
+          - Cache invalidation
+          - Continuous integration
+          - Dependabot at weekends
+          - Documentation delivery
+          - Tools validation
+        default: pages-build-deployment
+        required: true
+      dry_run:
+        description: Only log actions, do not perform any delete operations.
+        type: boolean
+        required: false
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          delete_workflow_pattern: ${{ github.event.inputs.pattern }}
+          dry_run: ${{ github.event.inputs.dry_run }}
+
+  notify:
+    needs: [ delete ]
+    runs-on: ubuntu-latest
+    if: failure() || success()
+
+    steps:
+      - name: Send Slack notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_TITLE: '🗑️ ${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_USERNAME: GitHub Actions
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
