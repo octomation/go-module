@@ -1,4 +1,4 @@
-name: Delete workflow runs
+name: Workflow invalidation
 
 on:
   workflow_dispatch:
@@ -7,12 +7,15 @@ on:
         description: The name of workflow to clean.
         type: choice
         options:
+          # GitHub Pages based on branch deployment
           - pages-build-deployment
+
           - Cache invalidation
           - Continuous integration
           - Dependabot at weekends
           - Documentation delivery
           - Tools validation
+          - Workflow invalidation
         default: pages-build-deployment
         required: true
       dry_run:
@@ -21,7 +24,7 @@ on:
         required: false
 
 jobs:
-  delete:
+  drop:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,10 +34,12 @@ jobs:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
           delete_workflow_pattern: ${{ github.event.inputs.pattern }}
-          dry_run: ${{ github.event.inputs.dry_run }}
+          dry_run: ${{ fromJSON('["", "true"]')[github.event.inputs.dry_run == 'true'] }}
+          retain_days: 0
+          keep_minimum_runs: 0
 
   notify:
-    needs: [ delete ]
+    needs: [ drop ]
     runs-on: ubuntu-latest
     if: failure() || success()
 
