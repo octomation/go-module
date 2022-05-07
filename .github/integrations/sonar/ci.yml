@@ -1,3 +1,6 @@
+# [![Quality][quality.icon]][quality.page]
+# [quality.page]:     https://sonarcloud.io/summary/new_code?id=octomation_go-module
+# [quality.icon]:     https://sonarcloud.io/api/project_badges/measure?project=octomation_go-module&metric=sqale_rating
 
 scan:
   name: Scanning
