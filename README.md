@@ -4,7 +4,6 @@
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
-[![Quality][quality.icon]][quality.page]
 [![Promo][site.icon]][site.page]
 [![Documentation][docs.icon]][docs.page]
 [![Mirror][mirror.icon]][mirror.page]
@@ -62,18 +61,13 @@ allowing us to focus on the essential aspects of our ideas.
    TODO
    </details>
 
-5. ...SonarCloud.
+5. ...Slack.
    <details><summary>Instruction</summary><p role="separator"></p>
    TODO
    </details>
 
-6. ...Slack.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-7. [Stale](tools/docs/readme.md#stale).
-8. [Settings](tools/docs/readme.md#settings).
+6. [Stale](tools/docs/readme.md#stale).
+7. [Settings](tools/docs/readme.md#settings).
 
 ### Template
 
@@ -111,8 +105,6 @@ $ go get go.octolab.org@latest
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [coverage.page]:    https://codecov.io/gh/octomation/go-module
 [coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
-[quality.page]:     https://sonarcloud.io/summary/new_code?id=octomation_go-module
-[quality.icon]:     https://sonarcloud.io/api/project_badges/measure?project=octomation_go-module&metric=sqale_rating
 [site.page]:        https://go-module.octolab.org
 [site.icon]:        https://img.shields.io/badge/site-promo-brightgreen
 [docs.page]:        https://pkg.go.dev/go.octolab.org
