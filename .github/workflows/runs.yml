@@ -7,16 +7,13 @@ on:
         description: The name of workflow to clean.
         type: choice
         options:
-          # GitHub Pages based on branch deployment
-          - pages-build-deployment
-
           - Cache invalidation
           - Continuous integration
           - Dependabot at weekends
           - Documentation delivery
           - Tools validation
           - Workflow invalidation
-        default: pages-build-deployment
+        default: Workflow invalidation
         required: true
       dry_run:
         description: Only log actions, do not perform any delete operations.
