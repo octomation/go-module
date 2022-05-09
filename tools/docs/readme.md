@@ -6,14 +6,6 @@ It provides information to Dependabot about used package ecosystems.
 Docs: https://docs.github.com/en/code-security/dependabot.
 Guide: https://go-module.octolab.org/redirects/guide/dependabot/.
 
-# Stale
-
-The application allows closing abandoned issues or pull requests after inactivity.
-It's potentially deprecated, see https://github.com/probot/stale/issues/248.
-Possible alternative is https://github.com/actions/stale.
-
-Installation: https://github.com/apps/stale.
-
 # Settings
 
 The application allows implementing Configuration as a Code approach.

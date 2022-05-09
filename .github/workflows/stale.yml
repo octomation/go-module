@@ -1,0 +1,46 @@
+name: Issue invalidation
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 6 * * *'
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v7
+        with:
+          days-before-issue-stale: 30
+          days-before-issue-close: 7
+          exempt-all-issue-assignees: true
+          exempt-all-issue-milestones: true
+          exempt-issue-labels: 'status: pending'
+          stale-issue-label: 'status: stale'
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further action occurs. Thank you
+            for your contributions.
+          close-issue-message: >
+            This issue was closed because it has been stalled for 7 days with no activity.
+
+          days-before-pr-stale: 30
+          days-before-pr-close: 7
+          exempt-all-pr-assignees: true
+          exempt-all-pr-milestones: true
+          exempt-pr-labels: 'status: pending'
+          stale-pr-label: 'status: stale'
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has not had
+            recent activity. It will be closed if no further action occurs. Thank you
+            for your contributions.
+          close-pr-message: >
+            This pull request was closed because it has been stalled for 7 days with no activity.
+          delete-branch: true
