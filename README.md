@@ -48,26 +48,12 @@ allowing us to focus on the essential aspects of our ideas.
 
 ### Step-by-step
 
-1. Setup [GitHub Actions](.github/workflows/README.md) for your repository.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-2. [GitHub Pages](.github/workflows/README.md#documentation).
-3. [Dependabot](tools/docs/readme.md#dependabot).
-
-4. ...Codecov.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-5. ...Slack.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-6. [Stale](tools/docs/readme.md#stale).
-7. [Settings](tools/docs/readme.md#settings).
+1. [GitHub Actions](https://github.com/features/actions).
+2. [GitHub Pages](https://pages.github.com).
+3. [Dependabot](https://github.com/dependabot).
+4. [Codecov](https://github.com/marketplace/codecov).
+5. [Slack](https://github.com/marketplace/slack-github).
+6. [Settings](https://github.com/apps/settings).
 
 ### Template
 

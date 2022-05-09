@@ -1,0 +1,5 @@
+name: CodeQL config
+
+queries:
+  - name: Queries from security-extended, plus maintainability and reliability queries
+    uses: security-and-quality

@@ -1,19 +1,19 @@
+jobs:
+  analyze:
+    name: Analyzing
+    runs-on: ubuntu-latest
 
-scan:
-  name: Scanning
-  runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
 
-  steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v3
-      with: { fetch-depth: 0 }
-
-    - name: Run SonarCloud scanner
-      uses: SonarSource/sonarcloud-github-action@v1.9
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run SonarCloud scanner
+        uses: SonarSource/sonarcloud-github-action@v1.9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   notify:
     name: Notifying
-    needs: [ lint, scan, test ]
+    needs: [ lint, analyze, test ]

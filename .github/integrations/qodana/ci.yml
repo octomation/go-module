@@ -1,18 +1,18 @@
+jobs:
+  analyze:
+    name: Analyzing
+    runs-on: ubuntu-latest
 
-scan:
-  name: Scanning
-  runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
 
-  steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v3
-      with: { fetch-depth: 0 }
-
-    - name: Run Qodana scanner
-      uses: JetBrains/qodana-action@v2022.3.4
-      env:
-        QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+      - name: Run Qodana scanner
+        uses: JetBrains/qodana-action@v2022.3.4
+        env:
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
 
   notify:
     name: Notifying
-    needs: [ lint, scan, test ]
+    needs: [ lint, analyze, test ]
