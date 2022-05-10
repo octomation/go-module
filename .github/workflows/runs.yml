@@ -21,7 +21,8 @@ on:
         required: false
 
 jobs:
-  drop:
+  delete:
+    name: Deleting
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +37,8 @@ jobs:
           keep_minimum_runs: 0
 
   notify:
-    needs: [ drop ]
+    name: Notifying
+    needs: [ delete ]
     runs-on: ubuntu-latest
     if: failure() || success()
 

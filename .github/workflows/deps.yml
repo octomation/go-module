@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 6 * * 6,0'
+    - cron: 0 6 * * 6,0
 
 jobs:
   check:
+    name: Checking
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch'
 
@@ -22,13 +23,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
       - name: Emulate dependabot's update process
         run: |
-          envsubst <.github/dependabot/job.yml >/tmp/job.yml
+          envsubst <.github/integrations/dependabot/job.yml >/tmp/job.yml
           dependabot update -f /tmp/job.yml --dry-run
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
 
   notify:
+    name: Notifying
     needs: [ check ]
     runs-on: ubuntu-latest
     if: failure() || success()

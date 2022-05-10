@@ -4,19 +4,20 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 6 * * *'
-
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+    - cron: 0 6 * * *
 
 jobs:
-  stale:
+  check:
+    name: Checking
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
 
     steps:
-      - uses: actions/stale@v7
+      - name: Close stale issues and PRs
+        uses: actions/stale@v7
         with:
           days-before-issue-stale: 30
           days-before-issue-close: 7

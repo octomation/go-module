@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: '0 7 1 * *'
+    - cron: 0 7 1 * *
 
 jobs:
-  drop:
+  delete:
+    name: Deleting
     runs-on: ubuntu-latest
 
     steps:
@@ -24,16 +25,17 @@ jobs:
           keys=$(gh actions-cache list -R '${{ github.repository }}' | cut -f1)
           if [ -z "${keys}" ]; then echo 'Nothing to do' && exit 0; fi
 
-          echo 'Deleting caches...'
+          echo Deleting caches...
           for key in ${keys}; do
             gh actions-cache delete "${key}" -R '${{ github.repository }}' --confirm || true
           done
-          echo 'Done'
+          echo Done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   notify:
-    needs: [ drop ]
+    name: Notifying
+    needs: [ delete ]
     runs-on: ubuntu-latest
     if: failure() || success()
 
