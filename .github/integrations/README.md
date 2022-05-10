@@ -1,28 +1,5 @@
 # Integrations
 
-## Routine solvers
-
-### Probot
-
-- Project: https://probot.github.io.
-- Documentation: https://probot.github.io/docs/.
-
-### Stale
-
-The application allows closing abandoned issues or pull requests after inactivity.
-
-- Installation: https://github.com/apps/stale.
-- Source: https://github.com/probot/stale.
-- Configuration: [stale.yml](stale/stale.yml) (→ `.github/stale.yml`).
-
-⚠️ It's potentially deprecated, see https://github.com/probot/stale/issues/248.
-
-#### Alternative via GitHub Actions
-
-- Action: https://github.com/marketplace/actions/close-stale-issues.
-- Source: https://github.com/actions/stale.
-- Workflow: [stale.yml](../workflows/stale.yml).
-
 ## Code scanners
 
 ### CodeQL
@@ -67,3 +44,40 @@ The application allows closing abandoned issues or pull requests after inactivit
 [quality.page]:     https://sonarcloud.io/...
 [quality.icon]:     https://sonarcloud.io/...
 ```
+
+## Misc
+
+### GitHub Socialify
+
+- Project: https://socialify.git.ci.
+
+### Git History
+
+- Project: https://githistory.xyz.
+
+### Shields.io
+
+- Project: https://shields.io.
+
+## Routine solvers
+
+### Probot
+
+- Project: https://probot.github.io.
+- Documentation: https://probot.github.io/docs/.
+
+### Stale
+
+The application allows closing abandoned issues or pull requests after inactivity.
+
+- Installation: https://github.com/apps/stale.
+- Source: https://github.com/probot/stale.
+- Configuration: [stale.yml](stale/stale.yml) (→ `.github/stale.yml`).
+
+⚠️ It's potentially deprecated, see https://github.com/probot/stale/issues/248.
+
+#### Alternative via GitHub Actions
+
+- Action: https://github.com/marketplace/actions/close-stale-issues.
+- Source: https://github.com/actions/stale.
+- Workflow: [stale.yml](../workflows/stale.yml).
