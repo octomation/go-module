@@ -18,7 +18,7 @@ jobs:
 
       - name: Set up CodeQL
         uses: github/codeql-action/init@v2
-        with: { config-file: .github/codeql.yml, languages: '${{ matrix.language }}' }
+        with: { config-file: codeql.yml, languages: '${{ matrix.language }}' }
       - name: Automatically build code
         uses: github/codeql-action/autobuild@v2
       - name: Perform CodeQL analysis

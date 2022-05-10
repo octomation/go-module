@@ -13,25 +13,26 @@ The application allows closing abandoned issues or pull requests after inactivit
 
 - Installation: https://github.com/apps/stale.
 - Source: https://github.com/probot/stale.
-- Configuration: [stale.yml](../stale.yml).
+- Configuration: [stale.yml](stale/stale.yml) (→ `.github/stale.yml`).
 
 ⚠️ It's potentially deprecated, see https://github.com/probot/stale/issues/248.
 
-#### Alternative
+#### Alternative via GitHub Actions
 
 - Action: https://github.com/marketplace/actions/close-stale-issues.
 - Source: https://github.com/actions/stale.
-- Configuration: [stale.yml](../workflows/stale.yml).
+- Workflow: [stale.yml](../workflows/stale.yml).
 
 ## Code scanners
 
 ### CodeQL
 
 - Project: https://codeql.github.com.
-- Documentation:
-  - https://codeql.github.com/docs/,
+- Documentation: https://codeql.github.com/docs/.
+- Guide:
   - https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning.
-- Configuration: [codeql.yml](codeql/ci.yml).
+- Configuration: [config.yml](codeql/config.yml) (→`codeql.yml`).
+- Workflow: [ci.yml](codeql/ci.yml) (+`.github/workflows/ci.yml`).
 
 ### Qodana
 
@@ -41,7 +42,8 @@ The application allows closing abandoned issues or pull requests after inactivit
   - https://youtu.be/WrhnUnzMUCg,
   - https://youtu.be/JrWQkqaXZFQ.
 - Action: https://github.com/marketplace/actions/qodana-scan.
-- Configuration: [qodana.yml](qodana/ci.yml).
+- Configuration: [config.yml](qodana/config.yml) (→`qodana.yml`).
+- Workflow: [ci.yml](qodana/ci.yml) (+`.github/workflows/ci.yml`).
 
 ```markdown
 [![Quality][quality.icon]][quality.page]
@@ -56,7 +58,8 @@ The application allows closing abandoned issues or pull requests after inactivit
 - Documentation: https://docs.sonarcloud.io.
 - Application: https://github.com/marketplace/sonarcloud.
 - Action: https://github.com/marketplace/actions/sonarcloud-scan.
-- Configuration: [sonar.yml](sonar/ci.yml).
+- Configuration: [config.yml](sonar/config.properties) (→`sonar-project.properties`).
+- Workflow: [ci.yml](sonar/ci.yml) (+`.github/workflows/ci.yml`).
 
 ```markdown
 [![Quality][quality.icon]][quality.page]
