@@ -80,7 +80,9 @@ jobs:
 
       - run: |
           echo "MODULE=$(grep module go.mod | awk '{print $2}')" >> $GITHUB_ENV
+        if: github.event_name == 'push'
       - uses: paambaati/codeclimate-action@v3.0.0
+        if: github.event_name == 'push'
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
