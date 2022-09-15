@@ -22,7 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cleanup caches
         run: |
-          keys=$(gh actions-cache list -R '${{ github.repository }}' | cut -f1)
+          keys=$(gh actions-cache list -L 100 -R '${{ github.repository }}' | cut -f1)
           if [ -z "${keys}" ]; then echo 'Nothing to do' && exit 0; fi
 
           echo Deleting caches...
