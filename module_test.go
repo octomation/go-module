@@ -9,7 +9,7 @@ import (
 )
 
 func TestNewModule(t *testing.T) {
-	if NewModule() != rate.Inf {
+	if NewModule().Limit != rate.Inf {
 		t.FailNow()
 	}
 }
