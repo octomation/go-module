@@ -45,19 +45,13 @@ jobs:
     if: failure() || success()
 
     steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
       - name: Define notification message
         id: message
-        run: |
-          if [ -n "${{ github.event.head_commit.message }}" ]
-          then
-            echo txt="${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
-          elif [ -n "${{ github.event.schedule }}" ]
-          then
-            echo txt="regular healthcheck" >> $GITHUB_OUTPUT
-          elif [ -n "${{ github.event.inputs.reason }}" ]
-          then
-            echo txt="${{ github.event.inputs.reason }}" >> $GITHUB_OUTPUT
-          fi
+        uses: ./.github/actions/notify
+
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
         env:

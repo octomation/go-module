@@ -2,6 +2,11 @@ name: Dependabot at weekends
 
 on:
   workflow_dispatch:
+    inputs:
+      reason:
+        type: string
+        default: manual healthcheck
+        required: true
 
   schedule:
     - cron: 0 6 * * 6,0
@@ -36,11 +41,20 @@ jobs:
     if: failure() || success()
 
     steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - name: Define notification message
+        id: message
+        uses: ./.github/actions/notify
+
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_FOOTER: made with ❤️ for everyone, OctoLab
           SLACK_ICON: https://github.com/github.png?size=64
+          SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
           SLACK_TITLE: '🤖 ${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

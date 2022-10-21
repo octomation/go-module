@@ -1,0 +1,26 @@
+name: Define notification message
+description: Identify an appropriate notification message.
+branding:
+  icon: 'message-square'
+  color: 'green'
+outputs:
+  txt:
+    description: The message.
+    value: ${{ steps.message.outputs.txt }}
+runs:
+  using: composite
+  steps:
+    - name: Define notification message
+      id: message
+      run: |
+        if [ -n "${{ github.event.head_commit.message }}" ]
+        then
+          echo txt="${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
+        elif [ -n "${{ github.event.schedule }}" ]
+        then
+          echo txt="regular healthcheck" >> $GITHUB_OUTPUT
+        elif [ -n "${{ github.event.inputs.reason }}" ]
+        then
+          echo txt="${{ github.event.inputs.reason }}" >> $GITHUB_OUTPUT
+        fi
+      shell: bash
