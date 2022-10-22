@@ -1,6 +1,6 @@
 > # 🧩 Module
 >
-> Template for typical module written on Go.
+> Template for a typical module written on Go.
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
@@ -44,9 +44,9 @@ allowing us to focus on the essential aspects of our ideas.
 3. Make your changes.
 4. Send a pull request.
 
-## 🧩 Integration
+## 🎛️ Configuration
 
-### Step-by-step
+### [Step-by-step][docs.setup]
 
 1. [GitHub Actions](https://github.com/features/actions).
 2. [GitHub Pages](https://pages.github.com).
@@ -104,6 +104,7 @@ $ go get go.octolab.org@latest
 [action.generate]:  https://github.com/octomation/go-module/generate
 [docs.actions]:     https://docs.github.com/en/actions
 [docs.semver]:      https://semver.org
+[docs.setup]:       .github/integrations/
 [wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:       https://github.com/golang/go/wiki/Modules
 

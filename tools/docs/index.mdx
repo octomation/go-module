@@ -5,11 +5,10 @@ route: /
 
 > # 🧩 Module
 >
-> Template for typical module written on Go.
+> Template for a typical module written on Go.
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
-[![Quality][quality.icon]][quality.page]
 [![Promo][site.icon]][site.page]
 [![Documentation][docs.icon]][docs.page]
 [![Mirror][mirror.icon]][mirror.page]
@@ -50,35 +49,16 @@ allowing us to focus on the essential aspects of our ideas.
 3. Make your changes.
 4. Send a pull request.
 
-## 🧩 Integration
+## 🎛️ Configuration
 
-### Step-by-step
+### [Step-by-step][docs.setup]
 
-1. Setup [GitHub Actions](.github/workflows/README.md) for your repository.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-2. [GitHub Pages](.github/workflows/README.md#documentation).
-3. [Dependabot](tools/docs/readme.md#dependabot).
-
-4. ...Codecov.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-5. ...SonarCloud.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-6. ...Slack.
-   <details><summary>Instruction</summary><p role="separator"></p>
-   TODO
-   </details>
-
-7. [Stale](tools/docs/readme.md#stale).
-8. [Settings](tools/docs/readme.md#settings).
+1. [GitHub Actions](https://github.com/features/actions).
+2. [GitHub Pages](https://pages.github.com).
+3. [Dependabot](https://github.com/dependabot).
+4. [Codecov](https://github.com/marketplace/codecov).
+5. [Slack](https://github.com/marketplace/slack-github).
+6. [Settings](https://github.com/apps/settings).
 
 ### Template
 
@@ -116,8 +96,6 @@ $ go get go.octolab.org@latest
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [coverage.page]:    https://codecov.io/gh/octomation/go-module
 [coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
-[quality.page]:     https://sonarcloud.io/summary/new_code?id=octomation_go-module
-[quality.icon]:     https://sonarcloud.io/api/project_badges/measure?project=octomation_go-module&metric=sqale_rating
 [site.page]:        https://go-module.octolab.org
 [site.icon]:        https://img.shields.io/badge/site-promo-brightgreen
 [docs.page]:        https://pkg.go.dev/go.octolab.org
@@ -131,6 +109,7 @@ $ go get go.octolab.org@latest
 [action.generate]:  https://github.com/octomation/go-module/generate
 [docs.actions]:     https://docs.github.com/en/actions
 [docs.semver]:      https://semver.org
+[docs.setup]:       /integrations/
 [wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:       https://github.com/golang/go/wiki/Modules
 

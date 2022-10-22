@@ -17,8 +17,6 @@
 - [Docz](https://www.docz.site),
   - https://github.com/doczjs/docz.
 
----
-
 - [Gatsby](https://www.gatsbyjs.org),
   - https://github.com/gatsbyjs/gatsby.
 - [Hexo](https://hexo.io),
@@ -26,16 +24,12 @@
 - [Hugo](https://gohugo.io),
   - https://github.com/gohugoio/hugo.
 
----
-
 - [Nextra](https://nextra.site),
   - https://github.com/shuding/nextra,
   - Example: [Cal.com Docs](https://cal.com/docs).
 - [Next.js](https://nextjs.org),
   - https://github.com/vercel/next.js,
   - https://nextjs.org/docs/advanced-features/using-mdx.
-
----
 
 - [MDX](https://mdxjs.com),
   - https://github.com/mdx-js/mdx,

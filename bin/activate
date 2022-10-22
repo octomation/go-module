@@ -78,7 +78,7 @@ export GOPROXY=direct
 
 _OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 _ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
-_ROOT=$(dirname "$(dirname "$(realpath -L "${BASH_SOURCE[0]:-$0}")")")
+_ROOT=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")")
 _GOBINPATH="${_ROOT}/bin/${_OS}/${_ARCH}"
 _NPMBINPATH="${_ROOT}/tools/node_modules/.bin"
 _OLD_PATH="${PATH:-}"
