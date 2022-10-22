@@ -17,7 +17,8 @@
 - Documentation: https://www.jetbrains.com/help/qodana/.
 - Guide:
   - https://youtu.be/WrhnUnzMUCg,
-  - https://youtu.be/JrWQkqaXZFQ.
+  - https://youtu.be/JrWQkqaXZFQ,
+  - https://youtu.be/RV1MFnURMP8.
 - Action: https://github.com/marketplace/actions/qodana-scan.
 - Configuration: [config.yml](qodana/config.yml) (→`qodana.yml`).
 - Workflow: [ci.yml](qodana/ci.yml) (+`.github/workflows/ci.yml`).
@@ -45,6 +46,39 @@
 [quality.icon]:     https://sonarcloud.io/...
 ```
 
+## Routine solvers
+
+### Probot
+
+- Project: https://probot.github.io.
+- Documentation: https://probot.github.io/docs/.
+
+### Settings
+
+The application allows to configure repository settings.
+
+- Installation: https://github.com/apps/settings.
+- Source: https://github.com/repository-settings/app.
+- Configuration: [settings.yml](../settings.yml).
+
+⚠️ It will be replaced, see https://github.com/octomation/go-module/issues/56.
+
+### Stale
+
+The application allows closing abandoned issues or pull requests after inactivity.
+
+- Installation: https://github.com/apps/stale.
+- Source: https://github.com/probot/stale.
+- Configuration: [stale.yml](stale/stale.yml) (→`.github/stale.yml`).
+
+⚠️ It's potentially deprecated, see https://github.com/probot/stale/issues/248.
+
+#### Alternative via GitHub Actions
+
+- Action: https://github.com/marketplace/actions/close-stale-issues.
+- Source: https://github.com/actions/stale.
+- Workflow: [stale.yml](../workflows/stale.yml).
+
 ## Misc
 
 ### GitHub Socialify
@@ -58,26 +92,3 @@
 ### Shields.io
 
 - Project: https://shields.io.
-
-## Routine solvers
-
-### Probot
-
-- Project: https://probot.github.io.
-- Documentation: https://probot.github.io/docs/.
-
-### Stale
-
-The application allows closing abandoned issues or pull requests after inactivity.
-
-- Installation: https://github.com/apps/stale.
-- Source: https://github.com/probot/stale.
-- Configuration: [stale.yml](stale/stale.yml) (→ `.github/stale.yml`).
-
-⚠️ It's potentially deprecated, see https://github.com/probot/stale/issues/248.
-
-#### Alternative via GitHub Actions
-
-- Action: https://github.com/marketplace/actions/close-stale-issues.
-- Source: https://github.com/actions/stale.
-- Workflow: [stale.yml](../workflows/stale.yml).
