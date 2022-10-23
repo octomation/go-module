@@ -72,21 +72,33 @@ $ go get go.octolab.org@latest
 
 ## 🤲 Outputs & outcomes
 
-- [OctoLab](https://github.com/orgs/octolab/repositories)
+<details><summary>OctoLab</summary><p role="separator"></p>
+
+- [Organization](https://github.com/octolab)
   - https://github.com/octolab/breaker*
   - https://github.com/octolab/cli*
   - https://github.com/octolab/config
   - https://github.com/octolab/pkg*
   - https://github.com/octolab/propaganda
   - https://github.com/octolab/protocol*
-- [Octomation](https://github.com/orgs/octomation/repositories)
+
+</details>
+<details><summary>Octomation</summary><p role="separator"></p>
+
+- [Organization](https://github.com/octomation)
   - https://github.com/octomation/dna*
   - https://github.com/octomation/go-tool*
   - https://github.com/octomation/go-service*
-- [Others](https://github.com/kamilsk?tab=repositories)
+
+</details>
+<details><summary>Others</summary><p role="separator"></p>
+
+- [Kamil Samigullin](https://github.com/kamilsk)
   - https://github.com/kamilsk/retry*
   - https://github.com/kamilsk/semaphore*
   - https://github.com/kamilsk/tracer*
+
+</details>
 
 <p align="right">made with ❤️ for everyone</p>
 
