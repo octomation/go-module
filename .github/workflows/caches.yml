@@ -9,7 +9,8 @@ on:
         required: true
 
   schedule:
-    - cron: 0 7 1 * *
+    - name: At 06:00 on day-of-month 1 and 15, UTC
+      cron: 0 6 1,15 * *
 
 jobs:
   delete:

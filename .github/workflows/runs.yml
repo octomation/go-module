@@ -7,6 +7,7 @@ on:
         description: The name of workflow to clean.
         type: choice
         options:
+          - All
           - Cache invalidation
           - Continuous integration
           - Dependabot at weekends
@@ -24,6 +25,10 @@ on:
         type: string
         default: manual healthcheck
         required: true
+
+  schedule:
+    - name: At 07:00 on Sunday, UTC
+      cron: 0 7 * * 0
 
 jobs:
   delete:

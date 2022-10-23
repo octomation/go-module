@@ -9,7 +9,8 @@ on:
         required: true
 
   schedule:
-    - cron: 0 6 * * 6,0
+    - name: At 06:00 on Saturday and Sunday, UTC
+      cron: 0 6 * * 6,0
 
 jobs:
   check:
