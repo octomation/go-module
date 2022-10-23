@@ -13,13 +13,13 @@ runs:
     - name: Define notification message
       id: message
       run: |
-        if [ -n "${{ github.event.head_commit.message }}" ]
+        if [ "${{ github.event.head_commit.message != null }}" == 'true' ]
         then
-          echo txt="${{ github.event.head_commit.message }}" >> $GITHUB_OUTPUT
-        elif [ -n "${{ github.event.schedule }}" ]
+          echo txt="${{ github.event.head_commit.message }}" | head -1 >> $GITHUB_OUTPUT
+        elif [ "${{ github.event.schedule != null }}" == 'true' ]
         then
           echo txt="regular healthcheck" >> $GITHUB_OUTPUT
-        elif [ -n "${{ github.event.inputs.reason }}" ]
+        elif [ "${{ github.event.inputs.reason != null }}" == 'true' ]
         then
           echo txt="${{ github.event.inputs.reason }}" >> $GITHUB_OUTPUT
         fi
