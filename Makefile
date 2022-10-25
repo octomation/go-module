@@ -11,21 +11,25 @@ OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 DATE  := $(shell date -u +%Y-%m-%dT%T%Z)
 SHELL := /usr/bin/env bash -euo pipefail -c
 
-make-verbose:
-	$(eval AT :=) $(eval MAKE := $(MAKE) verbose) @true
-.PHONY: make-verbose
-
 find-todo:
 	$(AT) grep \
 		--exclude=Makefile \
-		--exclude-dir={bin,components,node_modules,vendor} \
+		--exclude-dir={bin,node_modules,vendor} \
 		--color \
 		--text \
 		-inRo -E ' TODO:.*|SkipNow' . || true
 .PHONY: find-todo
 
-COMMIT  := $(shell git rev-parse --verify HEAD)
+make-verbose:
+	$(eval AT :=) $(eval MAKE := $(MAKE) verbose) @true
+.PHONY: make-verbose
+
+COMMIT  := $(shell git rev-parse --short --verify HEAD)
 RELEASE := $(shell git describe --tags 2>/dev/null | rev | cut -d - -f3- | rev)
+
+git-config:
+	$(AT) git config core.autocrlf input
+.PHONY: git-config
 
 ifneq (, $(wildcard bin/lib/git/hooks/))
 ifdef GIT_HOOKS
@@ -61,6 +65,10 @@ git-hooks:
 git-unhook: ;
 .PHONY: git-unhook
 endif
+
+git-clean:
+	$(AT) git clean -fdx
+.PHONY: git-clean
 
 git-check:
 	$(AT) git diff --exit-code >/dev/null
@@ -177,13 +185,17 @@ go-generate:
 	$(AT) go generate $(PACKAGES)
 .PHONY: go-generate
 
+go-lint:
+	$(AT) golangci-lint run --enable looppointer ./...
+.PHONY: go-lint
+
 go-pkg:
 	$(AT) open https://pkg.go.dev/$(MODULE)@$(RELEASE)
 .PHONY: go-pkg
 
-go-lint:
-	$(AT) golangci-lint run --enable looppointer ./...
-.PHONY: go-lint
+go-check:
+	$(AT) $(GOTEST) -count=1 -test.run=^$(uuidgen) ./...
+.PHONY: go-check
 
 go-test:
 	$(AT) $(GOTEST) -race -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
@@ -192,10 +204,6 @@ go-test:
 go-test-clean:
 	$(AT) go clean -testcache
 .PHONY: go-test-clean
-
-go-test-quick:
-	$(AT) $(GOTEST) -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
-.PHONY: go-test-quick
 
 go-test-with-coverage:
 	$(AT) $(GOTEST) \
@@ -212,26 +220,39 @@ go-test-with-coverage-report: go-test-with-coverage
 	$(AT) go tool cover -html c.out
 .PHONY: go-test-with-coverage-report
 
-go-test-integration: GOTAGS = $(GOTAGS) integration
-go-test-integration:
+go-integration-test: GOTAGS := $(GOTAGS) integration
+go-integration-test:
+	$(AT) $(GOTEST) -race -tags $(GOTAGS) -timeout $(TIMEOUT) $(GOTESTFLAGS) $(PACKAGES)
+.PHONY: go-test-integration-quick
+
+go-integration-test-with-coverage: GOTAGS := $(GOTAGS) integration
+go-integration-test-with-coverage:
 	$(AT) $(GOTEST) \
 		-cover \
 		-covermode atomic \
-		-coverprofile integration.out \
+		-coverprofile c.out \
 		-race \
 		-tags $(GOTAGS) \
+		-timeout $(TIMEOUT) \
 		$(GOTESTFLAGS) \
 		$(PACKAGES)
-.PHONY: go-test-integration
+.PHONY: go-integration-test-with-coverage
 
-go-test-integration-quick: GOTAGS = $(GOTAGS) integration
-go-test-integration-quick:
-	$(AT) $(GOTEST) -tags $(GOTAGS) $(GOTESTFLAGS) $(PACKAGES)
-.PHONY: go-test-integration-quick
+go-integration-test-with-coverage-report: go-integration-test-with-coverage
+	$(AT) go tool cover -html i.out
+.PHONY: go-integration-test-with-coverage-report
 
-go-test-integration-report: go-test-integration
-	$(AT) go tool cover -html integration.out
-.PHONY: go-test-integration-report
+go-fuzzing-test:
+	$(AT) $(GOTEST) -fuzz $(PACKAGES)
+.PHONY: go-fuzzing-test
+
+go-fuzzing-test-clean:
+	$(AT) go clean -fuzzcache
+.PHONY: go-fuzzing-test-clean
+
+go-performance-test:
+	$(AT) $(GOTEST) -bench=. -run=^$(uuidgen) $(GOTESTFLAGS) $(PACKAGES)
+.PHONY: go-performance-test
 
 TOOLFLAGS ?= -mod=
 
@@ -241,32 +262,34 @@ go-tools-env:
 .PHONY: go-tools-env
 
 ifneq (, $(wildcard ./tools/))
-go-tools-fetch: GOFLAGS = $(TOOLFLAGS)
-go-tools-fetch:
-	$(AT) cd tools; go mod download; \
-	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-.PHONY: go-tools-fetch
-
-go-tools-tidy: GOFLAGS = $(TOOLFLAGS)
-go-tools-tidy:
-	$(AT) cd tools; go mod tidy; \
-	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
-.PHONY: go-tools-tidy
-
 go-tools-check: GOFLAGS = $(TOOLFLAGS)
 go-tools-check:
-	$(AT) cd tools; go mod verify; \
+	$(AT) cd tools; \
+	go mod verify; \
+	govulncheck -tags $(GOTAGS) -test ./...; \
 	if command -v egg >/dev/null; then \
 		egg deps check license; \
 		egg deps check version; \
 	fi
 .PHONY: go-tools-check
 
+go-tools-fetch: GOFLAGS = $(TOOLFLAGS)
+go-tools-fetch:
+	$(AT) cd tools; go mod download; \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: go-tools-fetch
+
 go-tools-install: GOFLAGS = $(TOOLFLAGS)
 go-tools-install: GOTAGS = tools
 go-tools-install: go-tools-fetch
 	$(AT) cd tools; go generate -tags $(GOTAGS) tools.go
 .PHONY: go-tools-install
+
+go-tools-tidy: GOFLAGS = $(TOOLFLAGS)
+go-tools-tidy:
+	$(AT) cd tools; go mod tidy; \
+	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
+.PHONY: go-tools-tidy
 
 go-tools-update: GOFLAGS = $(TOOLFLAGS)
 go-tools-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
@@ -289,17 +312,21 @@ go-tools-disabled:
 	@echo have no tools
 .PHONY: go-tools-disabled
 
+go-tools-check: go-tools-disabled
+	@true
+.PHONY: go-tools-check
+
 go-tools-fetch: go-tools-disabled
 	@true
 .PHONY: go-tools-fetch
 
-go-tools-tidy: go-tools-disabled
-	@true
-.PHONY: go-tools-tidy
-
 go-tools-install: go-tools-disabled
 	@true
 .PHONY: go-tools-install
+
+go-tools-tidy: go-tools-disabled
+	@true
+.PHONY: go-tools-tidy
 
 go-tools-update: go-tools-disabled
 	@true
@@ -327,50 +354,51 @@ endif
 
 export PATH := $(GOBIN):$(PATH)
 
-setup: deps tools lint test
-	$(AT) git config core.autocrlf input
+setup: git-config git-hooks go-deps-fetch go-tools-install
 .PHONY: setup
 
-test: go-test
-.PHONY: test
-
-lint: go-lint
-.PHONY: lint
-
-check: test lint
-.PHONY: check
-
-clean: go-deps-clean go-test-clean
+clean: go-deps-clean go-test-clean go-fuzzing-test-clean
 .PHONY: clean
 
-deps: go-deps-fetch go-tools-install
-.PHONY: deps
-
-docs: go-docs
-.PHONY: docs
+drop: git-clean git-rmdir clean
+.PHONY: drop
 
 env: go-env go-tools-env
 env:
 	@echo "PATH:        $(PATH)"
 .PHONY: env
 
-format: go-fmt
-.PHONY: format
-
-generate: go-generate format
-.PHONY: generate
-
-refresh: go-deps-tidy update deps generate check
-.PHONY: refresh
+deps: go-deps-fetch
+.PHONY: deps
 
 tools: go-tools-install
 .PHONY: tools
 
-update: go-deps-update go-tools-update
-.PHONY: update
+format: go-fmt
+.PHONY: format
+
+generate: go-generate go-fmt
+.PHONY: generate
+
+check: lint test
+.PHONY: check
+
+lint: go-lint
+.PHONY: lint
+
+test: go-test
+.PHONY: test
+
+test-with-coverage: go-integration-test-with-coverage
+.PHONY: test-with-coverage
+
+full-check: find-todo
+full-check: go-check go-deps-check go-tools-check
+full-check: go-deps-tidy go-tools-tidy go-generate git-check
+.PHONY: full-check
+
+full-test: go-test go-fuzzing-test go-integration-test go-performance-test
+.PHONY: full-test
 
 verbose: make-verbose go-verbose
 .PHONY: verbose
-
-verify: go-deps-check generate check git-check
-.PHONY: verify

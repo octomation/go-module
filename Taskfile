@@ -20,12 +20,6 @@ function docs() {
   docz build && docz serve
 }
 
-function setup() {
-  make deps tools
-  make lint test
-  git config core.autocrlf input
-}
-
 @debug() { echo "${@}"; }
 @trace() { @debug "${@}" && "${@}"; }
 @error() { echo "${@}" >&2; }
