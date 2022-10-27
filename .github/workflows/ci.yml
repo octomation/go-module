@@ -42,9 +42,10 @@ jobs:
         uses: actions/setup-go@v4
         with: { go-version: 1.20.x, cache-dependency-path: tools/go.sum }
 
-      - name: Prepare and run linter
-        run: make tools lint
-
+      - name: Set up tools
+        run: make tools
+      - name: Run linter
+        run: make lint
       - name: Check the full state
         run: make full-check
 
@@ -75,8 +76,10 @@ jobs:
         uses: actions/setup-go@v4
         with: { go-version: '${{ matrix.go }}' }
 
+      - name: Set up environment
+        run: make env deps
       - name: Run fast check
-        run: make env deps go-check
+        run: make go-check
       - name: Run tests
         run: make test
         if: matrix.go != '1.20.x'
