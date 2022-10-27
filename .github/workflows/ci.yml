@@ -82,7 +82,7 @@ jobs:
         if: matrix.go != '1.20.x'
       - name: Run tests with coverage report
         run: make test-with-coverage
-        if: matrix.go = '1.20.x'
+        if: matrix.go == '1.20.x'
       - name: Store code coverage report
         uses: actions/upload-artifact@v3
         if: matrix.go == '1.20.x'
