@@ -12,12 +12,14 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/tools.yml'
+      - 'Makefile'
       - 'tools/*'
 
   push:
     branches: [ main ]
     paths:
       - '.github/workflows/tools.yml'
+      - 'Makefile'
       - 'tools/*'
     tags: [ '!*' ]
 

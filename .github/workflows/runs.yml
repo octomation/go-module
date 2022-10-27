@@ -41,7 +41,7 @@ jobs:
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
-          delete_workflow_pattern: ${{ github.event.inputs.pattern }}
+          delete_workflow_pattern: ${{ github.event.inputs.pattern || 'all' }}
           dry_run: ${{ fromJSON('["", "true"]')[github.event.inputs.dry_run == 'true'] }}
           retain_days: 0
           keep_minimum_runs: 0

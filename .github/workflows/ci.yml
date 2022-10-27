@@ -15,6 +15,7 @@ on:
       - '.golangci.yml'
       - '**.go'
       - 'go.{mod,sum}'
+      - 'Makefile'
       - '!tools/*'
 
   push:
@@ -24,6 +25,7 @@ on:
       - '.golangci.yml'
       - '**.go'
       - 'go.{mod,sum}'
+      - 'Makefile'
       - '!tools/*'
     tags: [ '!*' ]
 
@@ -42,8 +44,9 @@ jobs:
 
       - name: Prepare and run linter
         run: make tools lint
-      - name: Check git state
-        run: make generate git-check
+
+      - name: Check the full state
+        run: make full-check
 
   test:
     name: Testing
@@ -72,8 +75,14 @@ jobs:
         uses: actions/setup-go@v4
         with: { go-version: '${{ matrix.go }}' }
 
-      - name: Prepare and run tests
-        run: make env deps-fetch test-with-coverage
+      - name: Run fast check
+        run: make env deps go-check
+      - name: Run tests
+        run: make test
+        if: matrix.go != '1.20.x'
+      - name: Run tests with coverage report
+        run: make test-with-coverage
+        if: matrix.go = '1.20.x'
       - name: Store code coverage report
         uses: actions/upload-artifact@v3
         if: matrix.go == '1.20.x'
