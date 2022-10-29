@@ -11,14 +11,13 @@ OS    := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 DATE  := $(shell date -u +%Y-%m-%dT%T%Z)
 SHELL := /usr/bin/env bash -euo pipefail -c
 
-find-todo:
+find-todos:
 	$(AT) grep \
-		--exclude=Makefile \
-		--exclude-dir={bin,node_modules,vendor} \
+		--exclude-dir={bin,docs,node_modules,vendor} \
 		--color \
 		--text \
-		-inRo -E ' TODO:.*|SkipNow' . || true
-.PHONY: find-todo
+		-inRo -E ' TODO:.*|SkipNow' . | grep -v ' TODO:.*|SkipNow' || true
+.PHONY: find-todos
 
 make-verbose:
 	$(eval AT :=) $(eval MAKE := $(MAKE) verbose) @true
@@ -170,7 +169,7 @@ go-deps-update:
 		go mod edit -require=$$package@latest; \
 		go mod tidy; \
 	done
-	$(AT) $(MAKE) deps-tidy
+	$(AT) $(MAKE) go-deps-tidy
 .PHONY: go-deps-update
 
 go-docs:
@@ -248,7 +247,7 @@ go-integration-test-with-coverage:
 .PHONY: go-integration-test-with-coverage
 
 go-integration-test-with-coverage-report: go-integration-test-with-coverage
-	$(AT) go tool cover -html i.out
+	$(AT) go tool cover -html c.out
 .PHONY: go-integration-test-with-coverage-report
 
 go-fuzzing-test:
@@ -398,10 +397,11 @@ lint: go-lint
 test: go-test
 .PHONY: test
 
+test-with-coverage: TIMEOUT=2s
 test-with-coverage: go-integration-test-with-coverage
 .PHONY: test-with-coverage
 
-full-check: find-todo
+full-check: find-todos
 full-check: go-check go-deps-check go-tools-check
 full-check: go-deps-tidy go-tools-tidy go-generate git-check
 .PHONY: full-check

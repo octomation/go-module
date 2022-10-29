@@ -3,13 +3,16 @@ package module_test
 import (
 	"testing"
 
-	"golang.org/x/time/rate"
-
 	. "go.octolab.org/template/module"
 )
 
 func TestNewModule(t *testing.T) {
-	if NewModule().Limit != rate.Inf {
+	i, m := 0, NewModule()
+	m.Limit.Do(func() { i++ })
+	m.Limit.Do(func() { i++ })
+	m.Limit.Do(func() { i++ })
+
+	if i != 1 {
 		t.FailNow()
 	}
 }
