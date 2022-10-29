@@ -1,4 +1,4 @@
-> # 🧩 Module
+> # [🧩 Module](#module)
 >
 > Integrations.
 
@@ -73,7 +73,8 @@ It configures a repository by this configuration file.
 
 ⚠️ It will be replaced, see https://github.com/octomation/go-module/issues/56.
 
-<details><summary>📜 Legacy</summary><p role="separator"></p>
+<details>
+  <summary>📜 Legacy</summary>
 
 We recommend using it together with organization-level settings. Our recommendations are:
 

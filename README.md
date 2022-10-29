@@ -1,4 +1,6 @@
-> # 🧩 Module
+![Go Module][social.image]
+
+> # [🧩 Module](#module)
 >
 > Template for a typical module written on Go.
 
@@ -9,19 +11,19 @@
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
-## 💡 Idea
+## [💡 Idea](#idea)
 
 Define a powerful template that enables us to easily create a new Go module from scratch.
 Not only does it provide a starting point for our projects,
 but it also comes equipped with pre-configured pipelines and inventory.
 
-## 🏆 Motivation
+## [🏆 Motivation](#motivation)
 
 We want to start new projects quickly using best practices
 with a predefined structure and focusing on core ideas implementation
 rather than wasting time on environment configuration and copying boilerplate code.
 
-## 🤼‍♂️ How to
+## [🤼‍♂️ How to](#how-to)
 
 The template saves us a lot of time and effort by streamlining the setup process,
 allowing us to focus on the essential aspects of our ideas.
@@ -44,7 +46,7 @@ allowing us to focus on the essential aspects of our ideas.
 3. Make your changes.
 4. Send a pull request.
 
-## 🎛️ Configuration
+## [🎛️ Configuration](#configuration)
 
 ### [Step-by-step][docs.setup]
 
@@ -57,7 +59,7 @@ allowing us to focus on the essential aspects of our ideas.
 
 ### Template
 
-```bash
+```bash {1,4}
 $ make setup
 
 $ alias run=./Taskfile
@@ -72,9 +74,10 @@ Please use [go modules][wiki.gomod] to manage its version.
 $ go get go.octolab.org@latest
 ```
 
-## 🤲 Outputs & outcomes
+## [🤲 Outputs & outcomes](#outputs-and-outcomes)
 
-<details><summary>OctoLab</summary><p role="separator"></p>
+<details>
+  <summary>OctoLab</summary>
 
 - [Organization](https://github.com/octolab)
   - https://github.com/octolab/breaker*
@@ -85,7 +88,8 @@ $ go get go.octolab.org@latest
   - https://github.com/octolab/protocol*
 
 </details>
-<details><summary>Octomation</summary><p role="separator"></p>
+<details>
+  <summary>Octomation</summary>
 
 - [Organization](https://github.com/octomation)
   - https://github.com/octomation/dna*
@@ -93,7 +97,8 @@ $ go get go.octolab.org@latest
   - https://github.com/octomation/go-service*
 
 </details>
-<details><summary>Others</summary><p role="separator"></p>
+<details>
+  <summary>Others</summary>
 
 - [Kamil Samigullin](https://github.com/kamilsk)
   - https://github.com/kamilsk/retry*
@@ -103,8 +108,6 @@ $ go get go.octolab.org@latest
 </details>
 
 <p align="right">made with ❤️ for everyone</p>
-
-![Go Module][social.image]
 
 [build.page]:       https://github.com/octomation/go-module/actions/workflows/ci.yml
 [build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
