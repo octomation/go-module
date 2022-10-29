@@ -185,6 +185,15 @@ go-generate:
 	$(AT) go generate $(PACKAGES)
 .PHONY: go-generate
 
+# How to work with linters
+#
+#  ```bash
+#  $ golangci-lint linters --out-format=json | jq '.[] | {name: .name, url: .origin}'
+#  $ golangci-lint linters --out-format=json | jq '.[] | select(.presets[] | contains ("bugs"))'
+#  $ golangci-lint linters --out-format=json | jq '.[] | select(.origin == "")'
+#  ```
+#
+# For more experience see https://jqplay.org, https://stedolan.github.io/jq/.
 go-lint:
 	$(AT) golangci-lint run --enable looppointer ./...
 .PHONY: go-lint
@@ -305,7 +314,7 @@ go-tools-update:
 		go mod edit -require=$$package@latest; \
 		go mod tidy; \
 	done
-	$(AT) $(MAKE) tools-tidy tools-install
+	$(AT) $(MAKE) go-tools-tidy go-tools-install
 .PHONY: go-tools-update
 else
 go-tools-disabled:

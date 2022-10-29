@@ -31,13 +31,17 @@ function docs() {
 @trace() { @debug "${@}" && "${@}"; }
 @error() { echo "${@}" >&2; }
 @fatal() { @error "${@}" && exit 1; }
-
 @usage() {
   cat - <<EOF
 Usage: $0 <task> <args>
 Tasks:
 EOF
   compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
+}
+
+@() {
+  ${config['dryrun']} && echo "${@}"
+  "${@}"
 }
 
 _() {
@@ -68,10 +72,15 @@ _() {
 }
 
 function @main() {
-  if [[ "${1:-}" =~ ^--dry-run|-d$ ]]; then
-    config['dryrun']=true
-    shift
-  fi
+  for arg in "${@}"; do
+    case "${arg}" in
+    -d | --dry-run)
+      config['dryrun']=true
+      shift
+      ;;
+    *) break ;;
+    esac
+  done
   "${@:-@usage}"
 }
 
