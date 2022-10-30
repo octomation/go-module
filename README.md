@@ -1,6 +1,6 @@
 ![Go Module][social.image]
 
-> # [🧩 Module](#module)
+> # 🧩 Module
 >
 > Template for a typical module written on Go.
 
@@ -11,19 +11,19 @@
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
-## [💡 Idea](#idea)
+## 💡 Idea
 
 Define a powerful template that enables us to easily create a new Go module from scratch.
 Not only does it provide a starting point for our projects,
 but it also comes equipped with pre-configured pipelines and inventory.
 
-## [🏆 Motivation](#motivation)
+## 🏆 Motivation
 
 We want to start new projects quickly using best practices
 with a predefined structure and focusing on core ideas implementation
 rather than wasting time on environment configuration and copying boilerplate code.
 
-## [🤼‍♂️ How to](#how-to)
+## 🤼‍♂️ How to
 
 The template saves us a lot of time and effort by streamlining the setup process,
 allowing us to focus on the essential aspects of our ideas.
@@ -46,7 +46,7 @@ allowing us to focus on the essential aspects of our ideas.
 3. Make your changes.
 4. Send a pull request.
 
-## [🎛️ Configuration](#configuration)
+## 🎛️ Configuration
 
 ### [Step-by-step][docs.setup]
 
@@ -74,36 +74,33 @@ Please use [go modules][wiki.gomod] to manage its version.
 $ go get go.octolab.org@latest
 ```
 
-## [🤲 Outputs & outcomes](#outputs-and-outcomes)
+## 🤲 Outputs & outcomes
 
 <details>
   <summary>OctoLab</summary>
 
-- [Organization](https://github.com/octolab)
-  - https://github.com/octolab/breaker*
-  - https://github.com/octolab/cli*
-  - https://github.com/octolab/config
-  - https://github.com/octolab/pkg*
-  - https://github.com/octolab/propaganda
-  - https://github.com/octolab/protocol*
+- https://github.com/octolab/breaker*
+- https://github.com/octolab/cli*
+- https://github.com/octolab/config
+- https://github.com/octolab/pkg*
+- https://github.com/octolab/propaganda
+- https://github.com/octolab/protocol*
 
 </details>
 <details>
   <summary>Octomation</summary>
 
-- [Organization](https://github.com/octomation)
-  - https://github.com/octomation/dna*
-  - https://github.com/octomation/go-tool*
-  - https://github.com/octomation/go-service*
+- https://github.com/octomation/dna*
+- https://github.com/octomation/go-tool*
+- https://github.com/octomation/go-service*
 
 </details>
 <details>
   <summary>Others</summary>
 
-- [Kamil Samigullin](https://github.com/kamilsk)
-  - https://github.com/kamilsk/retry*
-  - https://github.com/kamilsk/semaphore*
-  - https://github.com/kamilsk/tracer*
+- https://github.com/kamilsk/retry*
+- https://github.com/kamilsk/semaphore*
+- https://github.com/kamilsk/tracer*
 
 </details>
 

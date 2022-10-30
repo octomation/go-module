@@ -1,6 +1,6 @@
-> # [🧩 Module](#module)
+> # 🧩 Module
 >
-> Integrations.
+> Available integrations and how-to guides.
 
 ## Code scanners
 
