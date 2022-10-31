@@ -1,9 +1,9 @@
 export default {
   base: '/',
   title: 'OctoLab',
-  description: 'Template for typical module written on Go.',
+  description: 'Template for a typical module written on Go.',
 
-  src: './docs',
+  src: './pages',
   files: '**/*.mdx',
   dest: '../docs',
   typescript: true,

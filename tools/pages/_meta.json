@@ -1,0 +1,45 @@
+{
+  "index": {
+    "title": "Go Module",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false
+    }
+  },
+  "integrations": {
+    "title": "Integrations",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false
+    }
+  },
+  "company": {
+    "title": "OctoLab",
+    "type": "menu",
+    "items": {
+      "about": {
+        "title": "About",
+        "href": "https://github.com/octolab"
+      },
+      "octomation": {
+          "title": "Octomation",
+          "href": "https://github.com/octomation"
+      },
+      "octopot": {
+        "title": "Octopot",
+        "href": "https://github.com/octopot"
+      },
+      "tact-app": {
+        "title": "Tact.app",
+        "href": "https://github.com/tact-app"
+      },
+      "contact": {
+        "title": "Contact us",
+        "href": "mailto:hi@octolab.org"
+      }
+    }
+  },
+  "README": {
+    "display": "hidden"
+  }
+}
