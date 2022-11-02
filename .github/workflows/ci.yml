@@ -9,7 +9,7 @@ on:
         required: true
 
   pull_request:
-    branches: [ main ]
+    branches: [ $default-branch ]
     paths:
       - '.github/workflows/ci.yml'
       - '.golangci.yml'
@@ -19,7 +19,7 @@ on:
       - '!tools/*'
 
   push:
-    branches: [ main ]
+    branches: [ $default-branch ]
     paths:
       - '.github/workflows/ci.yml'
       - '.golangci.yml'
@@ -40,7 +40,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v4
-        with: { go-version: 1.20.x, cache-dependency-path: tools/go.sum }
+        with: { go-version: 1.20.x, cache-dependency-path: tools/go.sum, check-latest: true }
 
       - name: Set up tools
         run: make tools
@@ -74,7 +74,7 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v4
-        with: { go-version: '${{ matrix.go }}' }
+        with: { go-version: '${{ matrix.go }}', check-latest: true }
 
       - name: Set up environment
         run: make env deps

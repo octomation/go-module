@@ -9,7 +9,7 @@ on:
         required: true
 
   push:
-    branches: [ main ]
+    branches: [ $default-branch ]
     paths:
       - '.github/workflows/docs.yml'
       - 'docs/*'
