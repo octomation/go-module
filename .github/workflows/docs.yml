@@ -20,8 +20,40 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  build:
+    name: Building
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with: { fetch-depth: 0 }
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with: { node-version: 16 }
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v3
+        with: { static_site_generator: next }
+
+      - name: Cache tooling dependencies
+        id: tools
+        uses: actions/cache@v3
+        with:
+          path: ./tools/node_modules
+          key: tools-${{ hashFiles('tools/package-lock.json') }}
+      - name: Install tooling dependencies if needed
+        run: ./Taskfile docs install
+        if: steps.tools.outputs.cache-hit != 'true'
+
+      - name: Build static HTML with Next.js
+        run: ./Taskfile docs build publish
+      - name: Upload the documentation
+        uses: actions/upload-pages-artifact@v1
+        with: { path: ../docs }
+
   deploy:
     name: Deploying
+    needs: [ build ]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -32,14 +64,6 @@ jobs:
       pages: write
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-        with: { fetch-depth: 0 }
-      - name: Set up GitHub Pages
-        uses: actions/configure-pages@v3
-      - name: Upload the documentation
-        uses: actions/upload-pages-artifact@v1
-        with: { path: docs }
       - name: Deploy it to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

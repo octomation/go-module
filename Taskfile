@@ -11,20 +11,38 @@ declare -A config
 config['dryrun']=false
 
 function docs() {
-  rm -rf ./docs/*
-  git checkout docs/CNAME docs/redirects
-
   pushd tools
   trap popd EXIT
 
-  local lock file=package-lock.json
-  lock=$(dirname "${file}")/node_modules/checksum.lock
-  if [ ! -f "${lock}" ] || [ "$(cat "${lock}")" != "$(md5sum "${file}")" ]; then
-    npm ci
-    md5sum "${file}" >"${lock}"
-  fi
+  for arg in "${@}"; do
+    case "${arg}" in
+    install)
+      local lock file=package-lock.json
+      lock=$(dirname "${file}")/node_modules/checksum.lock
+      if [ ! -f "${lock}" ] || [ "$(cat "${lock}")" != "$(md5sum "${file}")" ]; then
+        npm ci
+        md5sum "${file}" >"${lock}"
+      fi
+      ;;
 
-  docz build && docz serve
+    build)
+      npx --no-install next build
+      ;;
+
+    publish)
+      rm -rf ../docs/*
+      npx --no-install next export -o ../docs
+      rm -f ../docs/README.html # TODO:docs improve configuration
+      git checkout ../docs/CNAME ../docs/redirects
+      ;;
+
+    start)
+      npx --no-install next start
+      ;;
+
+    *) break ;;
+    esac
+  done
 }
 
 @debug() { echo "${@}"; }
