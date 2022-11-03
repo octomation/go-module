@@ -1,3 +1,5 @@
+![Go Module][social.image]
+
 > # 🧩 Module
 >
 > Available integrations and how-to guides.
@@ -137,3 +139,5 @@ Alternative via GitHub Actions:
 ### Shields.io
 
 - Project: https://shields.io.
+
+[social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light

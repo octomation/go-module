@@ -14,7 +14,12 @@ function docs() {
   pushd tools
   trap popd EXIT
 
-  for arg in "${@}"; do
+  local args=("${@}")
+  if [ ${#args[@]} = 0 ]; then
+    args=(install build start)
+  fi
+
+  for arg in "${args[@]}"; do
     case "${arg}" in
     install)
       local lock file=package-lock.json
@@ -32,7 +37,6 @@ function docs() {
     publish)
       rm -rf ../docs/*
       npx --no-install next export -o ../docs
-      rm -f ../docs/README.html # TODO:docs improve configuration
       git checkout ../docs/CNAME ../docs/redirects
       ;;
 

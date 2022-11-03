@@ -19,8 +19,7 @@ export default {
   },
   footer: {
     text: <span>
-      MIT {new Date().getFullYear()} ©
-      <a href="https://github.com/octolab" target="_blank">OctoLab</a>.
+      MIT {new Date().getFullYear()} © <a href="https://github.com/octolab" target="_blank">OctoLab</a>.
     </span>,
   }
 }
