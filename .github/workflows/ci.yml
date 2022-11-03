@@ -124,6 +124,7 @@ jobs:
 
       - name: Send Slack notification
         uses: rtCamp/action-slack-notify@v2
+        continue-on-error: true
         env:
           SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           SLACK_FOOTER: made with ❤️ for everyone, OctoLab
