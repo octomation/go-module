@@ -25,7 +25,7 @@ jobs:
       - name: Install a GitHub CLI cache extension
         run: gh extension install actions/gh-actions-cache
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Cleanup caches
         run: |
           keys=$(gh actions-cache list -L 100 -R '${{ github.repository }}' | cut -f1)
@@ -37,7 +37,7 @@ jobs:
           done
           echo Done
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
   notify:
     name: Notifying
