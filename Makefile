@@ -13,7 +13,9 @@ SHELL := /usr/bin/env bash -euo pipefail -c
 
 find-todos:
 	$(AT) grep \
-		--exclude-dir={bin,docs,node_modules,vendor} \
+		--exclude-dir={bin,docs} \
+		--exclude-dir={node_modules,vendor} \
+		--exclude-dir={.docz,.next} \
 		--color \
 		--text \
 		-inRo -E ' TODO:.*|SkipNow' . | grep -v ' TODO:.*|SkipNow' || true
@@ -123,6 +125,7 @@ go-env:
 	@echo "GOTEST:      $(GOTEST)"
 	@echo "GOTESTFLAGS: $(GOTESTFLAGS)"
 	@echo "GOTRACEBACK: $(GOTRACEBACK)"
+	@echo "GOVERSION:   $(strip `go version | awk '{print $$3}' | sed -e 's|^go||g'`)"
 	@echo "LOCAL:       $(LOCAL)"
 	@echo "MODULE:      $(MODULE)"
 	@echo "PACKAGES:    $(PACKAGES)"
