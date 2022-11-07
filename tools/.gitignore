@@ -6,8 +6,4 @@
 /vendor/
 
 # generated files
-/.docz/
 /.next/
-
-# local env
-.env

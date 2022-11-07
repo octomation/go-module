@@ -1,8 +1,8 @@
 ![Go Module][social.image]
 
-> # 🧩 Module
->
-> Template for a typical module written on Go.
+# 🧩 Module
+
+Template for a typical module written on Go.
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
@@ -13,52 +13,39 @@
 
 ## 💡 Idea
 
-Define a powerful template that enables us to easily create a new Go module from scratch.
-Not only does it provide a starting point for our projects,
-but it also comes equipped with pre-configured pipelines and inventory.
+Define a powerful template that quickly creates a new Go module from scratch.
+Not only does it provide a starting point for new projects,
+but it comes equipped with pre-configured ci/cd and inventory.
 
 ## 🏆 Motivation
 
-We want to start new projects quickly using best practices
+At [OctoLab][octolab.site], we want to start new projects faster using best practices
 with a predefined structure and focusing on core ideas implementation
 rather than wasting time on environment configuration and copying boilerplate code.
 
 ## 🤼‍♂️ How to
 
-The template saves us a lot of time and effort by streamlining the setup process,
-allowing us to focus on the essential aspects of our ideas.
-
 ### Build your own module
 
 1. [Generate][action.generate] a new repository from the template.
-2. Clone the repository.
+2. Clone the repository locally.
 3. Update files:
-    - `tools/pages/*`, `tools/*.jsx?`, `docs/*`.
+    - `tools/pages/*`, `tools/*.jsx?`, `docs/*`,
+    - `README.md`.
 4. Write your code and tests.
+5. 🚀
 
 ### Contribute to the template
 
-1. Read our [contribution guidelines][docs.contrib].
+1. Read the [contribution guidelines][docs.contrib].
 2. [Fork][action.fork] the repository.
 3. Make your changes.
 4. Send a pull request.
+5. 🤗
 
-### Template
-
-```bash {1,4}
-$ make setup
-
-$ alias run=./Taskfile
-$ run docs
-```
-
-The project uses [SemVer](https://semver.org) for versioning, and it is not
-[BC][wiki.compat]-safe through major releases.
-Please use [Go Modules][wiki.gomod] to manage its version.
-
-```bash
-$ go get go.octolab.org@latest
-```
+Before you start, please make sure your changes are in demand.
+The best for that is to create [a new discussion][action.discuss],
+or if you find an issue, [report it][action.issue] first.
 
 ## 🎛️ Configuration
 
@@ -74,10 +61,10 @@ $ go get go.octolab.org@latest
 2. [Makefiles](https://github.com/octomation/makefiles).
 3. [Taskfiles](https://github.com/octomation/taskfiles).
 4. Go tools:
-    - [mockgen](https://github.com/golang/mock)
-    - [golangci-lint](https://github.com/kamilsk/golangci-lint)
-    - [goimports](https://github.com/kamilsk/go-tools)
-    - [govulncheck](https://github.com/golang/vuln)
+    - [mockgen](https://github.com/golang/mock),
+    - [golangci-lint](https://github.com/kamilsk/golangci-lint),
+    - [goimports](https://github.com/kamilsk/go-tools),
+    - [govulncheck](https://github.com/golang/vuln).
 
 ### Optional
 
@@ -85,18 +72,15 @@ $ go get go.octolab.org@latest
 2. [Slack](https://github.com/marketplace/slack-github).
 3. [Settings](https://github.com/apps/settings).
 
-### In touch
+## 🧩 Integration
 
-1. [Docker](https://www.docker.com).
-   ```bash
-   $ make go-1.11 # or go-1.12, etc.
-   /src# make go-env 2>/dev/null | grep GOVERSION
-   # GOVERSION:   1.11.13
-   /src# make test
-   ```
-2. (coming soon) [Vercel](https://vercel.com).<!-- TODO:feat:v1.1.0 add vercel cli,  -->
+The project uses [SemVer](https://semver.org) for versioning, and it is not
+[BC][wiki.compat]-safe through major releases.
+Please use [Go Modules][wiki.gomod] to manage its version.
 
-Read more [here][docs.setup].
+```bash
+$ go get go.octolab.org@latest
+```
 
 ## 🤲 Outputs & outcomes
 
@@ -109,23 +93,22 @@ Read more [here][docs.setup].
 - https://github.com/octolab/pkg*
 - https://github.com/octolab/propaganda
 - https://github.com/octolab/protocol*
-
 </details>
+
 <details>
   <summary>Octomation</summary>
 
 - https://github.com/octomation/dna*
 - https://github.com/octomation/go-tool*
 - https://github.com/octomation/go-service*
-
 </details>
+
 <details>
   <summary>Others</summary>
 
 - https://github.com/kamilsk/retry*
 - https://github.com/kamilsk/semaphore*
 - https://github.com/kamilsk/tracer*
-
 </details>
 
 <p align="right">made with ❤️ for everyone</p>
@@ -143,13 +126,15 @@ Read more [here][docs.setup].
 [template.page]:     https://github.com/octomation/go-module
 [template.icon]:     https://img.shields.io/badge/template-go--module-blue
 
+[action.discuss]:    https://github.com/octomation/go-module/discussions/new/choose
 [action.fork]:       https://github.com/octomation/go-module/fork
 [action.generate]:   https://github.com/octomation/go-module/generate
+[action.issue]:      https://github.com/octomation/go-module/issues/new/choose
 [docs.contrib]:      https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
-[docs.setup]:        .github/integrations/
 [wiki.compat]:       https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:        https://github.com/golang/go/wiki/Modules
 
 [awesome.page]:      https://awesome-go.com
 [awesome.icon]:      https://awesome.re/mentioned-badge.svg
+[octolab.site]:      https://github.com/octolab
 [social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
