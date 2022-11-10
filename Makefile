@@ -371,7 +371,7 @@ setup: git-config git-hooks go-deps-fetch go-tools-install
 clean: go-deps-clean go-test-clean go-fuzzing-test-clean
 .PHONY: clean
 
-drop: git-clean git-rmdir clean
+drop: clean git-clean git-rmdir
 .PHONY: drop
 
 env: go-env go-tools-env
@@ -391,9 +391,6 @@ format: go-fmt
 generate: go-generate go-fmt
 .PHONY: generate
 
-check: lint test
-.PHONY: check
-
 lint: go-lint
 .PHONY: lint
 
@@ -404,9 +401,15 @@ test-with-coverage: TIMEOUT=2s
 test-with-coverage: go-integration-test-with-coverage
 .PHONY: test-with-coverage
 
-full-check: find-todos
-full-check: go-check go-deps-check go-tools-check
-full-check: go-deps-tidy go-tools-tidy go-generate git-check
+check: lint test
+.PHONY: check
+
+fast-check: find-todos
+fast-check: go-check go-deps-check go-tools-check
+fast-check: go-deps-tidy go-tools-tidy go-generate git-check
+.PHONY: fast-check
+
+full-check: fast-check check
 .PHONY: full-check
 
 full-test: go-test go-fuzzing-test go-integration-test go-performance-test

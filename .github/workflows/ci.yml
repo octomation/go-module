@@ -46,8 +46,8 @@ jobs:
         run: make tools
       - name: Run linter
         run: make lint
-      - name: Check the full state
-        run: make full-check
+      - name: Fast check the state
+        run: make fast-check
 
   test:
     name: Testing
