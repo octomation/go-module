@@ -6,13 +6,6 @@
       "pagination": false
     }
   },
-  "integrations": {
-    "title": "Integrations",
-    "theme": {
-      "breadcrumb": false,
-      "pagination": false
-    }
-  },
   "company": {
     "title": "OctoLab",
     "type": "menu",
