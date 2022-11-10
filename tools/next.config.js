@@ -3,8 +3,16 @@ const withNextra = require('nextra')({
   themeConfig: 'theme.config.jsx',
 })
 
-module.exports = withNextra({
-  images: {
-    unoptimized: true,
-  },
-})
+if (process.env.TARGET === 'static') {
+  module.exports = withNextra({
+    output: 'export',
+    distDir: '../docs',
+
+    images: {
+      unoptimized: true,
+    },
+  })
+  return
+}
+
+module.exports = withNextra({})

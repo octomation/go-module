@@ -78,10 +78,11 @@ or if you find an issue, [report it][action.issue] first.
 ### Coming soon
 
 1. [CodeQL](https://codeql.github.com) (code scanning).
-2. [Qodana](https://qodana.cloud) (code quality).
-3. [SonarCloud](https://sonarcloud.io) (code quality).
-4. [Vercel](https://vercel.com) (docs preview).
+2. [Graphite](https://graphite.dev) (git workflow).
+3. [Qodana](https://qodana.cloud) (code quality).
+4. [SonarCloud](https://sonarcloud.io) (code quality).
 5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
+6. [Vercel](https://vercel.com) (docs preview).
 
 ## 🧩 Integration
 

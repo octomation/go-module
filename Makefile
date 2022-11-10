@@ -385,11 +385,19 @@ deps: go-deps-fetch
 tools: go-tools-install
 .PHONY: tools
 
+update:
+	@true # TODO:implement go-deps-update go-tools-update generate
+.PHONY: update
+
 format: go-fmt
 .PHONY: format
 
 generate: go-generate go-fmt
 .PHONY: generate
+
+docs:
+	@true # TODO:implement go-docs go-pkg
+.PHONY: docs
 
 lint: go-lint
 .PHONY: lint

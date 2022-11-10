@@ -34,14 +34,14 @@ function docs() {
       npx --no-install next build
       ;;
 
-    publish)
-      rm -rf ../docs/*
-      npx --no-install next export -o ../docs
-      git checkout ../docs/CNAME ../docs/redirects
-      ;;
-
     start)
       npx --no-install next start
+      ;;
+
+    publish)
+      rm -rf ../docs/*
+      TARGET=static npx --no-install next build
+      git checkout ../docs/CNAME ../docs/redirects
       ;;
 
     *) break ;;
