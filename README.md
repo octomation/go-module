@@ -71,6 +71,17 @@ or if you find an issue, [report it][action.issue] first.
 1. [Codecov](https://about.codecov.io).
 2. [Slack](https://github.com/marketplace/slack-github).
 3. [Settings](https://github.com/apps/settings).
+4. [GitHub Socialify](https://socialify.git.ci).
+5. [Shields.io](https://shields.io).
+6. [Git History](https://githistory.xyz).
+
+### Coming soon
+
+1. [CodeQL](https://codeql.github.com) (code scanning).
+2. [Qodana](https://qodana.cloud) (code quality).
+3. [SonarCloud](https://sonarcloud.io) (code quality).
+4. [Vercel](https://vercel.com) (docs preview).
+5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
 
 ## 🧩 Integration
 
