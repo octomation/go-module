@@ -35,6 +35,15 @@ $ run docs
 $ run docs install build start
 ```
 
+Work with **Docker**
+
+```bash
+$ make go-1.11 # or go-1.12, etc.
+/src# make go-env 2>/dev/null | grep GOVERSION
+# GOVERSION:   1.11.13
+/src# make test
+```
+
 ## 💡 Idea
 
 Define a powerful template that quickly creates a new Go module from scratch.
