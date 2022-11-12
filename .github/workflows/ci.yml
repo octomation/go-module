@@ -16,7 +16,6 @@ on:
       - '**.go'
       - 'go.{mod,sum}'
       - 'Makefile'
-      - '!tools/*'
 
   push:
     branches: [ main ]
@@ -26,7 +25,6 @@ on:
       - '**.go'
       - 'go.{mod,sum}'
       - 'Makefile'
-      - '!tools/*'
     tags: [ '!*' ]
 
 jobs:

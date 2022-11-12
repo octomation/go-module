@@ -12,15 +12,17 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/tools.yml'
+      - 'tools/**.go'
+      - 'tools/go.{mod,sum}'
       - 'Makefile'
-      - 'tools/*'
 
   push:
     branches: [ main ]
     paths:
       - '.github/workflows/tools.yml'
+      - 'tools/**.go'
+      - 'tools/go.{mod,sum}'
       - 'Makefile'
-      - 'tools/*'
     tags: [ '!*' ]
 
 jobs:
