@@ -11,7 +11,7 @@ Template for a typical module written on Go.
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
-## 🚀 Quick start
+## 🛫 Quick start
 
 Work with **Makefile**
 
@@ -56,11 +56,11 @@ rather than wasting time on environment configuration and copying boilerplate co
 3. Update files:
     - `tools/pages/*`, `tools/*.jsx?`,
     - `go.mod`, and `README.md`:
-      - 🚀 Quick start
+      - 🛫 Quick start
       - 💡 Idea
       - 🏆 Motivation
       - 🤼‍ How to
-      - 🧩 Integration
+      - 🛬 Integration
 4. Write your code and tests.
 5. 🚀
 
@@ -114,7 +114,7 @@ or if you find an issue, [report it][action.issue] first.
 5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
 6. [Vercel](https://vercel.com) (docs preview).
 
-## 🧩 Integration
+## 🛬 Integration
 
 The project uses [SemVer](https://semver.org) for versioning, and it is not
 [BC][wiki.compat]-safe through major releases.
