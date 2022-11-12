@@ -68,12 +68,13 @@ or if you find an issue, [report it][action.issue] first.
 
 ### Optional
 
-1. [Codecov](https://about.codecov.io).
-2. [Slack](https://github.com/marketplace/slack-github).
-3. [Settings](https://github.com/apps/settings).
-4. [GitHub Socialify](https://socialify.git.ci).
-5. [Shields.io](https://shields.io).
-6. [Git History](https://githistory.xyz).
+1. [Bitbucket](https://bitbucket.org).
+2. [Codecov](https://about.codecov.io).
+3. [Slack](https://github.com/marketplace/slack-github).
+4. [Settings](https://github.com/apps/settings).
+5. [GitHub Socialify](https://socialify.git.ci).
+6. [Shields.io](https://shields.io).
+7. [Git History](https://githistory.xyz).
 
 ### Coming soon
 
@@ -125,18 +126,18 @@ $ go get go.octolab.org@latest
 
 <p align="right">made with ❤️ for everyone</p>
 
-[build.page]:        https://github.com/octomation/go-module/actions/workflows/ci.yml
 [build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
-[coverage.page]:     https://codecov.io/gh/octomation/go-module
+[build.page]:        https://github.com/octomation/go-module/actions/workflows/ci.yml
 [coverage.icon]:     https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
-[site.page]:         https://go-module.octolab.org
+[coverage.page]:     https://codecov.io/gh/octomation/go-module
 [site.icon]:         https://img.shields.io/badge/site-static-brightgreen
-[docs.page]:         https://pkg.go.dev/go.octolab.org
+[site.page]:         https://go-module.octolab.org
 [docs.icon]:         https://img.shields.io/badge/docs-pkg.go.dev-blue
-[mirror.page]:       https://bitbucket.org/kamilsk/go-module
+[docs.page]:         https://pkg.go.dev/go.octolab.org
 [mirror.icon]:       https://img.shields.io/badge/mirror-bitbucket-blue
-[template.page]:     https://github.com/octomation/go-module
+[mirror.page]:       https://bitbucket.org/kamilsk/go-module
 [template.icon]:     https://img.shields.io/badge/template-go--module-blue
+[template.page]:     https://github.com/octomation/go-module
 
 [action.discuss]:    https://github.com/octomation/go-module/discussions/new/choose
 [action.fork]:       https://github.com/octomation/go-module/fork
@@ -146,7 +147,7 @@ $ go get go.octolab.org@latest
 [wiki.compat]:       https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:        https://github.com/golang/go/wiki/Modules
 
-[awesome.page]:      https://awesome-go.com
 [awesome.icon]:      https://awesome.re/mentioned-badge.svg
+[awesome.page]:      https://awesome-go.com
 [octolab.site]:      https://github.com/octolab
 [social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
