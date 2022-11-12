@@ -11,6 +11,30 @@ Template for a typical module written on Go.
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
+## 🚀 Quick start
+
+Work with **Makefile**
+
+```bash
+$ make setup
+$ make help
+
+$ make find-todos
+$ make test lint
+$ TIMEOUT=5s make test-with-coverage
+```
+
+Work with **Taskfile**
+
+```bash
+$ alias run=./Taskfile
+$ run help
+
+$ source bin/activate
+$ run docs
+$ run docs install build start
+```
+
 ## 💡 Idea
 
 Define a powerful template that quickly creates a new Go module from scratch.
@@ -23,7 +47,7 @@ At [OctoLab][octolab.site], we want to start new projects faster using best prac
 with a predefined structure and focusing on core ideas implementation
 rather than wasting time on environment configuration and copying boilerplate code.
 
-## 🤼‍♂️ How to
+## 🤼‍ How to
 
 ### Build your own module
 
@@ -31,7 +55,12 @@ rather than wasting time on environment configuration and copying boilerplate co
 2. Clone the repository locally.
 3. Update files:
     - `tools/pages/*`, `tools/*.jsx?`,
-    - `go.mod`, and `README.md`.
+    - `go.mod`, and `README.md`:
+      - 🚀 Quick start
+      - 💡 Idea
+      - 🏆 Motivation
+      - 🤼‍ How to
+      - 🧩 Integration
 4. Write your code and tests.
 5. 🚀
 

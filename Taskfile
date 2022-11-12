@@ -49,6 +49,8 @@ function docs() {
   done
 }
 
+help() { @usage; }
+
 @debug() { echo "${@}"; }
 @trace() { @debug "${@}" && "${@}"; }
 @error() { echo "${@}" >&2; }
@@ -58,7 +60,7 @@ function docs() {
 Usage: $0 <task> <args>
 Tasks:
 EOF
-  compgen -A function | grep -Ev '^(@|_)' | sort | cat -n
+  compgen -A function | grep -Ev '^(@|_|-|\+)' | sort | cat -n
 }
 
 @() {
