@@ -9,6 +9,7 @@ on:
         options:
           - All
           - Cache invalidation
+          - Continuous delivery
           - Continuous integration
           - Dependabot at weekends
           - Documentation delivery

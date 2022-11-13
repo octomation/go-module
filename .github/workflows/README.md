@@ -13,6 +13,13 @@ Just add `SLACK_WEBHOOK` secret to your repository.
 
 Invalidates caches of GitHub Actions workflows.
 
+## [Continuous delivery](cd.yml)
+
+[![Status][cd.icon]][cd.page]
+
+🚧 Experimental feature, still under development.
+Supports canonical import path.
+
 ## [Continuous integration](ci.yml)
 
 [![Status][ci.icon]][ci.page]
@@ -110,6 +117,8 @@ Checks tools for consistency.
 
 [caches.icon]:      https://github.com/octomation/go-module/actions/workflows/caches.yml/badge.svg
 [caches.page]:      https://github.com/octomation/go-module/actions/workflows/caches.yml
+[cd.icon]:          https://github.com/octomation/go-module/actions/workflows/cd.yml/badge.svg
+[cd.page]:          https://github.com/octomation/go-module/actions/workflows/cd.yml
 [ci.icon]:          https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [ci.page]:          https://github.com/octomation/go-module/actions/workflows/ci.yml
 [deps.icon]:        https://github.com/octomation/go-module/actions/workflows/deps.yml/badge.svg
