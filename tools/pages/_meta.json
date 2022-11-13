@@ -6,6 +6,13 @@
       "pagination": false
     }
   },
+  "changelog": {
+    "title": "🗒️ Changelog",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false
+    }
+  },
   "company": {
     "title": "OctoLab",
     "type": "menu",
