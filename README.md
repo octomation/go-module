@@ -112,7 +112,6 @@ or if you find an issue, [report it][action.issue] first.
 4. [Settings](https://github.com/apps/settings).
 5. [GitHub Socialify](https://socialify.git.ci).
 6. [Shields.io](https://shields.io).
-7. [Git History](https://githistory.xyz).
 
 ### Coming soon
 
@@ -122,6 +121,11 @@ or if you find an issue, [report it][action.issue] first.
 4. [SonarCloud](https://sonarcloud.io) (code quality).
 5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
 6. [Vercel](https://vercel.com) (docs preview).
+
+### Miscellaneous
+
+1. [Crontab.guru](https://crontab.guru).
+2. [Git History](https://githistory.xyz).
 
 ## 🛬 Integration
 

@@ -1,16 +1,32 @@
 ![Go Module][social.image]
 
-> # 🧩 Module
->
-> Available integrations and how-to guides.
+# 🧩 Module
 
-## Code scanners
+Integrations and how-to guides.
+
+## Automation
+
+### GitHub Actions
+
+- Project: https://github.com/features/actions.
+- Documentation: https://docs.github.com/en/actions.
+
+### Slack
+
+- Project: https://slack.com.
+- Application: https://github.com/marketplace/slack-github.
+
+## Code quality
+
+### Codecov
+
+- Project: https://about.codecov.io.
 
 ### CodeQL
 
 - Project: https://codeql.github.com.
 - Documentation: https://codeql.github.com/docs/.
-- Guide: https://go-module.octolab.org/redirects/guide/codeql/.
+- Guide: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/customizing-code-scanning.
 - Configuration: [config.yml](codeql/config.yml) (→`codeql.yml`).
 - Workflow: [ci.yml](codeql/ci.yml) (+`.github/workflows/ci.yml`).
 
@@ -57,7 +73,7 @@ The application allows automating dependencies updates.
 It provides information to Dependabot about used package ecosystems.
 
 - Documentation: https://docs.github.com/en/code-security/dependabot.
-- Guide: https://go-module.octolab.org/redirects/guide/dependabot/.
+- Guide: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file.
 
 ### Probot
 
@@ -107,7 +123,6 @@ We recommend using it together with organization-level settings. Our recommendat
 
 - Configure third-party application access policy
   - Policy: Access restricted
-
 </details>
 
 #### Stale
@@ -126,18 +141,44 @@ Alternative via GitHub Actions:
 - Source: https://github.com/actions/stale.
 - Workflow: [stale.yml](../workflows/stale.yml).
 
-## Misc
+## Documentation
 
-### GitHub Socialify
+### GitHub Pages
 
-- Project: https://socialify.git.ci.
+- Project: https://pages.github.com.
+- Documentation: https://docs.github.com/en/pages.
+
+### Nextra
+
+- Project: https://nextra.site.
+- Documentation: https://nextra.site/docs.
+
+## DX
+
+### Graphite
+
+- Project: https://graphite.dev.
+- Documentation: https://graphite.dev/docs/introduction.
+
+### Vercel
+
+- Project: https://vercel.com.
+- Documentation: https://vercel.com/docs.
+
+## Miscellaneous
 
 ### Git History
 
 - Project: https://githistory.xyz.
 
+### GitHub Socialify
+
+- Project: https://socialify.git.ci.
+
 ### Shields.io
 
 - Project: https://shields.io.
+
+<p align="right">made with ❤️ for everyone</p>
 
 [social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light

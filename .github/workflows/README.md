@@ -12,6 +12,7 @@ Just add `SLACK_WEBHOOK` secret to your repository.
 [![Status][caches.icon]][caches.page]
 
 Invalidates caches of GitHub Actions workflows.
+Read more about caches https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows.
 
 ## [Continuous delivery](cd.yml)
 
@@ -35,6 +36,8 @@ Runs linter and tests on different Go environments.
 - https://github.com/orgs/community/discussions/15901
 - https://github.com/dependabot/dependabot-core/issues/2980#issuecomment-760586879
 - https://github.com/octomation/go-module/issues/79
+- https://github.com/dependabot/cli
+- https://github.com/github/dependabot-action
 
 ⚠️ Required:
 
