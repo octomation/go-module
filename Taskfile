@@ -41,7 +41,7 @@ function docs() {
     publish)
       rm -rf ../docs/*
       TARGET=static npx --no-install next build
-      git checkout ../docs/CNAME ../docs/redirects
+      git checkout ../docs/CNAME
       ;;
 
     *) break ;;

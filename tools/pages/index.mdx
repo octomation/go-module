@@ -63,7 +63,7 @@ rather than wasting time on environment configuration and copying boilerplate co
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
 3. Update files:
-    - `tools/pages/*`, `tools/*.jsx?`,
+    - `docs/CNAME`, `tools/pages/*`, `tools/*.jsx?`,
     - `go.mod`, and `README.md`:
       - 🛫 Quick start
       - 💡 Idea
