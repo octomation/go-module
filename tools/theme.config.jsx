@@ -2,7 +2,7 @@ export default {
   project: {
     link: 'https://github.com/octomation/go-module',
   },
-  docsRepositoryBase: 'https://github.com/octomation/go-module/blob/tools/pages',
+  docsRepositoryBase: 'https://github.com/octomation/go-module/blob/main/tools',
   head: (
     <>
       <meta charSet="utf-8"/>
