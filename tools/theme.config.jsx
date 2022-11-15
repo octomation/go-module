@@ -2,7 +2,19 @@ export default {
   project: {
     link: 'https://github.com/octomation/go-module',
   },
+
   docsRepositoryBase: 'https://github.com/octomation/go-module/blob/main/tools',
+  feedback: {
+    useLink() {
+      return 'https://github.com/octomation/go-module/discussions/new/choose'
+    },
+  },
+  useNextSeoProps() {
+    return {
+      titleTemplate: '%s',
+    }
+  },
+
   head: (
     <>
       <meta charSet="utf-8"/>
@@ -26,11 +38,6 @@ export default {
       `}</style>
     </>
   ),
-  useNextSeoProps() {
-    return {
-      titleTemplate: '%s',
-    }
-  },
   logo: (
     <>
       <img width={24} height={24}
