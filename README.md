@@ -6,8 +6,10 @@ Template for a typical module written on Go.
 
 [![Build][build.icon]][build.page]
 [![Coverage][coverage.icon]][coverage.page]
-[![Promo][site.icon]][site.page]
+[![Quality][quality.icon]][quality.page]
 [![Documentation][docs.icon]][docs.page]
+
+[![Promo][site.icon]][site.page]
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
@@ -111,7 +113,8 @@ or if you find an issue, [report it][action.issue] first.
 3. [Slack](https://github.com/marketplace/slack-github).
 4. [Settings](https://github.com/apps/settings).
 5. [GitHub Socialify](https://socialify.git.ci).
-6. [Shields.io](https://shields.io).
+6. [Go Report Card](https://goreportcard.com).
+7. [Shields.io](https://shields.io).
 
 ### Coming soon
 
@@ -168,14 +171,17 @@ $ go get go.octolab.org@latest
 
 <p align="right">made with ❤️ for everyone</p>
 
+[social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
 [build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [build.page]:        https://github.com/octomation/go-module/actions/workflows/ci.yml
 [coverage.icon]:     https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
 [coverage.page]:     https://codecov.io/gh/octomation/go-module
+[quality.icon]:      https://goreportcard.com/badge/go.octolab.org/template/module
+[quality.page]:      https://goreportcard.com/report/go.octolab.org/template/module
+[docs.icon]:         https://img.shields.io/badge/docs-pkg.go.dev-blue
+[docs.page]:         https://pkg.go.dev/go.octolab.org/template/module
 [site.icon]:         https://img.shields.io/badge/site-static-brightgreen
 [site.page]:         https://go-module.octolab.org
-[docs.icon]:         https://img.shields.io/badge/docs-pkg.go.dev-blue
-[docs.page]:         https://pkg.go.dev/go.octolab.org
 [mirror.icon]:       https://img.shields.io/badge/mirror-bitbucket-blue
 [mirror.page]:       https://bitbucket.org/kamilsk/go-module
 [template.icon]:     https://img.shields.io/badge/template-go--module-blue
@@ -192,4 +198,3 @@ $ go get go.octolab.org@latest
 [awesome.icon]:      https://awesome.re/mentioned-badge.svg
 [awesome.page]:      https://awesome-go.com
 [octolab.site]:      https://github.com/octolab
-[social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light

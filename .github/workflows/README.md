@@ -118,6 +118,8 @@ Checks tools for consistency.
 
 <p align="right">made with ❤️ for everyone</p>
 
+[social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+
 [caches.icon]:      https://github.com/octomation/go-module/actions/workflows/caches.yml/badge.svg
 [caches.page]:      https://github.com/octomation/go-module/actions/workflows/caches.yml
 [cd.icon]:          https://github.com/octomation/go-module/actions/workflows/cd.yml/badge.svg
@@ -134,5 +136,3 @@ Checks tools for consistency.
 [stale.page]:       https://github.com/octomation/go-module/actions/workflows/stale.yml
 [tools.icon]:       https://github.com/octomation/go-module/actions/workflows/tools.yml/badge.svg
 [tools.page]:       https://github.com/octomation/go-module/actions/workflows/tools.yml
-
-[social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
