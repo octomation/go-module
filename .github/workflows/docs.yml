@@ -12,8 +12,8 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/docs.yml'
-      - 'docs/*'
-      - 'tools/pages/*'
+      - 'docs/**/*'
+      - 'tools/pages/**/*'
       - 'tools/*.jsx?'
       - 'tools/package*.json'
     tags: [ '!*' ]
