@@ -13,14 +13,24 @@ runs:
     - name: Define notification message
       id: message
       run: |
-        if [ "${{ github.event.head_commit.message != null }}" == 'true' ]
+        if [ '${{ github.event.head_commit.message != null }}' == 'true' ]
         then
-          echo txt="${{ github.event.head_commit.message }}" | head -1 >> $GITHUB_OUTPUT
-        elif [ "${{ github.event.schedule != null }}" == 'true' ]
+          (cat <<-message
+        txt=${{ github.event.head_commit.message }}
+        message
+        ) | head -1 >> $GITHUB_OUTPUT
+
+        elif [ '${{ github.event.inputs.reason != null }}' == 'true' ]
         then
-          echo txt="regular healthcheck" >> $GITHUB_OUTPUT
-        elif [ "${{ github.event.inputs.reason != null }}" == 'true' ]
+          (cat <<-message
+        txt=${{ github.event.inputs.reason }}
+        message
+        ) | head -1 >> $GITHUB_OUTPUT
+
+        elif [ '${{ github.event.schedule != null }}' == 'true' ]
         then
-          echo txt="${{ github.event.inputs.reason }}" >> $GITHUB_OUTPUT
+          echo txt='regular healthcheck' >> $GITHUB_OUTPUT
+        else
+          echo Cannot define notification message && exit 1
         fi
       shell: bash
