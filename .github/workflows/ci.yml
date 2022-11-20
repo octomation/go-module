@@ -48,7 +48,7 @@ jobs:
         run: make tools
       - name: Run linter
         run: make lint
-      - name: Fast check the state
+      - name: Run fast check the state
         run: make fast-check
 
   test:
@@ -80,7 +80,7 @@ jobs:
 
       - name: Set up environment
         run: make env deps
-      - name: Run fast check
+      - name: Run fast check source code
         run: make go-check
       - name: Run tests
         run: make test
