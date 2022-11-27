@@ -76,7 +76,7 @@ jobs:
 
   notify:
     name: Notifying
-    needs: [ deploy ]
+    needs: [ build, deploy ]
     runs-on: ubuntu-latest
     if: failure() || success()
 
