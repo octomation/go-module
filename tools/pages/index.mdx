@@ -1,6 +1,6 @@
 ![Go Module][social.image]
 
-# 🧩 Module
+# 🧩 Module [![awesome.icon]][awesome.page]
 
 Template for a typical module written on Go.
 
@@ -32,9 +32,18 @@ Work with **Taskfile**
 $ alias run=./Taskfile
 $ run help
 
-$ source bin/activate
 $ run docs
 $ run docs install build start
+```
+
+Work with **Tools**
+
+```bash
+$ make tools
+$ source bin/activate
+
+$ which goimports
+$ make go-fmt # goimports -local $(go list -m) -w ./...
 ```
 
 Work with **Docker**
@@ -172,6 +181,8 @@ $ go get go.octolab.org@latest
 <p align="right">made with ❤️ for everyone</p>
 
 [social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[awesome.icon]:      https://awesome.re/mentioned-badge.svg
+[awesome.page]:      https://awesome-go.com/project-layout/
 [build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
 [build.page]:        https://github.com/octomation/go-module/actions/workflows/ci.yml
 [coverage.icon]:     https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
@@ -192,9 +203,6 @@ $ go get go.octolab.org@latest
 [action.generate]:   https://github.com/octomation/go-module/generate
 [action.issue]:      https://github.com/octomation/go-module/issues/new/choose
 [docs.contrib]:      https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
+[octolab.site]:      https://github.com/octolab
 [wiki.compat]:       https://en.wikipedia.org/wiki/Backward_compatibility
 [wiki.gomod]:        https://github.com/golang/go/wiki/Modules
-
-[awesome.icon]:      https://awesome.re/mentioned-badge.svg
-[awesome.page]:      https://awesome-go.com
-[octolab.site]:      https://github.com/octolab
