@@ -57,7 +57,7 @@ $ make go-1.11 # or go-1.12, etc.
 
 ## 💡 Idea
 
-Define a powerful template that quickly creates a new Go module from scratch.
+Define a powerful template that quickly creates a new Go module.
 Not only does it provide a starting point for new projects,
 but it comes equipped with pre-configured ci/cd and inventory.
 
@@ -74,13 +74,13 @@ rather than wasting time on environment configuration and copying boilerplate co
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
 3. Update files:
-    - `docs/CNAME`, `tools/pages/*`, `tools/*.jsx?`,
-    - `go.mod`, and `README.md`:
-      - 🛫 Quick start
-      - 💡 Idea
-      - 🏆 Motivation
-      - 🤼‍ How to
-      - 🛬 Integration
+   - `docs/CNAME`, `tools/pages/*`, `tools/*.jsx?`,
+   - `go.mod`, and `README.md`:
+      - [ ] 🛫 Quick start
+      - [ ] 💡 Idea
+      - [ ] 🏆 Motivation
+      - [ ] 🤼‍ How to
+      - [ ] 🛬 Integration
 4. Write your code and tests.
 5. 🚀
 
@@ -110,10 +110,10 @@ or if you find an issue, [report it][action.issue] first.
 2. [Makefiles](https://github.com/octomation/makefiles).
 3. [Taskfiles](https://github.com/octomation/taskfiles).
 4. Go tools:
-    - [mockgen](https://github.com/golang/mock),
-    - [golangci-lint](https://github.com/kamilsk/golangci-lint),
-    - [goimports](https://github.com/kamilsk/go-tools),
-    - [govulncheck](https://github.com/golang/vuln).
+   - [mockgen](https://github.com/golang/mock),
+   - [golangci-lint](https://github.com/kamilsk/golangci-lint),
+   - [goimports](https://github.com/kamilsk/go-tools),
+   - [govulncheck](https://github.com/golang/vuln).
 
 ### Optional
 
