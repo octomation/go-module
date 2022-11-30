@@ -30,7 +30,7 @@ jobs:
       - name: Emulate dependabot's update process
         run: |
           envsubst <.github/integrations/dependabot/job.yml >/tmp/job.yml
-          dependabot update -f /tmp/job.yml --dry-run
+          dependabot update -f /tmp/job.yml
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           LOCAL_GITHUB_ACCESS_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
