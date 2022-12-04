@@ -179,6 +179,6 @@ Alternative via GitHub Actions:
 
 - Project: https://shields.io.
 
-<p align="right">made with ❤️ for everyone</p>
+<p align="right">made with ❤️ for everyone by OctoLab</p>
 
 [social.image]:     https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
