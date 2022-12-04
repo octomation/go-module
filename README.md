@@ -189,11 +189,11 @@ $ go get go.octolab.org@latest
 [coverage.page]:     https://codecov.io/gh/octomation/go-module
 [quality.icon]:      https://goreportcard.com/badge/go.octolab.org/template/module
 [quality.page]:      https://goreportcard.com/report/go.octolab.org/template/module
-[docs.icon]:         https://img.shields.io/badge/docs-pkg.go.dev-blue
+[docs.icon]:         https://pkg.go.dev/badge/go.octolab.org/template/module.svg
 [docs.page]:         https://pkg.go.dev/go.octolab.org/template/module
-[site.icon]:         https://img.shields.io/badge/site-static-brightgreen
+[site.icon]:         https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
 [site.page]:         https://go-module.octolab.org
-[mirror.icon]:       https://img.shields.io/badge/mirror-bitbucket-blue
+[mirror.icon]:       https://img.shields.io/badge/mirror-Bitbucket-blue
 [mirror.page]:       https://bitbucket.org/kamilsk/go-module
 [template.icon]:     https://img.shields.io/badge/template-go--module-blue
 [template.page]:     https://github.com/octomation/go-module
