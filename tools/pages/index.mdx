@@ -15,7 +15,8 @@ Template for a typical module written on Go.
 
 ## 🛫 Quick start
 
-Work with **Makefile**
+<details>
+  <summary>Work with Makefile</summary>
 
 ```bash
 $ make setup
@@ -26,7 +27,9 @@ $ make test lint
 $ TIMEOUT=5s make test-with-coverage
 ```
 
-Work with **Taskfile**
+</details>
+<details>
+  <summary>Work with Taskfile</summary>
 
 ```bash
 $ alias run=./Taskfile
@@ -36,7 +39,9 @@ $ run docs
 $ run docs install build start
 ```
 
-Work with **Tools**
+</details>
+<details>
+  <summary>Work with Tools</summary>
 
 ```bash
 $ make tools
@@ -46,7 +51,9 @@ $ which goimports
 $ make go-fmt # goimports -local $(go list -m) -w ./...
 ```
 
-Work with **Docker**
+</details>
+<details>
+  <summary>Work with Docker</summary>
 
 ```bash
 $ make go-1.11 # or go-1.12, etc.
@@ -54,6 +61,8 @@ $ make go-1.11 # or go-1.12, etc.
 # GOVERSION:   1.11.13
 /src# make test
 ```
+
+</details>
 
 ## 💡 Idea
 
@@ -160,22 +169,23 @@ $ go get go.octolab.org@latest
 - https://github.com/octolab/pkg*
 - https://github.com/octolab/propaganda
 - https://github.com/octolab/protocol*
-</details>
 
+</details>
 <details>
   <summary>Octomation</summary>
 
 - https://github.com/octomation/dna*
 - https://github.com/octomation/go-tool*
 - https://github.com/octomation/go-service*
-</details>
 
+</details>
 <details>
   <summary>Others</summary>
 
 - https://github.com/kamilsk/retry*
 - https://github.com/kamilsk/semaphore*
 - https://github.com/kamilsk/tracer*
+
 </details>
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
