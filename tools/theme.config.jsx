@@ -43,7 +43,7 @@ export default {
   logo: (
     <>
       <img width={24} height={24}
-           src="https://raw.githubusercontent.com/octomation/.github/main/.static/octolab.png"
+           src="https://raw.githubusercontent.com/octomation/.github/main/assets/geek/octolab.png"
            alt="OctoLab"
       />
       <span>Module</span>
