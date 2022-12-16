@@ -39,14 +39,14 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Cache tooling dependencies
-        id: tools
+        id: docs
         uses: actions/cache@v3
         with:
-          path: ./tools/node_modules
-          key: tools-${{ hashFiles('tools/package-lock.json') }}
+          path: ./docs/node_modules
+          key: docs-${{ hashFiles('docs/package-lock.json') }}
       - name: Install tooling dependencies if needed
         run: ./Taskfile docs install
-        if: steps.tools.outputs.cache-hit != 'true'
+        if: steps.docs.outputs.cache-hit != 'true'
 
       - name: Build static HTML with Next.js
         run: ./Taskfile docs publish

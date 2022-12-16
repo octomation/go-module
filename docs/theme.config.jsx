@@ -3,7 +3,7 @@ export default {
     link: 'https://github.com/octomation/go-module',
   },
 
-  docsRepositoryBase: 'https://github.com/octomation/go-module/blob/main/tools',
+  docsRepositoryBase: 'https://github.com/octomation/go-module/blob/main/docs',
   feedback: {
     useLink() {
       return 'https://github.com/octomation/go-module/discussions/new/choose'
