@@ -6,7 +6,7 @@ const withNextra = require('nextra')({
 if (process.env.TARGET === 'static') {
   module.exports = withNextra({
     output: 'export',
-    distDir: '../docs',
+    distDir: 'dist',
 
     images: {
       unoptimized: true,

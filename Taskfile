@@ -11,7 +11,7 @@ declare -A config
 config['dryrun']=false
 
 function docs() {
-  pushd tools
+  pushd docs
   trap popd EXIT
 
   local args=("${@}")
@@ -39,9 +39,8 @@ function docs() {
       ;;
 
     publish)
-      rm -rf ../docs/*
+      rm -rf dist/
       TARGET=static npx --no-install next build
-      git checkout ../docs/CNAME
       ;;
 
     *) break ;;
