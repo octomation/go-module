@@ -13,9 +13,6 @@ on:
     paths:
       - '.github/workflows/docs.yml'
       - 'docs/**/*'
-      - 'tools/pages/**/*'
-      - 'tools/*.jsx?'
-      - 'tools/package*.json'
     tags: [ '!*' ]
 
   schedule:

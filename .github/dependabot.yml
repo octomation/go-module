@@ -31,6 +31,21 @@ updates:
       include: 'scope'
     open-pull-requests-limit: 30
 
+  - package-ecosystem: npm
+    directory: /docs/
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: UTC
+    labels:
+      - 'type: improvement'
+      - 'scope: docs'
+      - 'scope: deps'
+    commit-message:
+      prefix: 'docs'
+      include: 'scope'
+    open-pull-requests-limit: 30
+
   - package-ecosystem: gomod
     directory: /tools/
     schedule:
@@ -43,20 +58,5 @@ updates:
       - 'scope: deps'
     commit-message:
       prefix: 'tools'
-      include: 'scope'
-    open-pull-requests-limit: 30
-
-  - package-ecosystem: npm
-    directory: /tools/
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: UTC
-    labels:
-      - 'type: improvement'
-      - 'scope: docs'
-      - 'scope: deps'
-    commit-message:
-      prefix: 'docs'
       include: 'scope'
     open-pull-requests-limit: 30
