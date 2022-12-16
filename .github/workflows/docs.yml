@@ -49,10 +49,10 @@ jobs:
         if: steps.tools.outputs.cache-hit != 'true'
 
       - name: Build static HTML with Next.js
-        run: ./Taskfile docs build publish
+        run: ./Taskfile docs publish
       - name: Upload the documentation
         uses: actions/upload-pages-artifact@v1
-        with: { path: docs }
+        with: { path: docs/dist }
 
   deploy:
     name: Deploying
