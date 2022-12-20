@@ -38,13 +38,13 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v3
 
-      - name: Cache tooling dependencies
+      - name: Cache documentation dependencies
         id: docs
         uses: actions/cache@v3
         with:
           path: ./docs/node_modules
           key: docs-${{ hashFiles('docs/package-lock.json') }}
-      - name: Install tooling dependencies if needed
+      - name: Install documentation dependencies if needed
         run: ./Taskfile docs install
         if: steps.docs.outputs.cache-hit != 'true'
 
