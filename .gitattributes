@@ -5,6 +5,7 @@
 
 /.github/       export-ignore
 /bin/           export-ignore
+/docs/          export-ignore
 /tools/         export-ignore
 
 Makefile        export-ignore
