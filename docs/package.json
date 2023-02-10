@@ -16,7 +16,7 @@
     "test": "exit 1"
   },
   "dependencies": {
-    "@mdx-js/esbuild": "^2.2.1",
+    "@mdx-js/esbuild": "^2.3.0",
     "@mdx-js/mdx": "^2.2.1",
     "@mdx-js/react": "^2.2.1"
   }
