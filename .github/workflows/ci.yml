@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with: { go-version: '1.20.x', cache: true, cache-dependency-path: tools/go.sum }
 
       - run: make tools lint generate git-check
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
           go-version: '${{ matrix.go }}'
           cache: ${{ !contains(fromJSON('["1.11.x", "1.12.x", "1.13.x", "1.14.x"]'), matrix.go) }}
