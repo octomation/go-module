@@ -37,7 +37,7 @@ jobs:
         with: { path: docs }
       - name: Deploy it to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
 
   notify:
     name: Notifying
