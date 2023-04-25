@@ -5,8 +5,8 @@ go 1.20
 require (
 	github.com/golang/mock v1.6.0
 	github.com/golangci/golangci-lint v1.52.2
-	golang.org/x/tools v0.8.0
-	golang.org/x/vuln v0.0.0-20230419012003-9268f8338db8
+	golang.org/x/tools v0.8.1-0.20230421161920-b9619ee54b47
+	golang.org/x/vuln v0.1.0
 )
 
 replace (
