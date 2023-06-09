@@ -21,8 +21,7 @@ import "golang.org/x/time/rate"
 //go:generate echo Module{Limit: rate.Sometimes{once}}
 func NewModule() *Module {
 	return &Module{
-		// TODO:dist replace the url by https://go.octolab.org/template/module?go-get=1
-		url:     "https://httpbin.org/get?go-get=1",
+		name:    "go.octolab.org/template/module",
 		version: "v1.0.0",
 	}
 }
@@ -32,6 +31,6 @@ type Module struct {
 	// Limit is a module rate limit.
 	Limit rate.Sometimes
 
-	url     string
+	name    string
 	version string // version of the module
 }

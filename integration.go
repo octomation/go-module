@@ -2,7 +2,8 @@ package module
 
 import (
 	"context"
-	"encoding/json"
+	"encoding/xml"
+	"fmt"
 	"net/http"
 )
 
@@ -15,7 +16,8 @@ func PanicOnErr(err error) {
 
 // Ping sends a request to the module and returns true if it's successful.
 func Ping(ctx context.Context, m *Module) bool {
-	req, err := http.NewRequest(http.MethodGet, m.url, nil)
+	url := fmt.Sprintf("https://%s/?go-get=1", m.name)
+	req, err := http.NewRequest(http.MethodGet, url, nil)
 	PanicOnErr(err)
 	// compatible with go1.11 and go1.12
 	req = req.WithContext(ctx)
@@ -25,8 +27,14 @@ func Ping(ctx context.Context, m *Module) bool {
 	defer func() { _ = resp.Body.Close() }()
 
 	var data struct {
-		URL string `json:"url"`
+		Head struct {
+			Title string `xml:"title"`
+		} `xml:"head"`
 	}
-	PanicOnErr(json.NewDecoder(resp.Body).Decode(&data))
-	return data.URL == m.url
+	decoder := xml.NewDecoder(resp.Body)
+	decoder.Strict = false
+	decoder.AutoClose = xml.HTMLAutoClose
+	decoder.Entity = xml.HTMLEntity
+	PanicOnErr(decoder.Decode(&data))
+	return m.name == data.Head.Title
 }
