@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       reason:
+        description: The reason for dispatching it manually.
         type: string
         default: manual healthcheck
         required: true
 
   schedule:
-    - name: At 06:00 on Saturday and Sunday, UTC
-      cron: 0 6 * * 6,0
+    - cron: 0 6 * * 6,0 # at 06:00 on Saturday and Sunday, UTC
 
 jobs:
   check:

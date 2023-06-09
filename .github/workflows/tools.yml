@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       reason:
+        description: The reason for dispatching it manually.
         type: string
         default: manual healthcheck
         required: true
@@ -26,8 +27,7 @@ on:
     tags: [ '!*' ]
 
   schedule:
-    - name: At 07:00 on day-of-month 1, UTC
-      cron: 0 7 1 * *
+    - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
 
 jobs:
   check:

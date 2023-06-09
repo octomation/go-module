@@ -23,13 +23,13 @@ on:
         type: boolean
         required: false
       reason:
+        description: The reason for dispatching it manually.
         type: string
         default: manual healthcheck
         required: true
 
   schedule:
-    - name: At 06:00 on day-of-month 1, UTC
-      cron: 0 6 1 * *
+    - cron: 0 6 1 * * # at 06:00 on day-of-month 1, UTC
 
 jobs:
   delete:
