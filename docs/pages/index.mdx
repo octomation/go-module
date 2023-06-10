@@ -35,8 +35,13 @@ $ TIMEOUT=5s make test-with-coverage
 $ alias run=./Taskfile
 $ run help
 
-$ run docs
-$ run docs install build start
+$ run docs npm ci
+$ run docs npm i nextra@latest
+$ run docs dev
+
+$ run tools go generate ./...
+$ run tools which golangci-lint
+$ run tools golangci-lint --verions
 ```
 
 </details>
@@ -48,7 +53,7 @@ $ make tools
 $ source bin/activate
 
 $ which goimports
-$ make go-fmt # goimports -local $(go list -m) -w ./...
+$ goimports -local $(go list -m) -w ./...
 ```
 
 </details>

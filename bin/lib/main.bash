@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
-# shellcheck source=core/config.bash
-# shellcheck source=core/usage.bash
+# shellcheck source=runtime/config.bash # @handle
 
-set -euo pipefail
+help() { @usage; }
 
-[ "${BASH_VERSINFO:-0}" -ge 4 ] || {
-  echo "bash version 4 or higher is required" >&2
-  exit 1
+@usage() {
+  cat - <<EOF
+Usage: $0 <task> <args>
+Tasks:
+EOF
+  compgen -A function | grep -Ev '^(@|_|-|\+)' | sort | cat -n
 }
-
-for script in "$(pwd)"/bin/lib/*/*.bash; do
-  # shellcheck source=core/config.bash
-  source "${script}"
-done
 
 @main() {
   local args=()
