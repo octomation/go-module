@@ -39,9 +39,9 @@ $ run docs npm ci
 $ run docs npm i nextra@latest
 $ run docs dev
 
-$ run tools go generate ./...
-$ run tools which golangci-lint
-$ run tools golangci-lint --verions
+$ run tools go generate tools.go
+$ run tools golangci-lint --version -- mockgen --version
+$ run which goimports golangci-lint govulncheck mockgen
 ```
 
 </details>

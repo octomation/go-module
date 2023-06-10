@@ -8,11 +8,31 @@ path="$(@root)/bin/${_os}/${_arch}"
 if [[ ":${PATH}:" != *":${path}:"* ]]; then
   export PATH="${path}:${PATH}"
 fi
+if [[ -z "${GOBIN+x}" ]]; then
+  export GOBIN="${path}"
+fi
 
 # Example: run tools go mod tidy
 tools() {
   pushd "$(@root)/tools" >/dev/null || exit 1
   trap 'popd >/dev/null' ERR
-  "${@}"
+
+  local args=()
+  if [[ " ${*} " =~ ' -- ' ]]; then
+    local arg
+    for arg in "${@}"; do
+      shift
+      if [[ "${arg}" == '--' ]]; then
+        "${args[@]}"
+        args=()
+        continue
+      fi
+      args+=("${arg}")
+    done
+  else
+    args=("${@}")
+  fi
+  "${args[@]}"
+
   popd >/dev/null || exit 1
 }
