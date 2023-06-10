@@ -37,7 +37,7 @@ $ run help
 
 $ run docs npm ci
 $ run docs npm i nextra@latest
-$ run docs dev
+$ run docs install -- build -- start
 
 $ run tools go generate tools.go
 $ run tools golangci-lint --version -- mockgen --version
