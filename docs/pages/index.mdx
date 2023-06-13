@@ -1,5 +1,3 @@
-![Go Module][social.image]
-
 # 🧩 Module [![awesome.icon]][awesome.page]
 
 Template for a typical module written on Go.
@@ -193,7 +191,6 @@ $ go get go.octolab.org@latest
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
 
-[social.image]:      https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
 [awesome.icon]:      https://awesome.re/mentioned-badge.svg
 [awesome.page]:      https://awesome-go.com/project-layout/
 [build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg

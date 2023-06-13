@@ -19,22 +19,6 @@ export default {
     <>
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-      <meta name="twitter:image:src"
-            content="https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83"/>
-      <meta name="twitter:site" content="@github"/>
-      <meta name="twitter:card" content="summary_large_image"/>
-      <meta name="twitter:title" content="Module"/>
-      <meta name="twitter:description" content="🧩 Template for a typical module written on Go."/>
-      <meta property="og:image"
-            content="https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83"/>
-      <meta property="og:image:alt" content="🧩 Module"/>
-      <meta property="og:site_name" content="GitHub"/>
-      <meta property="og:type" content="object"/>
-      <meta property="og:title" content="Module"/>
-      <meta property="og:url" content="https://go-module.octolab.org"/>
-      <meta property="og:description" content="🧩 Template for a typical module written on Go."/>
-
       <style>{`
         main p a img { display: inline; } /* badges */
       `}</style>

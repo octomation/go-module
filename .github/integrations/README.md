@@ -1,5 +1,3 @@
-![Go Module][social.image]
-
 # 🧩 Module
 
 Integrations and how-to guides.
@@ -172,5 +170,3 @@ Alternative via GitHub Actions:
 - Project: https://shields.io.
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
-
-[social.image]:     https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
