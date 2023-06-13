@@ -135,9 +135,8 @@ or if you find an issue, [report it][action.issue] first.
 2. [Codecov](https://about.codecov.io).
 3. [Slack](https://github.com/marketplace/slack-github).
 4. [Settings](https://github.com/apps/settings).
-5. [GitHub Socialify](https://socialify.git.ci).
-6. [Go Report Card](https://goreportcard.com).
-7. [Shields.io](https://shields.io).
+5. [Go Report Card](https://goreportcard.com).
+6. [Shields.io](https://shields.io).
 
 ### Coming soon
 
@@ -151,7 +150,6 @@ or if you find an issue, [report it][action.issue] first.
 ### Miscellaneous
 
 1. [Crontab.guru](https://crontab.guru).
-2. [Git History](https://githistory.xyz).
 
 ## 🛬 Integration
 
@@ -195,7 +193,7 @@ $ go get go.octolab.org@latest
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
 
-[social.image]:      https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[social.image]:      https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
 [awesome.icon]:      https://awesome.re/mentioned-badge.svg
 [awesome.page]:      https://awesome-go.com/project-layout/
 [build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
