@@ -1,3 +1,5 @@
+[![Go Tool][social.preview]][preview.config]
+
 # 🧩 Module
 
 Integrations and how-to guides.
@@ -165,8 +167,20 @@ Alternative via GitHub Actions:
 
 ## Miscellaneous
 
+### Git History
+
+- Project: https://githistory.xyz.
+
+### GitHub Socialify
+
+- Project: https://socialify.git.ci.
+
 ### Shields.io
 
 - Project: https://shields.io.
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
+
+[social.preview]:   https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.config]:   https://socialify.git.ci/octomation/go-module?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.fallback]: https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83

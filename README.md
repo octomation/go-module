@@ -1,3 +1,5 @@
+[![Go Tool][social.preview]][preview.config]
+
 # 🧩 Module [![awesome.icon]][awesome.page]
 
 Template for a typical module written on Go.
@@ -121,11 +123,14 @@ or if you find an issue, [report it][action.issue] first.
 1. [Nextra](https://nextra.site).
 2. [Makefiles](https://github.com/octomation/makefiles).
 3. [Taskfiles](https://github.com/octomation/taskfiles).
-4. Go tools:
-   - [mockgen](https://github.com/golang/mock),
-   - [golangci-lint](https://github.com/kamilsk/golangci-lint),
-   - [goimports](https://github.com/kamilsk/go-tools),
-   - [govulncheck](https://github.com/golang/vuln).
+4. [Go tools][egg]: [mockgen][], [golangci-lint][],
+   [goimports][], [govulncheck][].
+
+[mockgen]:          https://github.com/golang/mock
+[govulncheck]:      https://github.com/golang/vuln
+[egg]:              https://github.com/kamilsk/egg
+[goimports]:        https://github.com/kamilsk/go-tools
+[golangci-lint]:    https://github.com/kamilsk/golangci-lint
 
 ### Optional
 
@@ -135,6 +140,7 @@ or if you find an issue, [report it][action.issue] first.
 4. [Settings](https://github.com/apps/settings).
 5. [Go Report Card](https://goreportcard.com).
 6. [Shields.io](https://shields.io).
+7. [GitHub Socialify](https://socialify.git.ci).
 
 ### Coming soon
 
@@ -159,60 +165,59 @@ Please use [Go Modules][wiki.gomod] to manage its version.
 $ go get go.octolab.org@latest
 ```
 
-## 🤲 Outputs & outcomes
+## 🏗️ Ecosystem
 
-<details>
-  <summary>OctoLab</summary>
+### Input
 
-- https://github.com/octolab/breaker*
+- https://github.com/kamilsk/retry
+- https://github.com/kamilsk/semaphore
+- https://github.com/kamilsk/tracer
+- https://github.com/octolab/breaker
+- https://github.com/octomation/makefiles
+- https://github.com/octomation/taskfiles
+
+### Impact
+
+- https://github.com/octomation/go-tool
+- https://github.com/octomation/maintainer
+- https://github.com/octomation/vanity
+
+### Output
+
 - https://github.com/octolab/cli*
 - https://github.com/octolab/config
 - https://github.com/octolab/pkg*
 - https://github.com/octolab/propaganda
 - https://github.com/octolab/protocol*
 
-</details>
-<details>
-  <summary>Octomation</summary>
-
-- https://github.com/octomation/dna*
-- https://github.com/octomation/go-tool*
-- https://github.com/octomation/go-service*
-
-</details>
-<details>
-  <summary>Others</summary>
-
-- https://github.com/kamilsk/retry*
-- https://github.com/kamilsk/semaphore*
-- https://github.com/kamilsk/tracer*
-
-</details>
-
 <p align="right">made with ❤️ for everyone by OctoLab</p>
 
-[awesome.icon]:      https://awesome.re/mentioned-badge.svg
-[awesome.page]:      https://awesome-go.com/project-layout/
-[build.icon]:        https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
-[build.page]:        https://github.com/octomation/go-module/actions/workflows/ci.yml
-[coverage.icon]:     https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
-[coverage.page]:     https://codecov.io/gh/octomation/go-module
-[quality.icon]:      https://goreportcard.com/badge/go.octolab.org/template/module
-[quality.page]:      https://goreportcard.com/report/go.octolab.org/template/module
-[docs.icon]:         https://pkg.go.dev/badge/go.octolab.org/template/module.svg
-[docs.page]:         https://pkg.go.dev/go.octolab.org/template/module
-[site.icon]:         https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
-[site.page]:         https://go-module.octolab.org
-[mirror.icon]:       https://img.shields.io/badge/mirror-Bitbucket-blue
-[mirror.page]:       https://bitbucket.org/kamilsk/go-module
-[template.icon]:     https://img.shields.io/badge/template-go--module-blue
-[template.page]:     https://github.com/octomation/go-module
+[social.preview]:   https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.config]:   https://socialify.git.ci/octomation/go-module?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.fallback]: https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
 
-[action.discuss]:    https://github.com/octomation/go-module/discussions/new/choose
-[action.fork]:       https://github.com/octomation/go-module/fork
-[action.generate]:   https://github.com/octomation/go-module/generate
-[action.issue]:      https://github.com/octomation/go-module/issues/new/choose
-[docs.contrib]:      https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
-[octolab.site]:      https://github.com/octolab
-[wiki.compat]:       https://en.wikipedia.org/wiki/Backward_compatibility
-[wiki.gomod]:        https://github.com/golang/go/wiki/Modules
+[awesome.icon]:     https://awesome.re/mentioned-badge.svg
+[awesome.page]:     https://awesome-go.com/project-layout/
+[build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
+[build.page]:       https://github.com/octomation/go-module/actions/workflows/ci.yml
+[coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
+[coverage.page]:    https://codecov.io/gh/octomation/go-module
+[quality.icon]:     https://goreportcard.com/badge/go.octolab.org/template/module
+[quality.page]:     https://goreportcard.com/report/go.octolab.org/template/module
+[docs.icon]:        https://pkg.go.dev/badge/go.octolab.org/template/module.svg
+[docs.page]:        https://pkg.go.dev/go.octolab.org/template/module
+[site.icon]:        https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
+[site.page]:        https://go-module.octolab.org
+[mirror.icon]:      https://img.shields.io/badge/mirror-Bitbucket-blue
+[mirror.page]:      https://bitbucket.org/kamilsk/go-module
+[template.icon]:    https://img.shields.io/badge/template-go--module-blue
+[template.page]:    https://github.com/octomation/go-module
+
+[action.discuss]:   https://github.com/octomation/go-module/discussions/new/choose
+[action.fork]:      https://github.com/octomation/go-module/fork
+[action.generate]:  https://github.com/octomation/go-module/generate
+[action.issue]:     https://github.com/octomation/go-module/issues/new/choose
+[docs.contrib]:     https://github.com/octomation/.github/blob/main/.github/CONTRIBUTING.md
+[octolab.site]:     https://github.com/octolab
+[wiki.compat]:      https://en.wikipedia.org/wiki/Backward_compatibility
+[wiki.gomod]:       https://github.com/golang/go/wiki/Modules

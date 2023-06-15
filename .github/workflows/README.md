@@ -1,3 +1,5 @@
+[![Go Tool][social.preview]][preview.config]
+
 # 🧩 Module
 
 GitHub Actions workflows.
@@ -12,6 +14,7 @@ Just add `SLACK_WEBHOOK` secret to your repository.
 Invalidates caches of GitHub Actions workflows.
 Read more about caches https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows.
 
+
 ## [Continuous delivery](cd.yml)
 
 [![Status][cd.icon]][cd.page]
@@ -19,11 +22,13 @@ Read more about caches https://docs.github.com/en/actions/using-workflows/cachin
 🚧 Experimental feature, still under development.
 Supports canonical import path.
 
+
 ## [Continuous integration](ci.yml)
 
 [![Status][ci.icon]][ci.page]
 
 Runs linter and tests on different Go environments.
+
 
 ## [Dependabot at weekends](deps.yml)
 
@@ -41,6 +46,7 @@ Runs linter and tests on different Go environments.
 
 - `DEPENDABOT_TOKEN`, GitHub personal access tokens with scope: gist.
 
+
 ## [Documentation delivery](docs.yml)
 
 [![Status][docs.icon]][docs.page]
@@ -48,17 +54,20 @@ Runs linter and tests on different Go environments.
 Builds and deploys documentation to GitHub Pages.
 [💬 Discussion](https://github.com/under-the-hood/docs/discussions/2).
 
+
 ## [Workflow invalidation](runs.yml)
 
 [![Status][runs.icon]][runs.page]
 
 ⚠️ Removes old workflow runs. Please, use it carefully.
 
+
 ## [Issue invalidation](stale.yml)
 
 [![Status][stale.icon]][stale.page]
 
 Checks for stale issues and pull requests.
+
 
 ## [Tools validation](tools.yml)
 
@@ -67,6 +76,10 @@ Checks for stale issues and pull requests.
 Checks tools for consistency.
 
 <p align="right">made with ❤️ for everyone by OctoLab</p>
+
+[social.preview]:   https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.config]:   https://socialify.git.ci/octomation/go-module?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[preview.fallback]: https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
 
 [caches.icon]:      https://github.com/octomation/go-module/actions/workflows/caches.yml/badge.svg
 [caches.page]:      https://github.com/octomation/go-module/actions/workflows/caches.yml

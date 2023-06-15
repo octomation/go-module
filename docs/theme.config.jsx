@@ -19,6 +19,22 @@ export default {
     <>
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <meta name="twitter:image:src"
+            content="https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light"/>
+      <meta name="twitter:site" content="@github"/>
+      <meta name="twitter:card" content="summary_large_image"/>
+      <meta name="twitter:title" content="Module"/>
+      <meta name="twitter:description" content="🧩 Template for a typical module written on Go."/>
+      <meta property="og:image"
+            content="https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light"/>
+      <meta property="og:image:alt" content="🧩 Module"/>
+      <meta property="og:site_name" content="GitHub"/>
+      <meta property="og:type" content="object"/>
+      <meta property="og:title" content="Module"/>
+      <meta property="og:url" content="https://go-module.octolab.org"/>
+      <meta property="og:description" content="🧩 Template for a typical module written on Go."/>
+
       <style>{`
         main p a img { display: inline; } /* badges */
       `}</style>
