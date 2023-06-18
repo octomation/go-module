@@ -3,6 +3,7 @@
 [![Coverage][coverage.icon]][coverage.page]
 [![Quality][quality.icon]][quality.page]
 [![Documentation][docs.icon]][docs.page]
+[![CI/CD][build.icon]][build.page]
 [![Promo][site.icon]][site.page]
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
@@ -194,6 +195,8 @@ $ go get go.octolab.org@latest
 [quality.page]:     https://goreportcard.com/report/go.octolab.org/template/module
 [docs.icon]:        https://pkg.go.dev/badge/go.octolab.org/template/module.svg
 [docs.page]:        https://pkg.go.dev/go.octolab.org/template/module
+[build.icon]:       https://img.shields.io/badge/ci%2Fcd-GitHub%20Actions-brightgreen
+[build.page]:       https://github.com/octomation/go-module/actions
 [site.icon]:        https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
 [site.page]:        https://go-module.octolab.org
 [mirror.icon]:      https://img.shields.io/badge/mirror-Bitbucket-blue
