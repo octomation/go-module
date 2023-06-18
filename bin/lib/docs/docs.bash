@@ -11,6 +11,10 @@ docs() {
   pushd "$(@root)/docs" >/dev/null || exit 1
   trap 'popd >/dev/null' ERR
 
+  if [[ ${#@} -eq 0 ]]; then
+    set -- install -- build -- start
+  fi
+
   local arg args=()
   for arg in "${@}"; do
     shift

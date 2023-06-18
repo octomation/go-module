@@ -10,6 +10,7 @@ set -euo pipefail
 include=(
   bin/lib/core/*.bash
   bin/lib/docs/*.bash
+  bin/lib/git/*.bash
   bin/lib/runtime/*.bash
   bin/lib/tools/tools.bash
   bin/lib/utils/*.bash
