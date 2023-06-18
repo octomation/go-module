@@ -1,4 +1,4 @@
-[![Go Tool][social.preview]][preview.config]
+[![Go Module][social.preview]][preview.config]
 
 # 🧩 Module
 

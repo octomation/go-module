@@ -1,17 +1,15 @@
-[![Go Tool][social.preview]][preview.config]
+[![Go Module][social.preview]][preview.config]
+
+[![Coverage][coverage.icon]][coverage.page]
+[![Quality][quality.icon]][quality.page]
+[![Documentation][docs.icon]][docs.page]
+[![Promo][site.icon]][site.page]
+[![Mirror][mirror.icon]][mirror.page]
+[![Template][template.icon]][template.page]
 
 # 🧩 Module [![awesome.icon]][awesome.page]
 
 Template for a typical module written on Go.
-
-[![Build][build.icon]][build.page]
-[![Coverage][coverage.icon]][coverage.page]
-[![Quality][quality.icon]][quality.page]
-[![Documentation][docs.icon]][docs.page]
-
-[![Promo][site.icon]][site.page]
-[![Mirror][mirror.icon]][mirror.page]
-[![Template][template.icon]][template.page]
 
 ## 🛫 Quick start
 
@@ -35,9 +33,9 @@ $ TIMEOUT=5s make test-with-coverage
 $ alias run=./Taskfile
 $ run help
 
+$ run docs # === `run docs install -- build -- start`
 $ run docs npm ci
 $ run docs npm i nextra@latest
-$ run docs install -- build -- start
 
 $ run tools go generate tools.go
 $ run tools golangci-lint --version -- mockgen --version
@@ -87,14 +85,7 @@ rather than wasting time on environment configuration and copying boilerplate co
 
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
-3. Update files:
-   - `go.mod`,
-   - `docs/*`, and `README.md`:
-      - [ ] 🛫 Quick start
-      - [ ] 💡 Idea
-      - [ ] 🏆 Motivation
-      - [ ] 🤼‍ How to
-      - [ ] 🛬 Integration
+3. Update the desired files as needed.
 4. Write your code and tests.
 5. 🚀
 
@@ -134,13 +125,16 @@ or if you find an issue, [report it][action.issue] first.
 
 ### Optional
 
-1. [Bitbucket](https://bitbucket.org).
+1. [Bitbucket](https://bitbucket.org)[^1].
 2. [Codecov](https://about.codecov.io).
 3. [Slack](https://github.com/marketplace/slack-github).
 4. [Settings](https://github.com/apps/settings).
 5. [Go Report Card](https://goreportcard.com).
 6. [Shields.io](https://shields.io).
 7. [GitHub Socialify](https://socialify.git.ci).
+
+[^1]: An alternative for backup could be [GitLab](https://about.gitlab.com),
+[Gogs](https://gogs.io), or [Gitea](https://gitea.io).
 
 ### Coming soon
 
@@ -150,10 +144,6 @@ or if you find an issue, [report it][action.issue] first.
 4. [SonarCloud](https://sonarcloud.io) (code quality).
 5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
 6. [Vercel](https://vercel.com) (docs preview).
-
-### Miscellaneous
-
-1. [Crontab.guru](https://crontab.guru).
 
 ## 🛬 Integration
 
@@ -173,13 +163,13 @@ $ go get go.octolab.org@latest
 - https://github.com/kamilsk/semaphore
 - https://github.com/kamilsk/tracer
 - https://github.com/octolab/breaker
-- https://github.com/octomation/makefiles
-- https://github.com/octomation/taskfiles
 
 ### Impact
 
 - https://github.com/octomation/go-tool
 - https://github.com/octomation/maintainer
+- https://github.com/octomation/makefiles
+- https://github.com/octomation/taskfiles
 - https://github.com/octomation/vanity
 
 ### Output
@@ -198,8 +188,6 @@ $ go get go.octolab.org@latest
 
 [awesome.icon]:     https://awesome.re/mentioned-badge.svg
 [awesome.page]:     https://awesome-go.com/project-layout/
-[build.icon]:       https://github.com/octomation/go-module/actions/workflows/ci.yml/badge.svg
-[build.page]:       https://github.com/octomation/go-module/actions/workflows/ci.yml
 [coverage.icon]:    https://codecov.io/gh/octomation/go-module/branch/main/graph/badge.svg
 [coverage.page]:    https://codecov.io/gh/octomation/go-module
 [quality.icon]:     https://goreportcard.com/badge/go.octolab.org/template/module

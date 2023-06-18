@@ -1,4 +1,4 @@
-[![Go Tool][social.preview]][preview.config]
+[![Go Module][social.preview]][preview.config]
 
 # 🧩 Module
 
@@ -166,6 +166,10 @@ Alternative via GitHub Actions:
 - Documentation: https://vercel.com/docs.
 
 ## Miscellaneous
+
+### Crontab.guru
+
+- Project: https://crontab.guru.
 
 ### Git History
 

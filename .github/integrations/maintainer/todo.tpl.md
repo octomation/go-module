@@ -1,0 +1,7 @@
+- `go.mod`,
+- `docs/*`, and `README.md`:
+    - [ ] 🛫 Quick start
+    - [ ] 💡 Idea
+    - [ ] 🏆 Motivation
+    - [ ] 🤼‍ How to
+    - [ ] 🛬 Integration

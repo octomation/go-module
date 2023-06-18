@@ -36,7 +36,7 @@ export default {
       <meta property="og:description" content="🧩 Template for a typical module written on Go."/>
 
       <style>{`
-        main p a img { display: inline; } /* badges */
+        main a img { display: inline; } /* badges */
       `}</style>
     </>
   ),
