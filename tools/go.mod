@@ -5,13 +5,13 @@ go 1.20
 require (
 	github.com/golang/mock v1.6.0
 	github.com/golangci/golangci-lint v1.53.3
-	golang.org/x/tools v0.9.3
+	golang.org/x/tools v0.10.0
 	golang.org/x/vuln v0.1.0
 )
 
 replace (
 	github.com/golangci/golangci-lint => github.com/kamilsk/golangci-lint v1.53.3
-	golang.org/x/tools => github.com/kamilsk/go-tools v0.9.3
+	golang.org/x/tools => github.com/kamilsk/go-tools v0.10.0
 )
 
 require (
@@ -178,10 +178,10 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/exp v0.0.0-20230510235704-dd950f8aeaea // indirect
 	golang.org/x/exp/typeparams v0.0.0-20230224173230-c95f2b4c22f2 // indirect
-	golang.org/x/mod v0.10.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/mod v0.11.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sys v0.9.0 // indirect
+	golang.org/x/text v0.10.0 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/ini.v1 v1.66.6 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
