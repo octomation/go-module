@@ -32,6 +32,7 @@ $ TIMEOUT=5s make test-with-coverage
 
 ```bash
 $ alias run=./Taskfile
+$ run refresh
 $ run help
 
 $ run docs # === `run docs install -- build -- start`
