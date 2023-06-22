@@ -129,13 +129,16 @@ or if you find an issue, [report it][action.issue] first.
 1. [Bitbucket](https://bitbucket.org)[^1].
 2. [Codecov](https://about.codecov.io).
 3. [Slack](https://github.com/marketplace/slack-github).
-4. [Settings](https://github.com/apps/settings).
+4. [Settings](https://github.com/apps/settings)[^2].
 5. [Go Report Card](https://goreportcard.com).
 6. [Shields.io](https://shields.io).
 7. [GitHub Socialify](https://socialify.git.ci).
 
 [^1]: An alternative for backup could be [GitLab](https://about.gitlab.com),
 [Gogs](https://gogs.io), or [Gitea](https://gitea.io).
+
+[^2]: It has been deprecated and will be replaced someday by
+[GitHub Actions](https://github.com/octomation/go-module/issues/56).
 
 ### Coming soon
 
