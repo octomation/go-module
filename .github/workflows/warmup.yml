@@ -71,6 +71,6 @@ jobs:
           SLACK_FOOTER: made with ❤️ for everyone by OctoLab
           SLACK_ICON: https://github.com/github.png?size=64
           SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
-          SLACK_TITLE: '🧹 ${{ github.repository }}: ${{ github.workflow }}'
+          SLACK_TITLE: '♻️ ${{ github.repository }}: ${{ github.workflow }}'
           SLACK_USERNAME: GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
