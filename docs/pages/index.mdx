@@ -87,7 +87,7 @@ rather than wasting time on environment configuration and copying boilerplate co
 
 1. [Generate][action.generate] a new repository from the template.
 2. Clone the repository locally.
-3. Update the desired files as needed.
+3. Update the desired files as needed, e.g., `run init my.new/module`.
 4. Write your code and tests.
 5. 🚀
 
