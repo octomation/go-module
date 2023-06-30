@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=../core/git.bash     # @root
+# shellcheck source=../git/git.bash     # @root
 # shellcheck source=../utils/vendor.bash # @consistent @lock
 
 # Example: run docs npm ci

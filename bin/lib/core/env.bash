@@ -12,7 +12,7 @@
     fi
 
     if [ ! -f .env ]; then
-      @error 'file .env not found'
+      @error file .env not found
       return 1
     fi
 
@@ -83,7 +83,7 @@
     token=${token%% }
 
     if [ "${#token}" -ne "${length}" ]; then
-      @fatal 'token is invalid'
+      @fatal token is invalid
     fi
     name=${name/ /}
     @env set "${name^^}_TOKEN" "${token}"

@@ -3,7 +3,7 @@
 
 if ! command -v md5sum >/dev/null; then
   if ! command -v openssl >/dev/null; then
-    @fatal "md5sum: command not found"
+    @fatal md5sum: command not found
   fi
 
   md5sum() {

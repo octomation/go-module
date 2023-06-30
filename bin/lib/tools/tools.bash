@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=../core/git.bash # @root
-
-_os=$(uname -s | tr '[:upper:]' '[:lower:]')
-_arch=$(uname -m | tr '[:upper:]' '[:lower:]')
-
-path="$(@root)/bin/${_os}/${_arch}"
-if [[ ":${PATH}:" != *":${path}:"* ]]; then
-  export PATH="${path}:${PATH}"
-fi
-if [[ -z "${GOBIN+x}" ]]; then
-  export GOBIN="${path}"
-fi
+# shellcheck source=../git/git.bash # @root
 
 # Example: run tools go mod tidy
 tools() {
