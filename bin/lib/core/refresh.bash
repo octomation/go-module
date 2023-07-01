@@ -7,5 +7,5 @@ refresh() {
   @pull
 
   docs install
-  tools go mod download && make tools
+  make deps tools
 }
