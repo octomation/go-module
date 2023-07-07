@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=runtime/config.bash # @handle
+# shellcheck source=core/runtime.bash # @handle
 
 help() { @usage; }
 

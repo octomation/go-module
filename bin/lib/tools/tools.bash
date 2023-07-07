@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=../git/git.bash # @root
+# shellcheck source=../git/core.bash # @root
 
 # Example: run tools go mod tidy
 tools() {

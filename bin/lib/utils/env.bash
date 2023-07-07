@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
-# shellcheck source=../utils/print.bash # @error @fatal
+# shellcheck source=print.bash  # @error @fatal
+# shellcheck source=sed.bash    # @sed (cycle)
+
+@arch() { uname -m; }
+
+@os() { uname -s | tr '[:upper:]' '[:lower:]'; }
+
+@darwin() { [ "$(@os)" == 'darwin' ]; }
 
 @env() {
   local op="${1:-}" key="${2:-}" value="${3:-}"
@@ -30,8 +37,12 @@
       return 0
     fi
 
-    # bsd vs gnu
-    sed -i '' "s/^${key}=.*/${key}=${value}/g" .env
+    if grep -qv "^${key}=" .env; then
+      echo "${key}=${value}" >>.env
+      return 0
+    fi
+
+    @sed -i "s|^${key}=.*|${key}=${value}|g" .env
     ;;
 
   *)
@@ -42,7 +53,9 @@
 }
 
 @token() {
-  local op="${1:-}" name="${2:-}" value="${3:-}" length="${3:-}"
+  local op="${1:-}" name="${2:-}" value="${3:-}" length="${3:-}" key
+  key=${name// /_}
+  key=${key^^}_TOKEN
 
   case "${op}" in
   get)
@@ -51,7 +64,7 @@
       return 1
     fi
 
-    @env get "${name^^}_TOKEN"
+    @env get "${key}"
     ;;
 
   set)
@@ -60,7 +73,7 @@
       return 1
     fi
 
-    @env set "${name^^}_TOKEN" "${value}"
+    @env set "${key}" "${value}"
     ;;
 
   store)
@@ -85,8 +98,7 @@
     if [ "${#token}" -ne "${length}" ]; then
       @fatal token is invalid
     fi
-    name=${name/ /}
-    @env set "${name^^}_TOKEN" "${token}"
+    @env set "${key}" "${token}"
     ;;
 
   *)
