@@ -37,7 +37,7 @@
       return 0
     fi
 
-    if grep -qv "^${key}=" .env; then
+    if ! grep -q "^${key}=" .env; then
       echo "${key}=${value}" >>.env
       return 0
     fi

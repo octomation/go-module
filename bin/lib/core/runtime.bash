@@ -29,6 +29,11 @@ config['dryrun']=false
       config['shift']=$((config['shift'] + 1))
       shift
       ;;
+    --trace)
+      set -x
+      config['shift']=$((config['shift'] + 1))
+      shift
+      ;;
     *) break ;;
     esac
   done
