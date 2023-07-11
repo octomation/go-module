@@ -51,7 +51,7 @@ jobs:
       - name: Build static HTML with Next.js
         run: ./Taskfile docs publish
       - name: Upload the documentation
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with: { path: docs/dist }
 
   deploy:
