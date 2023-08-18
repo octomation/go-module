@@ -5,8 +5,8 @@ go 1.20
 require (
 	github.com/golang/mock v1.6.0
 	github.com/golangci/golangci-lint v1.53.3
-	golang.org/x/tools v0.10.0
-	golang.org/x/vuln v1.0.0
+	golang.org/x/tools v0.12.1-0.20230815132531-74c255bcf846
+	golang.org/x/vuln v1.0.1
 )
 
 replace (
@@ -178,9 +178,9 @@ require (
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/exp v0.0.0-20230510235704-dd950f8aeaea // indirect
 	golang.org/x/exp/typeparams v0.0.0-20230224173230-c95f2b4c22f2 // indirect
-	golang.org/x/mod v0.11.0 // indirect
+	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
-	golang.org/x/sys v0.9.0 // indirect
+	golang.org/x/sys v0.11.0 // indirect
 	golang.org/x/text v0.10.0 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/ini.v1 v1.66.6 // indirect
