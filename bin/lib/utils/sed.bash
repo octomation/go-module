@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=env.bash # @darwin (cycle)
+# shellcheck source=os.bash # @darwin
 
 @sed() {
   local args=("$@")

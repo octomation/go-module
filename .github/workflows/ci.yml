@@ -1,14 +1,6 @@
 name: Continuous integration
 
 on:
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: The reason for dispatching it manually.
-        type: string
-        default: manual healthcheck
-        required: true
-
   pull_request:
     branches: [ main ]
     paths:
@@ -31,6 +23,14 @@ on:
   schedule:
     - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
 
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: The reason for dispatching it manually.
+        type: string
+        default: manual healthcheck
+        required: true
+
 jobs:
   lint:
     name: Linting
@@ -42,10 +42,13 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Go environment
         uses: actions/setup-go@v4
-        with: { go-version: 1.20.x, cache-dependency-path: tools/go.sum, check-latest: true }
-
-      - name: Set up tools
+        with:
+          go-version: 1.21.x
+          cache-dependency-path: tools/go.sum
+          check-latest: true
+      - name: Set up environment
         run: make tools
+
       - name: Run linter
         run: make lint
       - name: Run fast check the state
@@ -70,6 +73,7 @@ jobs:
           - 1.18.x
           - 1.19.x
           - 1.20.x
+          - 1.21.x
 
     steps:
       - name: Checkout the repository
@@ -78,20 +82,20 @@ jobs:
       - name: Set up Go environment
         uses: actions/setup-go@v4
         with: { go-version: '${{ matrix.go }}', check-latest: true }
-
       - name: Set up environment
         run: make env deps
+
       - name: Run fast check source code
         run: make go-check
       - name: Run tests
         run: make test
-        if: matrix.go != '1.20.x'
+        if: matrix.go != '1.21.x'
       - name: Run tests with coverage report
         run: make test-with-coverage
-        if: matrix.go == '1.20.x'
+        if: matrix.go == '1.21.x'
       - name: Store code coverage report
         uses: actions/upload-artifact@v3
-        if: matrix.go == '1.20.x'
+        if: matrix.go == '1.21.x'
         with: { name: code-coverage-report, path: c.out }
 
   report:
@@ -121,18 +125,11 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - name: Define notification message
-        id: message
-        uses: ./.github/actions/notify
 
-      - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2
+      - name: Send notification
+        uses: ./.github/actions/notify
         continue-on-error: true
-        env:
-          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
-          SLACK_FOOTER: made with ❤️ for everyone by OctoLab
-          SLACK_ICON: https://github.com/github.png?size=64
-          SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
-          SLACK_TITLE: '⚙️ ${{ github.repository }}: ${{ github.workflow }}'
-          SLACK_USERNAME: GitHub Actions
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          emoji: ⚙️
+          channel: ${{ secrets.SLACK_WEBHOOK }}
+          success: ${{ ! contains(needs.*.result, 'failure') }}

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck source=core/runtime.bash # $config @handle
+# shellcheck source=config/global.bash # $config @handle
 
 help() { @usage; }
 
@@ -14,6 +14,7 @@ EOF
 @main() {
   @handle "${@}"
   shift "${config['shift']}"
+  [ -f .env ] && source .env
   "${@:-@usage}"
 }
 

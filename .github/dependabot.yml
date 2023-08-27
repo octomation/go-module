@@ -1,21 +1,6 @@
 version: 2
 
 updates:
-  - package-ecosystem: gomod
-    directory: /
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: UTC
-    labels:
-      - 'type: improvement'
-      - 'scope: code'
-      - 'scope: deps'
-    commit-message:
-      prefix: 'feat'
-      include: 'scope'
-    open-pull-requests-limit: 30
-
   - package-ecosystem: github-actions
     directory: /
     schedule:
@@ -28,6 +13,21 @@ updates:
       - 'scope: deps'
     commit-message:
       prefix: 'ci/cd'
+      include: 'scope'
+    open-pull-requests-limit: 30
+
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: UTC
+    labels:
+      - 'type: improvement'
+      - 'scope: code'
+      - 'scope: deps'
+    commit-message:
+      prefix: 'feat'
       include: 'scope'
     open-pull-requests-limit: 30
 

@@ -1,6 +1,15 @@
 name: Documentation delivery
 
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/cd.docs.yml'
+      - 'docs/**/*'
+
+  schedule:
+    - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
+
   workflow_dispatch:
     inputs:
       reason:
@@ -9,19 +18,9 @@ on:
         default: manual healthcheck
         required: true
 
-  push:
-    branches: [ main ]
-    paths:
-      - '.github/workflows/docs.yml'
-      - 'docs/**/*'
-    tags: [ '!*' ]
-
-  schedule:
-    - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
-
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -34,19 +33,15 @@ jobs:
         with: { fetch-depth: 0 }
       - name: Set up Node.js environment
         uses: actions/setup-node@v3
-        with: { node-version: 16 }
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+          check-latest: true
+      - name: Install dependencies
+        run: ./Taskfile docs npm ci
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v3
-
-      - name: Cache documentation dependencies
-        id: docs
-        uses: actions/cache@v3
-        with:
-          path: ./docs/node_modules
-          key: docs-${{ hashFiles('docs/package-lock.json') }}
-      - name: Install documentation dependencies if needed
-        run: ./Taskfile docs install
-        if: steps.docs.outputs.cache-hit != 'true'
 
       - name: Build static HTML with Next.js
         run: ./Taskfile docs publish
@@ -81,18 +76,11 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
         with: { fetch-depth: 0 }
-      - name: Define notification message
-        id: message
-        uses: ./.github/actions/notify
 
-      - name: Send Slack notification
-        uses: rtCamp/action-slack-notify@v2
+      - name: Send notification
+        uses: ./.github/actions/notify
         continue-on-error: true
-        env:
-          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
-          SLACK_FOOTER: made with ❤️ for everyone by OctoLab
-          SLACK_ICON: https://github.com/github.png?size=64
-          SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
-          SLACK_TITLE: '📚 ${{ github.repository }}: ${{ github.workflow }}'
-          SLACK_USERNAME: GitHub Actions
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          emoji: 📚
+          channel: ${{ secrets.SLACK_WEBHOOK }}
+          success: ${{ ! contains(needs.*.result, 'failure') }}

@@ -3,10 +3,21 @@ description: Identify an appropriate notification message.
 branding:
   icon: 'message-square'
   color: 'green'
-outputs:
-  txt:
-    description: The message.
-    value: ${{ steps.message.outputs.txt }}
+
+inputs:
+  emoji:
+    description: Prefix for the title.
+    default: 🤖
+
+  channel:
+    description: Notification channel.
+    required: true
+
+  success:
+    description: Is the result successful?
+    required: true
+    default: 'true'
+
 runs:
   using: composite
   steps:
@@ -34,3 +45,14 @@ runs:
           echo Cannot define notification message && exit 1
         fi
       shell: bash
+
+    - name: Send Slack notification
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_COLOR: ${{ inputs.success == 'true' && 'success' || 'failure' }}
+        SLACK_FOOTER: made with ❤️ for everyone by <https://www.octolab.org/|OctoLab>
+        SLACK_ICON: https://cdn.octolab.org/geek/octolab.png
+        SLACK_MESSAGE: ${{ steps.message.outputs.txt }}
+        SLACK_TITLE: '${{ inputs.emoji }} ${{ github.repository }}: ${{ github.workflow }}'
+        SLACK_USERNAME: Notifier
+        SLACK_WEBHOOK: ${{ inputs.channel }}

@@ -185,11 +185,11 @@ $ go get go.octolab.org@latest
 - https://github.com/octolab/propaganda
 - https://github.com/octolab/protocol*
 
-<p align="right">made with ❤️ for everyone by OctoLab</p>
+<p align="right">made with ❤️ for everyone by <a href="https://www.octolab.org/">OctoLab</a></p>
 
-[social.preview]:   https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
+[social.preview]:   https://cdn.octolab.org/repo/go-module.png
 [preview.config]:   https://socialify.git.ci/octomation/go-module?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
-[preview.fallback]: https://repository-images.githubusercontent.com/190747443/299e9ada-7893-4eba-8cc0-9a29d3c53b83
+[preview.fallback]: https://socialify.git.ci/octomation/go-module/image?description=1&font=Raleway&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Light
 
 [awesome.icon]:     https://awesome.re/mentioned-badge.svg
 [awesome.page]:     https://awesome-go.com/project-layout/
@@ -202,7 +202,7 @@ $ go get go.octolab.org@latest
 [build.icon]:       https://img.shields.io/badge/ci%2Fcd-GitHub%20Actions-brightgreen
 [build.page]:       https://github.com/octomation/go-module/actions
 [site.icon]:        https://img.shields.io/badge/site-GitHub%20Pages-brightgreen
-[site.page]:        https://go-module.octolab.org
+[site.page]:        https://go-module.octolab.org/
 [mirror.icon]:      https://img.shields.io/badge/mirror-Bitbucket-blue
 [mirror.page]:      https://bitbucket.org/kamilsk/go-module
 [template.icon]:    https://img.shields.io/badge/template-go--module-blue
