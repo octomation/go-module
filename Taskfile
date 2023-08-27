@@ -7,14 +7,15 @@ set -euo pipefail
   exit 1
 }
 
+root=$(git rev-parse --show-toplevel)
 include=(
-  bin/lib/utils/*.bash
-  bin/lib/git/*.bash
-  bin/lib/tools/*.bash
-  bin/lib/docs/*.bash
-  bin/lib/config/*.bash
-  bin/lib/core/*.bash
-  bin/lib/*.bash
+  "${root}"/bin/lib/utils/*.bash
+  "${root}"/bin/lib/git/*.bash
+  "${root}"/bin/lib/tools/*.bash
+  "${root}"/bin/lib/docs/*.bash
+  "${root}"/bin/lib/config/*.bash
+  "${root}"/bin/lib/core/*.bash
+  "${root}"/bin/lib/*.bash
 )
 
 for script in "${include[@]}"; do

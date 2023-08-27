@@ -46,6 +46,18 @@ jobs:
           dry_run: ${{ fromJSON('["", "true"]')[github.event.inputs.dry_run == 'true'] }}
           retain_days: 0
           keep_minimum_runs: 0
+      - name: Cleanup workflow runs
+        run: |
+          gh run list \
+            -R '${{ github.repository }}' \
+            --status completed \
+            --limit 100 \
+            --json databaseId \
+            --jq '.[] | .databaseId' |
+            xargs -n1 gh run delete -R '${{ github.repository }}'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        if: github.event.inputs.pattern == 'All'
 
   notify:
     name: Notifying
