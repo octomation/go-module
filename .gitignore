@@ -3,3 +3,8 @@
 
 # code coverage and quality reports
 /*.out
+
+# sensitive data
+*.env
+*.hosts
+http-client.private.env.json
