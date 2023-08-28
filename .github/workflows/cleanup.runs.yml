@@ -54,7 +54,7 @@ jobs:
             --limit 100 \
             --json databaseId \
             --jq '.[] | .databaseId' |
-            xargs -n1 gh run delete -R '${{ github.repository }}'
+            xargs -n1 --no-run-if-empty gh run delete -R '${{ github.repository }}'
         env:
           GITHUB_TOKEN: ${{ github.token }}
         if: github.event.inputs.pattern == 'All'
