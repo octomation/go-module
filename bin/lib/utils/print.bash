@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 @debug() { echo "${@}"; }
 
 @trace() { @debug "${@}" && "${@}"; }

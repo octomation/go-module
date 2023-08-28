@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=config/global.bash # $config @handle
 
 help() { @usage; }

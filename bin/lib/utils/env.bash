@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=print.bash  # @error
 # shellcheck source=sed.bash    # @sed
 

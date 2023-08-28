@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=../utils/env.bash   # @env @key @token
 # shellcheck source=../utils/print.bash # @fatal
 

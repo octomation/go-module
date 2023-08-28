@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=../utils/env.bash # @darwin
 
 init() {

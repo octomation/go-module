@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=print.bash # @fatal
 
 if ! command -v md5sum >/dev/null; then

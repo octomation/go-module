@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=../git/core.bash  # @root
 # shellcheck source=_.bash            # @install
 

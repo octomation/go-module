@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=md5sum.bash # md5sum
 
 @consistent() {

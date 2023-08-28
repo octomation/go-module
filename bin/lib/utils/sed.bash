@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=os.bash # @darwin
 
 @sed() {

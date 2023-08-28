@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 @root() { git rev-parse --show-toplevel; }
 
 @pull() {

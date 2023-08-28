@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 declare -A config
 config['shift']=0
 config['dryrun']=false

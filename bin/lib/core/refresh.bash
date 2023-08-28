@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # shellcheck source=../docs/docs.bash # docs
 # shellcheck source=../git/core.bash  # @pull
 
