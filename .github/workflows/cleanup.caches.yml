@@ -45,7 +45,6 @@ jobs:
 
       - name: Send notification
         uses: ./.github/actions/notify
-        continue-on-error: true
         with:
           emoji: 🧹
           channel: ${{ secrets.SLACK_WEBHOOK }}
