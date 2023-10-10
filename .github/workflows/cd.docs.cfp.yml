@@ -1,11 +1,10 @@
-name: Documentation delivery
+name: Documentation delivery to Cloudflare Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: [ Continuous integration ]
+    types: [ completed ]
     branches: [ main ]
-    paths:
-      - '.github/workflows/cd.docs.yml'
-      - 'docs/**/*'
 
   schedule:
     - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
@@ -19,13 +18,14 @@ on:
         required: true
 
 concurrency:
-  group: pages
+  group: cfp-pages
   cancel-in-progress: true
 
 jobs:
   build:
     name: Building
     runs-on: ubuntu-latest
+    if: ${{ contains(fromJSON('[null, "success"]'), github.event.workflow_run.conclusion) }}
 
     steps:
       - name: Checkout the repository
@@ -34,37 +34,49 @@ jobs:
       - name: Set up Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
           cache-dependency-path: docs/package-lock.json
           check-latest: true
       - name: Install dependencies
         run: ./Taskfile docs npm ci
-      - name: Set up GitHub Pages
-        uses: actions/configure-pages@v3
 
-      - name: Build static HTML with Next.js
+      - name: Build documentation
         run: ./Taskfile docs publish
-      - name: Upload the documentation
-        uses: actions/upload-pages-artifact@v2
-        with: { path: docs/dist }
+      - name: Upload documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: docs/dist
+          if-no-files-found: error
 
   deploy:
     name: Deploying
     needs: [ build ]
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: cloudflare-pages
+      url: ${{ steps.deployment.outputs.url }}
     permissions:
       contents: read
-      id-token: write
-      pages: write
+      deployments: write
 
     steps:
-      - name: Deploy it to GitHub Pages
+      - name: Fetch the site
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: docs/dist/
+
+      - name: Publish to Cloudflare Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ vars.CLOUDFLARE_PROJECT }}
+          directory: dist
+          wranglerVersion: 3
 
   notify:
     name: Notifying

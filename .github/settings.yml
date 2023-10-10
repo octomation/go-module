@@ -69,7 +69,7 @@ labels:
   - name: 'scope: inventory'
     color: '#EAEAEA'
     description: |
-      An issue related to auxiliary code, e.g. CI config, Makefiles, etc.
+      An issue related to auxiliary code, e.g., CI config, Makefiles, etc.
 
   - name: 'impact: high'
     color: '#652CB3'

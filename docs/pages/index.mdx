@@ -50,7 +50,7 @@ For more details please visit [the page](https://taskfiles.octolab.org/).
 
 </details>
 <details>
-  <summary>Work with Tools</summary>
+  <summary>Work with tools</summary>
 
 ```bash
 $ make tools
@@ -72,6 +72,13 @@ $ make go-1.11 # or go-1.12, etc.
 # GOVERSION:   1.11.13
 /src# make test
 ```
+
+</details>
+<details>
+  <summary>🚧 Work with documentation</summary>
+
+- https://go-module.octolab.org/ - [GitHub Pages](https://pages.github.com/)
+- https://go-module.pages.dev/ - [Cloudflare Pages](https://pages.cloudflare.com/)
 
 </details>
 
@@ -141,17 +148,21 @@ or if you find an issue, [report it][action.issue] first.
 ### Optional
 
 1. [Bitbucket](https://bitbucket.org/)[^1].
-2. [Codecov](https://about.codecov.io/).
-3. [Slack](https://github.com/marketplace/slack-github).
-4. [Settings](https://github.com/apps/settings)[^2].
+2. [Cloudflare Pages](https://pages.cloudflare.com/)[^2].
+3. [Codecov](https://about.codecov.io/).
+4. [GitHub Socialify](https://socialify.git.ci/).
 5. [Go Report Card](https://goreportcard.com/).
-6. [Shields.io](https://shields.io/).
-7. [GitHub Socialify](https://socialify.git.ci/).
+6. [Settings](https://github.com/apps/settings)[^3].
+7. [Shields.io](https://shields.io/).
+8. [Slack](https://github.com/marketplace/slack-github).
+9. [Vanity URL](https://vanity.octolab.org/).
 
 [^1]: An alternative for backup could be [GitLab](https://about.gitlab.com/),
 [Gogs](https://gogs.io/), or [Gitea](https://gitea.io/).
 
-[^2]: It has been deprecated and will be replaced someday by
+[^2]: Useful for private repositories.
+
+[^3]: It has been deprecated and will be replaced someday by
 [GitHub Actions](https://github.com/octomation/go-module/issues/56).
 
 ### Coming soon
@@ -160,8 +171,7 @@ or if you find an issue, [report it][action.issue] first.
 2. [Graphite](https://graphite.dev/) (git workflow).
 3. [Qodana](https://qodana.cloud/) (code quality).
 4. [SonarCloud](https://sonarcloud.io/) (code quality).
-5. [Vanity URL](https://github.com/octomation/vanity) (canonical import path).
-6. [Vercel](https://vercel.com/) (docs preview).
+5. [Vercel](https://vercel.com/) (docs preview).
 
 ## 🛬 Integration
 

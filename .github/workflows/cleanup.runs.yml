@@ -13,7 +13,8 @@ on:
           - All
           - Continuous delivery
           - Continuous integration
-          - Documentation delivery
+          - Documentation delivery to Cloudflare Pages
+          - Documentation delivery to GitHub Pages
           - Stale issues cleanup
           - Tools validation
           - Workflow caches cleanup
