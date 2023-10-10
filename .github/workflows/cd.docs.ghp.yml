@@ -1,11 +1,10 @@
-name: Documentation delivery
+name: Documentation delivery to GitHub Pages
 
 on:
-  push:
+  workflow_run:
+    workflows: [ Continuous integration ]
+    types: [ completed ]
     branches: [ main ]
-    paths:
-      - '.github/workflows/cd.docs.yml'
-      - 'docs/**/*'
 
   schedule:
     - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
@@ -19,13 +18,14 @@ on:
         required: true
 
 concurrency:
-  group: pages
+  group: ghp-pages
   cancel-in-progress: true
 
 jobs:
   build:
     name: Building
     runs-on: ubuntu-latest
+    if: ${{ contains(fromJSON('[null, "success"]'), github.event.workflow_run.conclusion) }}
 
     steps:
       - name: Checkout the repository
@@ -34,7 +34,7 @@ jobs:
       - name: Set up Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
           cache: npm
           cache-dependency-path: docs/package-lock.json
           check-latest: true
@@ -43,9 +43,9 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v3
 
-      - name: Build static HTML with Next.js
+      - name: Build documentation
         run: ./Taskfile docs publish
-      - name: Upload the documentation
+      - name: Upload documentation
         uses: actions/upload-pages-artifact@v2
         with: { path: docs/dist }
 

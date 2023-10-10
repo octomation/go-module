@@ -6,7 +6,7 @@ set_github_token() { @token store GitHub 40; }
 _gh=$(which gh || true)
 
 # Useful: gh repo set-default
-# It sets `gh-resolved = base` for selected remote, e.g. `[remote "origin"]`.
+# It sets `gh-resolved = base` for selected remote, e.g., `[remote "origin"]`.
 gh() {
   [ -z "${_gh}" ] && @fatal please setup environment first
 

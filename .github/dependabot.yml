@@ -23,7 +23,7 @@ updates:
       time: '05:00'
       timezone: UTC
     labels:
-      - 'type: improvement'
+      - 'type: feature'
       - 'scope: code'
       - 'scope: deps'
     commit-message:

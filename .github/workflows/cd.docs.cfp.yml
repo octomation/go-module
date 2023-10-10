@@ -1,0 +1,97 @@
+name: Documentation delivery to Cloudflare Pages
+
+on:
+  workflow_run:
+    workflows: [ Continuous integration ]
+    types: [ completed ]
+    branches: [ main ]
+
+  schedule:
+    - cron: 0 7 1 * * # at 07:00 on day-of-month 1, UTC
+
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: The reason for dispatching it manually.
+        type: string
+        default: manual healthcheck
+        required: true
+
+concurrency:
+  group: cfp-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Building
+    runs-on: ubuntu-latest
+    if: ${{ contains(fromJSON('[null, "success"]'), github.event.workflow_run.conclusion) }}
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
+          check-latest: true
+      - name: Install dependencies
+        run: ./Taskfile docs npm ci
+
+      - name: Build documentation
+        run: ./Taskfile docs publish
+      - name: Upload documentation
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: docs/dist
+          if-no-files-found: error
+
+  deploy:
+    name: Deploying
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    environment:
+      name: cloudflare-pages
+      url: ${{ steps.deployment.outputs.url }}
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Fetch the site
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: docs/dist/
+
+      - name: Publish to Cloudflare Pages
+        id: deployment
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ vars.CLOUDFLARE_PROJECT }}
+          directory: docs/dist/
+          wranglerVersion: 3
+
+  notify:
+    name: Notifying
+    needs: [ build, deploy ]
+    runs-on: ubuntu-latest
+    if: failure() || success()
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+
+      - name: Send notification
+        uses: ./.github/actions/notify
+        with:
+          emoji: 📚
+          channel: ${{ secrets.SLACK_WEBHOOK }}
+          success: ${{ ! contains(needs.*.result, 'failure') }}
