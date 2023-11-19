@@ -70,11 +70,6 @@ _OLD_GOBIN="${GOBIN:-}"
 _OLD_GOFLAGS="${GOFLAGS:-}"
 _OLD_GOPRIVATE="${GOPRIVATE:-}"
 _OLD_GOPROXY="${GOPROXY:-}"
-export GO111MODULE=on
-export GOBIN="${_GOBINPATH}"
-export GOFLAGS=-mod=
-export GOPRIVATE=go.octolab.net
-export GOPROXY=direct
 
 _OS=$(uname -s | tr '[:upper:]' '[:lower:]')
 _ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
@@ -82,6 +77,12 @@ _ROOT=$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")")
 _GOBINPATH="${_ROOT}/bin/${_OS}/${_ARCH}"
 _NPMBINPATH="${_ROOT}/tools/node_modules/.bin"
 _OLD_PATH="${PATH:-}"
+
+export GO111MODULE=on
+export GOBIN="${_GOBINPATH}"
+export GOFLAGS=-mod=
+export GOPRIVATE=go.octolab.net
+export GOPROXY=direct
 export PATH="${_NPMBINPATH}:${_GOBINPATH}:${PATH}"
 
 _OLD_PS1="${PS1:-}"
