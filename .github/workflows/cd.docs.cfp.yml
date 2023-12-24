@@ -44,7 +44,7 @@ jobs:
       - name: Build documentation
         run: ./Taskfile docs publish
       - name: Upload documentation
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: docs/dist
