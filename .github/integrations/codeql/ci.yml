@@ -13,16 +13,16 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
         with: { fetch-depth: 0 }
 
       - name: Set up CodeQL
-        uses: github/codeql-action/init@v2
+        uses: github/codeql-action/init@v3.22.12
         with: { config-file: codeql.yml, languages: '${{ matrix.language }}' }
       - name: Automatically build code
-        uses: github/codeql-action/autobuild@v2
+        uses: github/codeql-action/autobuild@v3.22.12
       - name: Perform CodeQL analysis
-        uses: github/codeql-action/analyze@v2
+        uses: github/codeql-action/analyze@v3.22.12
         with: { category: '/language:${{ matrix.language }}' }
 
   notify:

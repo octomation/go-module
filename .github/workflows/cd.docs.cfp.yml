@@ -29,10 +29,10 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with: { fetch-depth: 0 }
       - name: Set up Node.js environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.0.1
         with:
           node-version: 20
           cache: npm
@@ -44,7 +44,7 @@ jobs:
       - name: Build documentation
         run: ./Taskfile docs publish
       - name: Upload documentation
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.0.0
         with:
           name: dist
           path: docs/dist
@@ -63,14 +63,14 @@ jobs:
 
     steps:
       - name: Fetch the site
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.0
         with:
           name: dist
           path: docs/dist/
 
       - name: Publish to Cloudflare Pages
         id: deployment
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/pages-action@v1.5.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -86,7 +86,7 @@ jobs:
 
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with: { fetch-depth: 0 }
 
       - name: Send notification

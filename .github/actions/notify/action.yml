@@ -54,7 +54,7 @@ runs:
       shell: bash
 
     - name: Send Slack notification
-      uses: rtCamp/action-slack-notify@v2
+      uses: rtCamp/action-slack-notify@v2.2.1
       if: ${{ inputs.channel != '' }}
       env:
         SLACK_COLOR: ${{ inputs.success == 'true' && 'success' || 'failure' }}
