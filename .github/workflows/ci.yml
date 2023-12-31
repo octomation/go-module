@@ -7,7 +7,8 @@ on:
       - '.github/workflows/ci.yml'
       - '.golangci.yml'
       - '**.go'
-      - 'go.{mod,sum}'
+      - 'go.mod'
+      - 'go.sum'
       - 'Makefile'
       - 'Taskfile'
 
@@ -17,7 +18,8 @@ on:
       - '.github/workflows/ci.yml'
       - '.golangci.yml'
       - '**.go'
-      - 'go.{mod,sum}'
+      - 'go.mod'
+      - 'go.sum'
       - 'Makefile'
       - 'Taskfile'
     tags: [ '!*' ]
@@ -45,14 +47,17 @@ jobs:
       - name: Set up Go environment
         uses: actions/setup-go@v5.0.0
         with:
-          go-version: 1.21.x
+          go-version: 1.27.x
           cache-dependency-path: tools/go.sum
           check-latest: true
       - name: Set up environment
         run: make tools
 
       - name: Run linter
-        run: make lint
+        uses: golangci/golangci-lint-action@v9.3.0
+        with:
+          version: v2.14.0
+          args: --fast-only
       - name: Run fast check the state
         run: make fast-check
 

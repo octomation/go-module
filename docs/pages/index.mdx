@@ -41,7 +41,7 @@ $ run docs # === `run docs install -- build -- start`
 $ run docs npm ci
 $ run docs npm i nextra@latest
 
-$ run tools go generate tools.go
+$ run tools go install tool
 $ run tools golangci-lint --version -- mockgen --version
 $ run which goimports golangci-lint govulncheck mockgen
 ```
@@ -140,10 +140,10 @@ or if you find an issue, [report it][action.issue] first.
 [goimports][], [govulncheck][].
 
 [egg]:              https://egg.octolab.org/
-[mockgen]:          https://github.com/golang/mock
+[mockgen]:          https://github.com/uber-go/mock
 [govulncheck]:      https://github.com/golang/vuln
-[goimports]:        https://goimports.octolab.org/
-[golangci-lint]:    https://golangci-lint.octolab.org/
+[goimports]:        https://pkg.go.dev/golang.org/x/tools/cmd/goimports
+[golangci-lint]:    https://golangci-lint.run/
 
 ### Optional
 

@@ -92,8 +92,8 @@ git-rmdir:
 
 GOBIN       ?= $(PWD)/bin/$(OS)/$(ARCH)
 GOFLAGS     ?= -mod=
-GOPRIVATE   ?= go.octolab.net
-GOPROXY     ?= direct
+GOPRIVATE   ?= go.octolab.org
+GOPROXY     ?= https://proxy.golang.org,direct
 GOTEST      ?= $(shell PATH="$(PATH)" command -v testit)
 GOTESTFLAGS ?=
 GOTRACEBACK ?= all
@@ -197,14 +197,14 @@ go-generate:
 # How to work with linters
 #
 #  ```bash
-#  $ golangci-lint linters --out-format=json | jq '.[] | {name: .name, url: .origin}'
-#  $ golangci-lint linters --out-format=json | jq '.[] | select(.presets[] | contains ("bugs"))'
-#  $ golangci-lint linters --out-format=json | jq '.[] | select(.origin == "")'
+#  $ golangci-lint linters --json | jq '.Enabled[] | {name, url: .originalURL}'
+#  $ golangci-lint linters --json | jq '.Disabled[] | select(.deprecated | not) | {name, description}'
+#  $ golangci-lint linters --json | jq '.Disabled[] | select(.fast) | .name'
 #  ```
 #
 # For more experience see https://jqplay.org, https://stedolan.github.io/jq/.
 go-lint:
-	$(AT) golangci-lint run --enable looppointer ./...
+	$(AT) golangci-lint run ./...
 .PHONY: go-lint
 
 go-pkg:
@@ -284,7 +284,7 @@ go-tools-check: GOFLAGS = $(TOOLFLAGS)
 go-tools-check:
 	$(AT) cd tools; \
 	go mod verify; \
-	govulncheck -tags $(GOTAGS) -test ./...; \
+	govulncheck tool; \
 	if command -v egg >/dev/null; then \
 		egg deps check license; \
 		egg deps check version; \
@@ -298,9 +298,8 @@ go-tools-fetch:
 .PHONY: go-tools-fetch
 
 go-tools-install: GOFLAGS = $(TOOLFLAGS)
-go-tools-install: GOTAGS = tools
 go-tools-install: go-tools-fetch
-	$(AT) cd tools; go generate -tags $(GOTAGS) tools.go
+	$(AT) cd tools; go install tool
 .PHONY: go-tools-install
 
 go-tools-tidy: GOFLAGS = $(TOOLFLAGS)
@@ -309,20 +308,11 @@ go-tools-tidy:
 	if [[ "`go env GOFLAGS`" =~ -mod=vendor ]]; then go mod vendor; fi
 .PHONY: go-tools-tidy
 
+# modules behind the tool directive are required as indirect,
+# so the tool pattern is the only way to select them
 go-tools-update: GOFLAGS = $(TOOLFLAGS)
-go-tools-update: selector = '{{if not (or .Main .Indirect)}}{{.Path}}{{end}}'
 go-tools-update:
-	$(AT) cd tools; \
-	if command -v egg >/dev/null; then \
-		packages="`egg deps list | tr ' ' '\n'`"; \
-	else \
-		packages="`go list -f $(selector) -m -mod=readonly all`"; \
-	fi; \
-	if [ -z "$$packages" ]; then exit; fi; \
-	for package in $$packages; do \
-		go mod edit -require=$$package@latest; \
-		go mod tidy; \
-	done
+	$(AT) cd tools; go get tool
 	$(AT) $(MAKE) go-tools-tidy go-tools-install
 .PHONY: go-tools-update
 else
@@ -420,8 +410,8 @@ check: lint test
 .PHONY: check
 
 fast-check: find-todos
-fast-check: go-check go-deps-check go-tools-check
-fast-check: go-deps-tidy go-tools-tidy go-generate git-check
+fast-check: go-check go-deps-check
+fast-check: go-deps-tidy go-generate git-check
 .PHONY: fast-check
 
 full-check: fast-check check

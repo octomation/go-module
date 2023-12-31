@@ -1,18 +1,20 @@
-linters:
-  fast: true
-  enable:
-    # defaults
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - typecheck
-    - unused
+version: "2"
+# The workflow preserves the old linters.fast setting with --fast-only.
 
-    # addition
+linters:
+  default: standard # errcheck, govet, ineffassign, staticcheck, unused
+  enable:
     - bodyclose
     - exhaustive
-    - exportloopref
     - gocritic
     - noctx
+  settings:
+    exhaustive:
+      default-signifies-exhaustive: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling

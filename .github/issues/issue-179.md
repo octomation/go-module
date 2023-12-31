@@ -1,0 +1,40 @@
+---
+code: null
+id: I_kwDOC16TM853CAOk
+databaseId: 1997013924
+number: 179
+url: https://github.com/octomation/go-module/issues/179
+title: "ci/cd: there is no workflow triggering for dependabot update"
+issueType: null
+labels:
+  - "type: bug"
+  - "severity: major"
+  - "scope: inventory"
+  - "impact: medium"
+  - "effort: easy"
+assignees:
+  - kamilsk
+milestone: "[[milestone-2]]"
+parent: null
+issueFields: {}
+state: OPEN
+stateReason: null
+duplicateOf: null
+createdAt: 2023-11-16T14:39:26Z
+updatedAt: 2023-11-16T14:39:27Z
+lastEditedAt: null
+closedAt: null
+---
+
+# ci/cd: there is no workflow triggering for dependabot update
+
+**Details**
+
+#177 is invalid, because x/time set go to 1.18. The module supports go1.11, and this pull must have failed to build, but it doesn't. Anyway, there is no automated start.
+
+- https://github.com/golang/time/releases/tag/v0.4.0
+- manually triggered job: https://github.com/octomation/go-module/actions/runs/6892105447
+
+I think this rule is incorrect.
+
+https://github.com/octomation/go-module/blob/22fbca9459561eba60a8915cb10947fe5bbd3a83/.github/workflows/ci.yml#L4-L12

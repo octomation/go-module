@@ -46,6 +46,10 @@ updates:
       include: 'scope'
     open-pull-requests-limit: 30
 
+  # the go tool directive requires tool modules as // indirect, which version
+  # updates skip, so this entry only raises security updates; a native fix is
+  # dependabot/dependabot-core#12050 (tracked in #546),
+  # until then update with `make go-tools-update`
   - package-ecosystem: gomod
     directory: /tools/
     schedule:
@@ -59,4 +63,4 @@ updates:
     commit-message:
       prefix: 'tools'
       include: 'scope'
-    open-pull-requests-limit: 30
+    open-pull-requests-limit: 0

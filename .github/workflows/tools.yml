@@ -14,7 +14,8 @@ on:
     paths:
       - '.github/workflows/tools.yml'
       - 'tools/**.go'
-      - 'tools/go.{mod,sum}'
+      - 'tools/go.mod'
+      - 'tools/go.sum'
       - 'Makefile'
 
   push:
@@ -22,7 +23,8 @@ on:
     paths:
       - '.github/workflows/tools.yml'
       - 'tools/**.go'
-      - 'tools/go.{mod,sum}'
+      - 'tools/go.mod'
+      - 'tools/go.sum'
       - 'Makefile'
     tags: [ '!*' ]
 
@@ -41,15 +43,17 @@ jobs:
       - name: Set up Go environment
         uses: actions/setup-go@v5.0.0
         with:
-          go-version: 1.21.x
+          go-version: 1.27.x
           cache-dependency-path: tools/go.sum
           check-latest: true
 
       - name: Install and check tools
-        run: make tools && [ $(ls bin/linux/*/* | wc -l) = $(grep go:gen tools/tools.go | wc -l) ]
+        run: make tools && [ "$(find bin/linux -mindepth 2 -type f | wc -l)" = "$(cd tools && go list tool | wc -l)" ]
 
       - name: Check git state
-        run: make generate git-check
+        run: make go-tools-tidy generate git-check
+      - name: Check tools
+        run: make go-tools-check
 
   notify:
     name: Notifying

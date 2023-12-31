@@ -17,7 +17,7 @@ func PanicOnErr(err error) {
 // Ping sends a request to the module and returns true if it's successful.
 func Ping(ctx context.Context, m *Module) bool {
 	url := fmt.Sprintf("https://%s/?go-get=1", m.name)
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+	req, err := http.NewRequest(http.MethodGet, url, nil) //nolint:noctx // the context is set below
 	PanicOnErr(err)
 	// compatible with go1.11 and go1.12
 	req = req.WithContext(ctx)
