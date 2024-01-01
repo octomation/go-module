@@ -1,0 +1,77 @@
+name: Continuous delivery
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: The released tag to publish, e.g. v1.2.3.
+        type: string
+        required: true
+      dry-run:
+        description: Check the publication without writing it.
+        type: boolean
+        default: true
+
+  push:
+    tags: [ 'v*' ]
+
+concurrency:
+  group: cd-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  # the catalog keeps stable releases only; rerun this workflow by hand with
+  # the tag to repeat a publication
+  vanity:
+    name: Publishing the module
+    if: ${{ startsWith(inputs.tag || github.ref_name, 'v') && !contains(inputs.tag || github.ref_name, '-') }}
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+
+    steps:
+      # without the Releaser credentials (a project generated from a template,
+      # a private repository on the Free plan) warn and end successfully
+      - name: Check the Releaser credentials
+        id: preflight
+        env:
+          OCTOLAB_RELEASER_CLIENT_ID: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+          OCTOLAB_RELEASER_KEY: ${{ secrets.OCTOLAB_RELEASER_KEY }}
+        run: |
+          if [ -n "${OCTOLAB_RELEASER_CLIENT_ID}" ] && [ -n "${OCTOLAB_RELEASER_KEY}" ]; then
+            echo 'ready=true' >> "${GITHUB_OUTPUT}"
+          else
+            echo '::warning title=Vanity::OCTOLAB_RELEASER_CLIENT_ID and OCTOLAB_RELEASER_KEY are not available to this repository; set them as organization or repository secrets to publish the module to go.octolab.org. Nothing was published.'
+            echo 'ready=false' >> "${GITHUB_OUTPUT}"
+          fi
+      - name: Checkout the release
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
+          persist-credentials: false
+      - name: Set up Go environment
+        if: steps.preflight.outputs.ready == 'true'
+        uses: actions/setup-go@v7.0.0
+        with: { go-version: 1.27.4, cache: false }
+      - name: Mint the catalog token
+        if: steps.preflight.outputs.ready == 'true'
+        id: catalog
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ secrets.OCTOLAB_RELEASER_CLIENT_ID }}
+          private-key: ${{ secrets.OCTOLAB_RELEASER_KEY }}
+          owner: octolab
+          repositories: vanity
+          permission-contents: write
+      - name: Publish the module to go.octolab.org
+        if: steps.preflight.outputs.ready == 'true'
+        uses: octomation/vanity-action@v0.1.0
+        with:
+          token: ${{ steps.catalog.outputs.token }}
+          packages: all
+          source-tag: ${{ inputs.tag || github.ref_name }}
+          dry-run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry-run }}
