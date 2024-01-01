@@ -8,7 +8,7 @@
 [![Mirror][mirror.icon]][mirror.page]
 [![Template][template.icon]][template.page]
 
-# 🧩 Module [![awesome.icon]][awesome.page]
+# 📐 Module [![awesome.icon]][awesome.page]
 
 Template for a typical module written on Go.
 

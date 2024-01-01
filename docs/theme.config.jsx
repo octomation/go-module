@@ -24,14 +24,14 @@ export default {
       <meta name="twitter:site" content="@github"/>
       <meta name="twitter:card" content="summary_large_image"/>
       <meta name="twitter:title" content="Module"/>
-      <meta name="twitter:description" content="🧩 Template for a typical module written on Go."/>
+      <meta name="twitter:description" content="📐 Template for a typical module written on Go."/>
       <meta property="og:image" content="https://cdn.octolab.org/repo/go-module.png"/>
-      <meta property="og:image:alt" content="🧩 Module"/>
+      <meta property="og:image:alt" content="📐 Module"/>
       <meta property="og:site_name" content="GitHub"/>
       <meta property="og:type" content="object"/>
       <meta property="og:title" content="Module"/>
       <meta property="og:url" content="https://go-module.octolab.org"/>
-      <meta property="og:description" content="🧩 Template for a typical module written on Go."/>
+      <meta property="og:description" content="📐 Template for a typical module written on Go."/>
 
       <style>{`
         main a img { display: inline; } /* badges */

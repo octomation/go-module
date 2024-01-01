@@ -1,6 +1,6 @@
 [![Go Module][social.preview]][preview.config]
 
-# 🧩 Module
+# 📐 Module
 
 Integrations and how-to guides.
 
