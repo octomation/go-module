@@ -96,7 +96,7 @@ jobs:
         run: make test-with-coverage
         if: matrix.go == '1.21.x'
       - name: Store code coverage report
-        uses: actions/upload-artifact@v4.0.0
+        uses: actions/upload-artifact@v4.3.1
         if: matrix.go == '1.21.x'
         with: { name: code-coverage-report, path: c.out }
 
