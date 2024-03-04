@@ -111,7 +111,7 @@ jobs:
         with: { fetch-depth: 0 }
 
       - name: Fetch code coverage report
-        uses: actions/download-artifact@v4.1.0
+        uses: actions/download-artifact@v4.1.4
         with: { name: code-coverage-report }
       - name: Send code coverage report to Codecov (codecov.io)
         uses: codecov/codecov-action@v3.1.4
