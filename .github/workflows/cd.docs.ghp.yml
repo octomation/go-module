@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: ./Taskfile docs npm ci
       - name: Set up GitHub Pages
-        uses: actions/configure-pages@v4.0.0
+        uses: actions/configure-pages@v5.0.0
 
       - name: Build documentation
         run: ./Taskfile docs publish
